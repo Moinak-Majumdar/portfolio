@@ -124,10 +124,25 @@ const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
                                 return (
                                     <motion.a key={index} variants={liVariants} href={curr.link} onClick={() => setActiveLink(curr.name)} whileTap={{ scale: 0.88 }} className='text-2xl ml-4 mb-4 font-ubuntu flex items-center'>
                                         <span className='font-ubuntu'>{curr.name}</span>
-                                        <BsBookmarkHeartFill className={activeLink === curr.name ? 'text-slate-800 ml-4 text-3xl' : 'hidden'} />
+                                        <BsBookmarkHeartFill className={activeLink === curr.name ? 'ml-4 text-3xl' : 'hidden'} style={{color: theme.val}}/>
                                     </motion.a>
                                 )
                             })}
+                            <motion.div variants={liVariants} className='text-lg mt-10 font-comicNeue ml-4'>
+                                This website is built with various color themes. Try by changing following color themes. 🌈
+                            </motion.div>
+                            <motion.div variants={liVariants} className='mt-4 ml-4'>
+                                <span className='capitalize text-xl font-comicNeue'>Current Theme :</span>
+                                <span className='ml-2 capitalize text-xl font-comicNeue' style={{color: theme.val}}>{theme.name}</span>
+                            </motion.div>
+                            <div className='w-fit grid grid-cols-4 mt-4 gap-3 mx-auto'>
+                                {themes.map((curr, index) => {
+                                    return (
+                                        <ThemeMotion key={index} setTheme={setTheme} variants={liVariants}
+                                            themeName={curr.themeName} themeColor={curr.themeColor} />
+                                    )
+                                })}
+                            </div>
                             <motion.div variants={liVariants} className='mt-20'>
                                 <Button onClick={() => navigate('/admin')} theme={theme} type='button'>
                                     <div className='flex items-center justify-center'>
@@ -136,17 +151,6 @@ const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
                                     </div>
                                 </Button>
                             </motion.div>
-                            <motion.div variants={liVariants} className='text-lg mt-10'>
-                                Customize Your Color Theme 🌈
-                            </motion.div>
-                            <div className='w-fit grid grid-cols-4 mt-4 gap-3'>
-                                {themes.map((curr, index) => {
-                                    return (
-                                        <ThemeMotion key={index} setTheme={setTheme} variants={liVariants}
-                                            themeName={curr.themeName} themeColor={curr.themeColor} />
-                                    )
-                                })}
-                            </div>
                         </motion.div>
                     </section>
                 </motion.div>

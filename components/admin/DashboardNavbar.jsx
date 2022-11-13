@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import Link from 'next/link'
+import { signOut } from "firebase/auth";
+import { auth } from '../../src/Firebase'
+import { useRouter } from 'next/router';
 import { MdAddTask, MdOutlineClose, MdLinkedCamera } from 'react-icons/md'
 import { RiUploadCloud2Fill, RiDatabase2Fill, RiFileListFill } from 'react-icons/ri'
 import Button from '../tools/Button'
@@ -37,9 +39,18 @@ const works = [
 const DashboardNavbar = () => {
 
   const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
+
+  function navigate(url) {
+    router.push(url)
+  }
 
   function logout () {
-    console.log('logout')
+    signOut(auth).then(() => {
+      navigate('admin/')
+    }).catch((error) => {
+      console.log(error)
+    });
   }
   return (
     <>
@@ -54,9 +65,9 @@ const DashboardNavbar = () => {
           return (
             <div className={`my-2 w-full flex items-center px-2 ${curr.className} hover:scale-95 ease-in-out`} key={index}>
               {curr.icon}
-              <Link href={curr.url}>
+              <button onClick={() => navigate(curr.url)} href={curr.url}>
                 <a className='ml-2' target={curr.target}>{curr.name}</a>
-              </Link>
+              </button>
             </div>
           )
         })}

@@ -6,15 +6,15 @@ function PageTransition({ children }) {
 
   const variants = {
     hidden: {
-      x: typeof window !== 'undefined' ? -window.innerWidth : '-100vw',
-      y: typeof window !== 'undefined' ? -window.innerHeight : '-100vh',
-      width: 0,
+      // x: typeof window !== 'undefined' ? -window.innerWidth : '-100vw',
+      // y: typeof window !== 'undefined' ? -window.innerHeight : '-100vh',
+      // width: 0,
       opacity: 0,
     }, 
     visible: {
-      x: 0,
-      y: 0,
-      width: '100%',
+      // x: 0,
+      // y: 0,
+      // width: '100%',
       opacity:1,
       transition:{duration: 1}
     },
@@ -22,7 +22,6 @@ function PageTransition({ children }) {
       //x: typeof window !== 'undefined' ? -window.innerWidth : '-100vw',
       //y: typeof window !== 'undefined' ? window.innerHeight : '-100vh',
       opacity: 0,
-      transition: {duration: .4}
     }
   }
 
