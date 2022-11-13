@@ -47,12 +47,12 @@ const CloudImgCard = ({ data, reDownloadImages }) => {
         switch (status.toString()) {
           case '400': {
             setError(d.error)
-            console.error(error);
+            console.log(error);
             break;
           }
           case '420': {
             setError(d.badRequest)
-            console.error(error);
+            console.log(error);
             break;
           }
           default: {
@@ -71,7 +71,7 @@ const CloudImgCard = ({ data, reDownloadImages }) => {
   
   if (error) {
     return (
-      <div className='fixed inset-0 flex min-w-full justify-center items-center min-h-screen z-10'>
+      <div className='fixed top-0 left-0 flex min-w-full justify-center items-center min-h-screen z-10'>
         <div className='py-2 px-4 bg-orange-500 rounded-full w-fit flex items-center text-xl shadow-2xl shadow-orange-400'>
           <MdOutlineWarning className='text-3xl' />
           <h1 className='mx-2'>{error}</h1>

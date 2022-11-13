@@ -150,8 +150,8 @@ const Doc = ({ project, darkMode, theme }) => {
           setError(data.success)
         }
       }).catch((error) => {
-        const status = Error.response.status;
-        const data = Error.response.data;
+        const status = error.response.status;
+        const data = error.response.data;
         const s = status.toString()
         if (s === '400' || s === '404' || s === '500') {
           setError(data.error)
@@ -280,7 +280,7 @@ const Doc = ({ project, darkMode, theme }) => {
 
   if(Error) {
     return (
-      <div className='fixed inset-0 flex min-w-full min-h-screen justify-center items-center z-10'>
+      <div className='fixed top-0 left-0 flex min-w-full min-h-screen justify-center items-center z-10'>
         <div className='py-2 px-4 bg-orange-500 rounded-full w-fit flex items-center text-xl shadow-2xl shadow-orange-400'>
           <MdOutlineWarning className='text-3xl' />
           <h1 className='mx-2'>{Error}</h1>

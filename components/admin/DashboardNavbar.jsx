@@ -47,7 +47,7 @@ const DashboardNavbar = () => {
 
   function logout () {
     signOut(auth).then(() => {
-      navigate('admin/')
+      navigate('/admin')
     }).catch((error) => {
       console.log(error)
     });
