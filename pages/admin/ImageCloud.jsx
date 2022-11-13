@@ -141,6 +141,7 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
                 }
             }
         }).finally(() => {
+            setMsg('Upload Successful ❤️')
             reDownloadImages()
             setDisable(false)
         })
