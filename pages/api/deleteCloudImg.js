@@ -18,28 +18,28 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'DELETE') {
-        const name = req.body.projectName;
+        const url = req.body.url;
     
-        if(!name) {
-            return res.status(500).json({error: 'Project Name is required'})
+        if(!url) {
+            return res.status(400).json({error: 'absolute cloud is required'})
         }
         
-        const exist = await CloudImage.findOne({"projectName": name})
+        const exist = await CloudImage.findOne({"url": url})
 
         if(exist) {
             try {
-                const promise = await CloudImage.deleteOne({"projectName" : name})
+                const promise = await CloudImage.deleteOne({"url" : url})
                 if(promise) {
                     return res.status(200).json({success: "image deleted successfully"})
                 } else {
-                    return res.status(500).json({error: "Failed to delete"})
+                    return res.status(400).json({error: "Failed to delete"})
                 }
             } catch (err) {
                 return res.status(400).json({error: err})
             }
 
         } else {
-            return res.status(404).json({error: "image not found"})
+            return res.status(400).json({error: "image not found"})
         }
     } else {
         return res.status(400).json({error : "Invalid requested method"})

@@ -138,7 +138,7 @@ const AddProject = ({ darkMode, theme }) => {
 
   if (error) {
     return (
-      <div className='fixed flex min-w-full justify-center items-center min-h-screen z-10'>
+      <div className='fixed inset-0 flex min-w-full justify-center items-center min-h-screen z-10'>
         <div className='py-2 px-4 bg-orange-500 rounded-full w-fit flex items-center text-xl shadow-2xl shadow-orange-400'>
           <MdOutlineWarning className='text-3xl' />
           <h1 className='mx-2'>{error}</h1>

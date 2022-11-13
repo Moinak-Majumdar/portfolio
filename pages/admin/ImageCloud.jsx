@@ -193,7 +193,7 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
                     {dbImages.map((curr) => {
                         return (
                             <CloudImgCard key={curr.projectName}
-                                projectName={curr.projectName} url={curr.url} imgName={curr.imgName}
+                                data={curr}
                                 reDownloadImages={reDownloadImages}
                             />
                         )
