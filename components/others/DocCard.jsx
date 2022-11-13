@@ -1,0 +1,34 @@
+import Link from 'next/link'
+
+const DocCard = ({ theme, darkMode, data }) => {
+
+
+
+    return (
+        <Link href={`Doc/${data.name}`}>
+            <a className='w-full h-fit group overflow-hidden border-2 p-2 border-slate-800 text-gray-300'>
+                <div className='flex bg-gradient-to-b from-[#243B55] to-[#141E30] relative'>
+                    <div className='min-w-full h-fit lg:group-hover:opacity-0 duration-500'>
+                        <picture>
+                            <source srcSet={data.img[0]} />
+                            <img alt='project.jpg' className='min-w-full min-h-[300px] md:min-h-[380px]' style={{ pointerEvents: 'none' }} layout='fill'/>
+                        </picture>
+                        <div className='absolute bottom-4 left-1 px-4 py-2 rounded-full' style={{backgroundColor: theme.val}}>
+                            <span className={`font-comicNeue text-2xl ${darkMode ? 'text-gray-200': 'text-gray-800'}`}>{data.name}</span>
+                        </div>
+                    </div>
+                    <div className='absolute top-0 left-0 flex flex-col justify-start p-4 opacity-0 lg:group-hover:opacity-100 duration-500'>
+                        <h2 className='text-4xl font-comicNeue capitalize'>{data.name}</h2>
+                        <p className='mt-4 text-xl'>{data.intro}</p>
+                        <p className='mt-4 text-lg'>
+                            <span className='font-roboto font-bold'>Project Role</span>:
+                            <span className='ml-2'>{data.role}</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </Link>
+    )
+}
+
+export default DocCard

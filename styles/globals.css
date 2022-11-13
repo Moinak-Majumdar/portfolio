@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'Rochester';
+    font-style: normal;
+    src: url(../public/assets/fonts/Rochester-Regular.ttf);
+}
+@font-face {
+    font-family: 'Comic Neue';
+    font-style: normal;
+    font-weight: 700;
+    src: url(../public/assets/fonts/ComicNeue-Bold.ttf);
+}
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../public/assets/fonts/Ubuntu-Regular.ttf);
+}
+@font-face {
+    src: url(../public/assets/fonts/Ubuntu-Bold.ttf);
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+}
+@font-face {
+    font-family: Roboto;
+    src: url(../public//assets//fonts/Roboto-Regular.ttf);
+    font-style: normal;
+    font-weight: 400;
+}
+
+*, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: overlay;
+    overflow-x: hidden;
+    font-family: Roboto;
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+   background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgb(112, 133, 155);
+    border-radius: 100vh;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(102, 123, 145);
+}
+
+.myContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .myContainer {
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+    }
+}
+@media (min-width: 1080px) {
+    .myContainer {
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+}
+@media (min-width: 1280px) {
+    .myContainer {
+        margin-left: 9rem;
+        margin-right: 9rem;
+    }
+}
+@media (min-width: 1536px) {
+    .myContainer {
+        margin-left: 11rem;
+        margin-right: 11rem;
+    }
+}
