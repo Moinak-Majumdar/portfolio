@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import Link from 'next/link';
 import axios from 'axios'
 import { useEffect, useState } from "react"
 import { GiClick } from 'react-icons/gi'
@@ -34,7 +35,7 @@ const Heading = {
   }
 }
 
-const MyWorks = ({darkMode, theme }) => {
+const MyWorks = ({ darkMode, theme }) => {
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(true)
   const [Error, setError] = useState(null)
@@ -75,9 +76,9 @@ const MyWorks = ({darkMode, theme }) => {
     getData()
   }, [])
 
-  if(Error) {
+  if (Error) {
     return (
-      <PopupError errors={Error} setErrors={setError}/>
+      <PopupError errors={Error} setErrors={setError} />
     )
   }
 
@@ -90,8 +91,16 @@ const MyWorks = ({darkMode, theme }) => {
             <h1 className="text-4xl md:text-5xl mb-4 font-ubuntu">
               My<span className="font-ubuntu font-bold ml-2">Latest Works</span>
             </h1>
+            <p className='font-roboto text-lg mt-4 max-w-[35rem]'>
+              Work I did for my clients.
+            </p>
+            <div className='mt-2'>
+              <Link href='/Projects'>
+                <a className='font-roboto text-xl font-bold' style={{ color: theme.val }}>View all my works</a>
+              </Link>
+            </div>
             <p className="flex items-center gap-2 lg:hidden">
-              <GiClick style={{color: theme.val, fontSize: '20px'}}/>
+              <GiClick style={{ color: theme.val, fontSize: '20px' }} />
               Click on each card for full description.
             </p>
           </motion.div>
@@ -109,13 +118,13 @@ const MyWorks = ({darkMode, theme }) => {
         </div>
       </div>
       <motion.div variants={Heading} className="absolute w-full lg:w-1/3 h-1/3 top-10 left-0 -z-10">
-      <div className={`absolute w-full h-full inset-0 bg-gradient-to-t z-10 ${darkMode? 'from-[#000011]' : 'from-[#ffffff]'}`}></div>
+        <div className={`absolute w-full h-full inset-0 bg-gradient-to-t z-10 ${darkMode ? 'from-[#000011]' : 'from-[#ffffff]'}`}></div>
         <Bg
           alt="landing pattern"
           src={darkMode ? '/assets/svg/pattern-dark.svg' : '/assets/svg/pattern-lite.svg'}
           className="opacity-60"
         />
-        <div className={`absolute w-full h-full inset-0 bg-gradient-to-r z-10 ${darkMode? 'from-[#000011]' : 'from-[#ffffff]'}`}></div>
+        <div className={`absolute w-full h-full inset-0 bg-gradient-to-r z-10 ${darkMode ? 'from-[#000011]' : 'from-[#ffffff]'}`}></div>
       </motion.div>
     </section>
   )

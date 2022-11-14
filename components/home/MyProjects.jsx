@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import Link from 'next/link';
 import axios from 'axios'
 import { useEffect, useState } from "react"
 import DocCard from "../others/DocCard";
@@ -89,6 +90,14 @@ const MyProjects = ({ darkMode, theme }) => {
             <h1 className="text-4xl md:text-5xl mb-4 font-ubuntu">
               Learning<span className="font-ubuntu font-bold ml-2">By Building</span>
             </h1>
+            <p className='font-roboto text-lg mt-4 max-w-[35rem]'>
+            Learning tech by building solo projects.
+            </p>
+            <div className='mt-2'>
+              <Link href='/Projects'>
+                <a className='font-roboto text-xl font-bold' style={{ color: theme.val }}>View all solo projects</a>
+              </Link>
+            </div>
           </motion.div>
           <motion.div variants={Left}>
             {isLoading && <h1 className="text-center text-5xl mt-40"><span style={{ color: `${theme.val}` }}>Loading...</span></h1>}

@@ -30,7 +30,7 @@ const index = ({ darkMode, theme }) => {
     <Tech key={key[2]} darkMode={darkMode} theme={theme}/>,
     <MyWorks key={key[3]} darkMode={darkMode} theme={theme}/>,
     <MyProjects key={key[4]} darkMode={darkMode} theme={theme}/>,
-    <MyPhotography key={key[5]} darkMode ={darkMode} theme={theme}/>,
+    <MyPhotography key={key[5]} darkMode={darkMode} theme={theme}/>,
     <Footer key={key[6]} darkMode={darkMode} theme={theme}/>,
   ]
 

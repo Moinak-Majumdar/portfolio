@@ -29,13 +29,12 @@ const ulVariants = {
         transition: { staggerChildren: 0.05, staggerDirection: -1 }
     }
 };
-
 const liVariants = {
     open: {
         y: 0,
         opacity: 1,
         transition: {
-            y: { stiffness: 1000, velocity: -100 }
+            y: { stiffness: 1000}
         }
     },
     closed: {
@@ -69,7 +68,7 @@ const navLinkHome = [
     { name: 'My Works', link: '#myWorks' },
     { name: 'My Projects', link: '#myProjects' },
     { name: 'My Hobby', link: '#myHobby' },
-    { name: 'Hire Me', link: '#hire' }
+    { name: 'Hire Me', link: '#hire' },
 ]
 const navLinkProjects = [
     { name: 'Home', link: '/' },

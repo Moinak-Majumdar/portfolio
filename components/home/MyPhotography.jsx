@@ -1,26 +1,27 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link';
 import axios from "axios";
-import Image from 'next/image';
 import { useEffect, useState } from "react";
 import PopupError from "../tools/PopupError";
 
-const Left = {
-    closed: {
-        x: 0,
-        y: 0,
-        opacity: 0.1,
+const outerVariants = {
+    open: {
+        transition: { staggerChildren: 0.5, delayChildren: 0.3 }
     },
+    closed: {
+        transition: { staggerChildren: 0.5, staggerDirection: -1 }
+    }
+};
+const innerVariants = {
     open: {
         x: 0,
-        y: 0,
         opacity: 1,
-        transition: {
-            duration: 1
-        }
+    },
+    closed: {
+        x: 200,
+        opacity: 0,
     }
-}
-
+};
 const Heading = {
     closed: {
         opacity: 0.5,
@@ -28,7 +29,7 @@ const Heading = {
     open: {
         opacity: 1,
         transition: {
-            delay: 0.5
+            delay: 0.2
         }
     }
 }
@@ -86,7 +87,7 @@ const MyPhotography = ({ darkMode, theme }) => {
     return (
         <section id='myHobby' className='relative overflow-hidden'>
             <div className={`myContainer py-[5rem] ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
-                <div className="flex flex-col justify-start">
+                <motion.div variants={outerVariants} className="flex flex-col justify-start">
                     <motion.div variants={Heading}>
                         <h4 className="font-ubuntu tracking-wide text-lg uppercase">Blossoms</h4>
                         <h1 className="text-4xl md:text-5xl mb-4 font-ubuntu">
@@ -102,20 +103,23 @@ const MyPhotography = ({ darkMode, theme }) => {
                             </Link>
                         </div>
                     </motion.div>
-                    <motion.div variants={Left}>
+                    <div>
                         {isLoading && <h1 className="text-center text-5xl mt-40"><span style={{ color: `${theme.val}` }}>Loading...</span></h1>}
                         {!Photo && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Server Error:</span> Failed to fetch projects.</h1>}
                         {Photo && <div className="mt-4 mx-auto grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-fit">
                             {Photo.map((curr, index) => {
                                 return (
-                                    <div key={index} className='w-fit h-fit relative flex p-1 border border-slate-800 rounded-sm'>
-                                        <Image src={curr.url} height='395px' width='300px' alt='myHobby.png' className='rounded-sm' />
-                                    </div>
+                                    <motion.div variants={innerVariants} key={index} className='w-fit h-fit relative flex p-1 border border-slate-800 rounded-sm'>
+                                        <picture>
+                                            <source srcSet={curr.url} />
+                                            <img alt='myHobby.jpg' className='min-w-full min-h-[395px] md:min-h-[300px]' style={{ pointerEvents: 'none' }} layout='fill' loading='lazy'/>
+                                        </picture>
+                                    </motion.div>
                                 )
                             })}
                         </div>}
-                    </motion.div>
-                </div>
+                    </div>
+                </motion.div>
             </div>
         </section>
     )
