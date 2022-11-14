@@ -96,13 +96,13 @@ const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
     return (
         <>
             <div className='fixed top-0 right-4 w-fit mt-2 rounded-full overflow-hidden z-50'>
-                {!darkMode && <button onClick={() => changeMode('dark')} className='cursor-pointer rounded-full mr-2 bg-yellow-400 p-3'>
+                {!darkMode && <button onClick={() => changeMode('dark')} className='cursor-pointer rounded-full mr-2 bg-yellow-400 p-3' aria-label='dark mode light mode toggle button'>
                     <BsSunFill className='text-xl' onClick={() => changeMode('dark')} />
                 </button>}
-                {darkMode && <button onClick={() => changeMode('lite')} className='cursor-pointer rounded-full mr-2 p-3 bg-slate-700'>
+                {darkMode && <button onClick={() => changeMode('lite')} className='cursor-pointer rounded-full mr-2 p-3 bg-slate-700' aria-label='dark mode light mode toggle button'>
                     <BsMoonStarsFill className='text-xl text-blue-300' onClick={() => changeMode('lite')} />
                 </button>}
-                <button onClick={() => setIsOpen(!isOpen)} className={`rounded-full cursor-pointer text-2xl ${darkMode ? 'bg-blue-300' : 'bg-pink-300'}`} style={{ padding: '9px' }}>
+                <button onClick={() => setIsOpen(!isOpen)} className={`rounded-full cursor-pointer text-2xl ${darkMode ? 'bg-blue-300' : 'bg-pink-300'}`} style={{ padding: '9px' }} area-labelledby='sideNavBar'>
                     <CgMenuRight className={darkMode ? 'text-black' : 'text-pink-800'} />
                 </button>
             </div>
@@ -111,6 +111,7 @@ const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
                 initial={false}
                 animate={isOpen ? 'open' : 'closed'}
                 className={`z-40 fixed top-0 right-0 min-h-full flex ${isOpen ? "w-full" : 'max-w-0'}`}
+                id='sideNavBar'
             >
                 <div onClick={() => setIsOpen(!isOpen)} className='bg-transparent min-w-full min-h-full'></div>
                 <motion.div
