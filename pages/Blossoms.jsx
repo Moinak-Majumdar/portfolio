@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import axios from "axios";
+import Image from 'next/image';
 
 const outerVariants = {
     open: {
@@ -58,10 +59,7 @@ const Blossoms = ({ darkMode, theme, key, photo }) => {
                             {photo.map((curr, index) => {
                                 return (
                                     <motion.div variants={innerVariants} key={index} className='w-fit h-fit relative flex p-1 border border-slate-800 rounded-sm'>
-                                        <picture>
-                                            <source srcSet={curr.url} />
-                                            <img alt='myHobby.jpg' className='min-w-full min-h-[395px] md:min-h-[300px]' style={{ pointerEvents: 'none' }} layout='fill' loading='lazy'/>
-                                        </picture>
+                                        <Image src={curr.url} height='395px' width='300px' alt='myHobby.png' className='rounded-sm' />
                                     </motion.div>
                                 )
                             })}
