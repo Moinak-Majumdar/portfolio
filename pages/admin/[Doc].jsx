@@ -1,19 +1,19 @@
-import { useState } from 'react'
+import { useRouter } from 'next/router';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import axios from "axios";
+import Image from 'next/image'
+import Head from 'next/head'
+import { useState } from 'react'
+import { MdUpdate, MdRestoreFromTrash } from 'react-icons/md'
 import DashboardNavbar from '../../components/admin/DashboardNavbar';
 import Input from '../../components/tools/Input'
 import Textarea from '../../components/tools/Textarea'
-import { MdUpdate, MdOutlineWarning, MdRestoreFromTrash, MdOutlineHighlightOff } from 'react-icons/md'
-import Image from 'next/image'
-import Head from 'next/head'
 import Button from '../../components/tools/Button';
-import { useRouter } from 'next/router';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../src/Firebase';
 import Err from '../../components/admin/Err';
 import Loading from '../../components/admin/Loading';
 import Login from '../../components/admin/Login';
-
+import PopupError from '../../components/tools/PopupError'
 
 
 const Doc = ({ project, darkMode, theme }) => {
@@ -114,7 +114,7 @@ const Doc = ({ project, darkMode, theme }) => {
       const status = error.response.status;
       const data = error.response.data;
       const s = status.toString()
-      if (s === '400' || s === '404' || s === '522') {
+      if (s === '400' || s === '404' || s === '422') {
         setError(data.error)
         console.log(error);
       } else if (s === '420') {
@@ -126,6 +126,7 @@ const Doc = ({ project, darkMode, theme }) => {
       }
     }).finally(() => {
       setDisable(false)
+      router.push('/admin')
     })
   }
 
@@ -153,7 +154,7 @@ const Doc = ({ project, darkMode, theme }) => {
         const status = error.response.status;
         const data = error.response.data;
         const s = status.toString()
-        if (s === '400' || s === '404' || s === '500') {
+        if (s === '400' || s === '422' || s === '500') {
           setError(data.error)
           console.log(error);
         } else if (s === '420') {
@@ -280,13 +281,7 @@ const Doc = ({ project, darkMode, theme }) => {
 
   if(Error) {
     return (
-      <div className='fixed top-0 left-0 flex min-w-full min-h-screen justify-center items-center z-10'>
-        <div className='py-2 px-4 bg-orange-500 rounded-full w-fit flex items-center text-xl shadow-2xl shadow-orange-400'>
-          <MdOutlineWarning className='text-3xl' />
-          <h1 className='mx-2'>{Error}</h1>
-          <MdOutlineHighlightOff className='cursor-pointer text-3xl' onClick={() => setError(null)} />
-        </div>
-      </div>
+      <PopupError errors={Error} setErrors={setError}/>
     )
   }
 

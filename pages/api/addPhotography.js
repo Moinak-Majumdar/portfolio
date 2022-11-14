@@ -29,7 +29,7 @@ export default async function handler(req, res) {
             const exist = await Photography.findOne({url: url})
         
             if(exist) {
-                return res.status(500).json({exist: "photography already exist"})
+                return res.status(500).json({error: "photography already exist"})
             }
 
             const data = new Photography({ url })

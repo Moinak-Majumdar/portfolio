@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
-import axios from 'axios'
 import { motion } from 'framer-motion'
+import axios from 'axios'
+import { useEffect, useState } from "react"
 import DocCard from "../others/DocCard";
+import PopupError from '../tools/PopupError'
 
 const Left = {
   closed: {
@@ -20,21 +21,22 @@ const Left = {
 }
 
 const Heading = {
-    closed: {
-      opacity: 0.5,
-    },
-    open: {
-      opacity: 1,
-      transition: {
-        delay: 0.5
-      }
+  closed: {
+    opacity: 0.5,
+  },
+  open: {
+    opacity: 1,
+    transition: {
+      delay: 0.5
     }
   }
-  
+}
 
-const MyProjects = ({darkMode, theme, key }) => {
+
+const MyProjects = ({ darkMode, theme, key }) => {
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(true)
+  const [Error, setError] = useState(null)
 
   const options = {
     method: 'POST',
@@ -53,13 +55,31 @@ const MyProjects = ({darkMode, theme, key }) => {
         setData([...projects])
         console.log(data)
       }).catch((error) => {
-        console.error(error);
+        const status = error.response.status;
+        const data = error.response.data;
+        const s = status.toString()
+        if (s === '422' || s === '404' || s === '400') {
+          setError(data.error)
+          console.log(error);
+        } else if (s === '420') {
+          setError(data.badRequest)
+          console.log(error);
+        } else {
+          setError('Check Console')
+          console.log(Error)
+        }
       }).then(() => {
         setLoading(false)
       });
     }
     getData()
   }, [])
+
+  if(Error) {
+    return (
+      <PopupError errors={Error} setErrors={setError}/>
+    )
+  }
 
   return (
     <section key={key} id='myProjects' className='relative overflow-hidden'>

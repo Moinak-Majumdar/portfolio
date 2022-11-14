@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
-import axios from 'axios'
 import { motion } from 'framer-motion'
+import axios from 'axios'
+import { useEffect, useState } from "react"
+import { GiClick } from 'react-icons/gi'
 import DocCard from "../others/DocCard";
 import Bg from '../tools/Bg'
-import { GiClick } from 'react-icons/gi'
+import PopupError from '../tools/PopupError'
 
 const Left = {
   closed: {
@@ -36,6 +37,7 @@ const Heading = {
 const MyWorks = ({darkMode, theme, key }) => {
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(true)
+  const [Error, setError] = useState(null)
 
   const options = {
     method: 'POST',
@@ -53,13 +55,31 @@ const MyWorks = ({darkMode, theme, key }) => {
         const projects = response.data
         setData([...projects])
       }).catch((error) => {
-        console.error(error);
+        const status = error.response.status;
+        const data = error.response.data;
+        const s = status.toString()
+        if (s === '422' || s === '404' || s === '400') {
+          setError(data.error)
+          console.log(error);
+        } else if (s === '420') {
+          setError(data.badRequest)
+          console.log(error);
+        } else {
+          setError('Check Console')
+          console.log(Error)
+        }
       }).then(() => {
         setLoading(false)
       });
     }
     getData()
   }, [])
+
+  if(Error) {
+    return (
+      <PopupError errors={Error} setErrors={setError}/>
+    )
+  }
 
   return (
     <section key={key} id='myWorks' className='relative overflow-hidden'>

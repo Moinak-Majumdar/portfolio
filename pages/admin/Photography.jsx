@@ -3,7 +3,7 @@ import axios from "axios";
 import Head from 'next/head'
 import Image from 'next/image'
 import { BsFillImageFill } from 'react-icons/bs';
-import { MdAddTask, MdOutlineWarning, MdOutlineHighlightOff } from 'react-icons/md'
+import { MdAddTask } from 'react-icons/md'
 import { FaRegWindowClose } from 'react-icons/fa';
 import PhotographyCard from '../../components/admin/PhotographyCard'
 import DashboardNavbar from '../../components/admin/DashboardNavbar';
@@ -13,6 +13,7 @@ import { auth } from '../../src/Firebase';
 import Login from '../../components/admin/Login';
 import Loading from '../../components/admin/Loading';
 import Err from '../../components/admin/Err';
+import PopupError from '../../components/tools/PopupError'
 
 
 const Photography = ({ darkMode, theme, photography }) => {
@@ -54,31 +55,16 @@ const Photography = ({ darkMode, theme, photography }) => {
         }).catch((error) => {
             const status = error.response.status;
             const data = error.response.data;
-            switch (status.toString()) {
-                case '500': {
-                    setError(data.exist)
-                    console.log(error);
-                    break;
-                }
-                case '400': {
-                    setError(data.error)
-                    console.log(error);
-                    break;
-                }
-                case '422': {
-                    setError(data.error)
-                    console.log(error);
-                    break;
-                }
-                case '420': {
-                    setError(data.badRequest)
-                    console.log(error);
-                    break;
-                }
-                default: {
-                    setError('Check Console')
-                    console.log(error)
-                }
+            const s = status.toString()
+            if (s === '400' || s === '404' || s === '500') {
+                setError(data.error)
+                console.log(error);
+            } else if (s === '420') {
+                setError(data.badRequest)
+                console.log(error);
+            } else {
+                setError('Check Console')
+                console.log(error)
             }
         }).finally(() => {
             resetImgDb()
@@ -179,13 +165,7 @@ const Photography = ({ darkMode, theme, photography }) => {
     }
     if (Error) {
         return (
-            <div className='fixed top-0 left-0 flex min-w-full justify-center items-center min-h-screen z-10'>
-                <div className='py-2 px-4 bg-orange-500 rounded-full w-fit flex items-center text-xl shadow-2xl shadow-orange-400'>
-                    <MdOutlineWarning className='text-3xl' />
-                    <h1 className='mx-2'>{Error}</h1>
-                    <MdOutlineHighlightOff className='cursor-pointer text-3xl' onClick={() => setError(null)} />
-                </div>
-            </div>
+            <PopupError errors={Error} setErrors={setError} />
         )
     }
     if (loading) {

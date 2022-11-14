@@ -29,7 +29,7 @@ export default async function handler(req, res) {
             const exist = await Projects.findOne({name: name})
         
             if(exist) {
-                return res.status(500).json({exist: "project already exist"})
+                return res.status(500).json({error: "project already exist"})
             }
 
             const data = new Projects({ name, type, role, intro, liveUrl, gitRepo, slug, description, img, tools, toolsLogo })

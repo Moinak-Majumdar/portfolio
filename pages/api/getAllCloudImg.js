@@ -24,7 +24,7 @@ export default async function handler(req, res) {
             if(images.length > 0) {
                 return res.status(200).json(images)
             } else {
-                return res.status(400).json({error:'no images to show'})
+                return res.status(500).json({error:'no images to show'})
             }
         } catch(err) {
             return res.status(400).json({error: err})

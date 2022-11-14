@@ -22,14 +22,14 @@ export default async function handler(req, res) {
 
         
         if(!projectName || !imgName || !url ) {
-            return res.status(400).json({error: "all fields are required"})
+            return res.status(422).json({error: "all fields are required"})
         }
 
         try {
             const exist = await CloudImage.findOne({url: url})
         
             if(exist) {
-                return res.status(400).json({error: "image already exist"})
+                return res.status(500).json({error: "image already exist"})
             }
 
             const data = new CloudImage({ projectName, imgName, url })

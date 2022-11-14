@@ -17,7 +17,7 @@ const divVariants = {
         width: '300px',
         height: '100vh',
         x: '500px',
-        transition: { delay: 1.3 }
+        transition: { delay: 1.4 }
     }
 }
 const ulVariants = {
@@ -31,14 +31,14 @@ const ulVariants = {
 
 const liVariants = {
     open: {
-        y: 40,
+        y: 0,
         opacity: 1,
         transition: {
             y: { stiffness: 1000, velocity: -100 }
         }
     },
     closed: {
-        y: 0,
+        y: -40,
         opacity: 0,
         transition: {
             y: { stiffness: 1000 }
@@ -116,10 +116,10 @@ const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
                 <motion.div
                     variants={divVariants}
                     style={darkMode ? { background: 'linear-gradient(#2C5364,#203A43,#0F2027)', boxShadow: '0px 0px 30px #6b7280' } : { background: 'linear-gradient(#D7DDE8,#BBD2C5)', boxShadow: '0px 0px 30px #374151' }}
-                    className={`absolute top-0 right-0 bottom-0 rounded-l-2xl ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}
+                    className={`absolute top-0 right-0 bottom-0 rounded-l-2xl overflow-hidden ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}
                 >
-                    <section className='w-full flex min-h-full flex-col px-4'>
-                        <motion.div variants={ulVariants} animate={isOpen ? 'open' : 'closed'} className='w-full flex flex-col h-full pt-20 relative'>
+                    <section className='w-full min-h-full px-4 flex items-center'>
+                        <motion.div variants={ulVariants} animate={isOpen ? 'open' : 'closed'} className='min-w-full flex flex-col h-fit'>
                             {navLink.map((curr, index) => {
                                 return (
                                     <motion.a key={index} variants={liVariants} href={curr.link} onClick={() => setActiveLink(curr.name)} whileTap={{ scale: 0.88 }} className='text-2xl ml-4 mb-4 font-ubuntu flex items-center'>
@@ -143,7 +143,7 @@ const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
                                     )
                                 })}
                             </div>
-                            <motion.div variants={liVariants} className='mt-20'>
+                            <motion.div variants={liVariants} className='mt-8'>
                                 <Button onClick={() => navigate('/admin')} theme={theme} type='button'>
                                     <div className='flex items-center justify-center'>
                                         <MdOutlineDashboardCustomize />
