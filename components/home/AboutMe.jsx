@@ -36,9 +36,9 @@ const timeline = [
     grade: '77%'}
 ]
 
-const AboutMe = ({ darkMode, theme, key }) => {
+const AboutMe = ({ darkMode, theme }) => {
   return (
-    <section key={key} id='aboutMe' className={`relative ${darkMode? 'bg-gradient-to-t from-slate-900':''}`}>
+    <section id='aboutMe' className={`relative ${darkMode? 'bg-gradient-to-t from-slate-900':''}`}>
       <div className={`myContainer pt-10 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
         <div className="flex flex-col-reverse lg:flex-row justify-center items-center lg:justify-between">
           <div className="flex flex-col mt-10 lg:mt-0 w-full lg:w-[75%]">

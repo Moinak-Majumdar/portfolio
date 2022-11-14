@@ -36,9 +36,9 @@ const Right = {
   }
 }
 
-const Hero = ({ darkMode, theme, key }) => {
+const Hero = ({ darkMode, theme }) => {
   return (
-    <section key={key} id='intro' className="min-h-screen flex relative overflow-hidden" style={{ background: `${darkMode ? 'radial-gradient(ellipse at bottom, #1b2735 0%,#090a0f 100%)' : 'radial-gradient(ellipse at bottom, #DFFEFE 0%,#FFFFFF 100%)'}` }}>
+    <section id='intro' className="min-h-screen flex relative overflow-hidden" style={{ background: `${darkMode ? 'radial-gradient(ellipse at bottom, #1b2735 0%,#090a0f 100%)' : 'radial-gradient(ellipse at bottom, #DFFEFE 0%,#FFFFFF 100%)'}` }}>
       <div className={` absolute ${darkMode ? stylesDark.stars : stylesLite.stars}`}></div>
       <div className={` absolute ${darkMode ? stylesDark.stars2 : stylesLite.stars2}`}></div>
       <div className={` absolute ${darkMode ? stylesDark.stars3 : stylesLite.stars3}`}></div>

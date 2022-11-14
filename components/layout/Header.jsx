@@ -10,6 +10,10 @@ const link = [
   {
     name: 'Projects',
     url : '/Projects'
+  },
+  {
+    name: 'Blossoms',
+    url: '/Blossoms'
   }
 ]
 

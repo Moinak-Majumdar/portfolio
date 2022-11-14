@@ -58,7 +58,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name='author' content="Moinak Majumdar"/>
         <meta name='description' content='personal portfolio website'/>
-        <meta name='keywords' content='Nextjs, exprssjs, nodejs, firebase, reactjs, mongo, portfolio, github'/>
+        <meta name='keywords' content='Next js, express js, nodejs, firebase, reactjs, mongo, portfolio, github'/>
       </Head>
       <PageTransition>
         {theme && <Component {...pageProps} darkMode={darkMode} theme={theme} />}

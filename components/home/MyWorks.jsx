@@ -34,7 +34,7 @@ const Heading = {
   }
 }
 
-const MyWorks = ({darkMode, theme, key }) => {
+const MyWorks = ({darkMode, theme }) => {
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(true)
   const [Error, setError] = useState(null)
@@ -82,7 +82,7 @@ const MyWorks = ({darkMode, theme, key }) => {
   }
 
   return (
-    <section key={key} id='myWorks' className='relative overflow-hidden'>
+    <section id='myWorks' className='relative overflow-hidden'>
       <div className={`myContainer py-[5rem] ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
         <div className="flex flex-col justify-start">
           <motion.div variants={Heading}>
@@ -90,7 +90,7 @@ const MyWorks = ({darkMode, theme, key }) => {
             <h1 className="text-4xl md:text-5xl mb-4 font-ubuntu">
               My<span className="font-ubuntu font-bold ml-2">Latest Works</span>
             </h1>
-            <p className="flex items-center gap-2">
+            <p className="flex items-center gap-2 lg:hidden">
               <GiClick style={{color: theme.val, fontSize: '20px'}}/>
               Click on each card for full description.
             </p>

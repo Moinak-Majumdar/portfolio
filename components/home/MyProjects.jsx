@@ -33,7 +33,7 @@ const Heading = {
 }
 
 
-const MyProjects = ({ darkMode, theme, key }) => {
+const MyProjects = ({ darkMode, theme }) => {
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(true)
   const [Error, setError] = useState(null)
@@ -53,12 +53,11 @@ const MyProjects = ({ darkMode, theme, key }) => {
       await axios.request(options).then((response) => {
         const projects = response.data
         setData([...projects])
-        console.log(data)
       }).catch((error) => {
         const status = error.response.status;
         const data = error.response.data;
         const s = status.toString()
-        if (s === '422' || s === '404' || s === '400') {
+        if (s === '404' || s === '400') {
           setError(data.error)
           console.log(error);
         } else if (s === '420') {
@@ -75,14 +74,14 @@ const MyProjects = ({ darkMode, theme, key }) => {
     getData()
   }, [])
 
-  if(Error) {
+  if (Error) {
     return (
-      <PopupError errors={Error} setErrors={setError}/>
+      <PopupError errors={Error} setErrors={setError} />
     )
   }
 
   return (
-    <section key={key} id='myProjects' className='relative overflow-hidden'>
+    <section id='myProjects' className='relative overflow-hidden'>
       <div className={`myContainer py-[5rem] ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
         <div className="flex flex-col justify-start">
           <motion.div variants={Heading}>

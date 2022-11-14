@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
 import { BsMoonStarsFill, BsSunFill, BsBookmarkHeartFill } from 'react-icons/bs'
 import { CgMenuRight } from 'react-icons/cg'
 import { MdOutlineDashboardCustomize } from 'react-icons/md'
 import Button from '../tools/Button'
-import { motion } from 'framer-motion'
 import ThemeMotion from './ThemeMotion'
 
 const divVariants = {
@@ -47,35 +48,63 @@ const liVariants = {
 };
 
 const themes = [
-    { themeName: 'slate', themeColor: '#64748b' },
-    { themeName: 'orange', themeColor: '#f97316' },
-    { themeName: 'yellow', themeColor: '#eab308' },
-    { themeName: 'green', themeColor: '#22c55e' },
     { themeName: 'teal', themeColor: '#2dd4bf' },
     { themeName: 'cyan', themeColor: '#22d3ee' },
+    { themeName: 'yellow', themeColor: '#eab308' },
+    { themeName: 'green', themeColor: '#22c55e' },
     { themeName: 'sky', themeColor: '#0ea5e9' },
+    { themeName: 'pink', themeColor: '#ec4899' },
+    { themeName: 'orange', themeColor: '#f97316' },
+    { themeName: 'red', themeColor: '#ef4444' },
+    { themeName: 'purple', themeColor: '#a855f7' },
     { themeName: 'blue', themeColor: '#3b82f6' },
     { themeName: 'indigo', themeColor: '#6366f1' },
-    { themeName: 'purple', themeColor: '#a855f7' },
-    { themeName: 'pink', themeColor: '#ec4899' },
-    { themeName: 'red', themeColor: '#ef4444' },
+    { themeName: 'slate', themeColor: '#64748b' },
 ]
 
-const navLink = [
+const navLinkHome = [
     { name: 'Intro', link: '#intro' },
     { name: 'About Me', link: '#aboutMe' },
     { name: 'Tools & Tech', link: '#tech' },
     { name: 'My Works', link: '#myWorks' },
     { name: 'My Projects', link: '#myProjects' },
+    { name: 'My Hobby', link: '#myHobby' },
     { name: 'Hire Me', link: '#hire' }
+]
+const navLinkProjects = [
+    { name: 'Home', link: '/' },
+    { name: 'My Works', link: '#myWorks' },
+    { name: 'My Projects', link: '#myProjects' },
+    { name: 'My Hobby', link: '/Blossoms' },
+]
+const navLinkBlossoms = [
+    { name: 'Home', link: '/' },
+    { name: 'Projects', link: '/Projects' },
+]
+const navLinkOthers = [
+    { name: 'Home', link: '/' },
+    { name: 'Projects', link: '/Projects' },
+    { name: 'Blossoms', link: '/Blossoms' },
 ]
 
 const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
     const [activeLink, setActiveLink] = useState(null)
+    const [navLink, setNavLink] = useState(null)
 
-
+    useEffect(() => {
+        const pName = router.pathname
+        if(pName === '/') {
+            setNavLink(navLinkHome)
+        } else if(pName === '/Blossoms') {
+            setNavLink(navLinkBlossoms)
+        } else if(pName === '/Projects') {
+            setNavLink(navLinkProjects)
+        } else {
+            setNavLink(navLinkOthers)
+        }
+    },[])
     function navigate(link) {
         setIsOpen(false)
         router.push(link)
@@ -119,22 +148,30 @@ const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
                     style={darkMode ? { background: 'linear-gradient(#2C5364,#203A43,#0F2027)', boxShadow: '0px 0px 30px #6b7280' } : { background: 'linear-gradient(#D7DDE8,#BBD2C5)', boxShadow: '0px 0px 30px #374151' }}
                     className={`absolute top-0 right-0 bottom-0 rounded-l-2xl overflow-hidden ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}
                 >
-                    <section className='w-full min-h-full px-4 flex items-center'>
+                    {navLink && <section className='w-full min-h-full px-4 flex items-center'>
                         <motion.div variants={ulVariants} animate={isOpen ? 'open' : 'closed'} className='min-w-full flex flex-col h-fit'>
+                            <motion.h1 variants={liVariants} className='text-3xl lg:text-4xl mt-4 mb-4 lg:mb-12  ml-4'>
+                                <span className='font-ubuntu'>useful</span>
+                                <span className='font-ubuntu font-bold ml-2' style={{ color: theme.val }}>Links</span>
+                            </motion.h1>
                             {navLink.map((curr, index) => {
                                 return (
-                                    <motion.a key={index} variants={liVariants} href={curr.link} onClick={() => setActiveLink(curr.name)} whileTap={{ scale: 0.88 }} className='text-2xl ml-4 mb-4 font-ubuntu flex items-center'>
-                                        <span className='font-ubuntu'>{curr.name}</span>
-                                        <BsBookmarkHeartFill className={activeLink === curr.name ? 'ml-4 text-3xl' : 'hidden'} style={{color: theme.val}}/>
-                                    </motion.a>
+                                    <motion.div key={index} variants={liVariants} whileTap={{ scale: 0.88 }}>
+                                        <Link href={curr.link}>
+                                            <a onClick={() => setActiveLink(curr.name)} className='text-xl ml-4 mb-3 font-ubuntu flex items-center'>
+                                                <span className='font-ubuntu'>{curr.name}</span>
+                                                <BsBookmarkHeartFill className={activeLink === curr.name ? 'ml-4 text-2xl' : 'hidden'} style={{ color: theme.val}}/>
+                                            </a>
+                                        </Link>
+                                    </motion.div>
                                 )
                             })}
-                            <motion.div variants={liVariants} className='text-lg mt-10 font-comicNeue ml-4'>
+                            <motion.div variants={liVariants} className='text-lg mt-8 font-comicNeue ml-4'>
                                 This website is built with various color themes. Try by changing following color themes. 🌈
                             </motion.div>
                             <motion.div variants={liVariants} className='mt-4 ml-4'>
                                 <span className='capitalize text-xl font-comicNeue'>Current Theme :</span>
-                                <span className='ml-2 capitalize text-xl font-comicNeue' style={{color: theme.val}}>{theme.name}</span>
+                                <span className='ml-2 capitalize text-xl font-comicNeue' style={{ color: theme.val }}>{theme.name}</span>
                             </motion.div>
                             <div className='w-fit grid grid-cols-4 mt-4 gap-3 mx-auto'>
                                 {themes.map((curr, index) => {
@@ -153,7 +190,7 @@ const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
                                 </Button>
                             </motion.div>
                         </motion.div>
-                    </section>
+                    </section>}
                 </motion.div>
             </motion.div>
         </>

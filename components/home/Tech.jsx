@@ -68,9 +68,9 @@ const compo = [
     }
 ]
 
-const Tech = ({ darkMode, theme, key }) => {
+const Tech = ({ darkMode, theme }) => {
     return (
-        <section key={key} id='tech' className={`relative ${darkMode ? 'bg-gradient-to-b from-slate-900' : ''}`}>
+        <section id='tech' className={`relative ${darkMode ? 'bg-gradient-to-b from-slate-900' : ''}`}>
             <div className={`myContainer py-[4rem] ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
                 <div className="flex flex-col lg:flex-row justify-center items-center lg:justify-between">
                     <motion.div variants={Heading} className='flex items-center'>

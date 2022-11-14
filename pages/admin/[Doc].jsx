@@ -172,7 +172,7 @@ const Doc = ({ project, darkMode, theme }) => {
     }
   }
 
-  if(user) {
+  if (user) {
     return (
       <>
         <Head>
@@ -193,12 +193,12 @@ const Doc = ({ project, darkMode, theme }) => {
               <label className='text-sm md:text-base'>Type **</label>
               <div className='flex mt-2 gap-6'>
                 <span>
-                  <input id='client-work' value='work' checked={data.type === 'work'} onChange={(e) => setData({ ...data, type: 'work'})} name='type' required={true} type="radio" disable={disable} />
-                  <label className='text-sm md:text-base ml-2 cursor-pointer' htmlFor='client-work' style={{color: theme.val}}>Client Work</label>
+                  <input id='client-work' value='work' checked={data.type === 'work'} onChange={(e) => setData({ ...data, type: 'work' })} name='type' required={true} type="radio" disable={disable ? 'true' : 'false'}/>
+                  <label className='text-sm md:text-base ml-2 cursor-pointer' htmlFor='client-work' style={{ color: theme.val }}>Client Work</label>
                 </span>
                 <span>
-                  <input id='personal-project' value='project' checked={data.type === 'project'} onChange={(e) => setData({ ...data, type: 'project'})} name='type' required={true} type="radio" disable={disable} />
-                  <label className='text-sm md:text-base ml-2 cursor-pointer' htmlFor='personal-project' style={{color: theme.val}}>Personal Project</label>
+                  <input id='personal-project' value='project' checked={data.type === 'project'} onChange={(e) => setData({ ...data, type: 'project' })} name='type' required={true} type="radio" disable={disable ? 'true' : 'false'}/>
+                  <label className='text-sm md:text-base ml-2 cursor-pointer' htmlFor='personal-project' style={{ color: theme.val }}>Personal Project</label>
                 </span>
               </div>
             </div>
@@ -279,26 +279,26 @@ const Doc = ({ project, darkMode, theme }) => {
     )
   }
 
-  if(Error) {
+  if (Error) {
     return (
-      <PopupError errors={Error} setErrors={setError}/>
+      <PopupError errors={Error} setErrors={setError} />
     )
   }
 
-  if(error) {
-    return(
-      <Err darkMode={darkMode} error={error}/>
+  if (error) {
+    return (
+      <Err darkMode={darkMode} error={error} />
     )
   }
 
-  if(loading) {
-    return(
-      <Loading darkMode={darkMode}/>
+  if (loading) {
+    return (
+      <Loading darkMode={darkMode} />
     )
   }
 
-  return(
-    <Login darkMode={darkMode} theme={theme}/>
+  return (
+    <Login darkMode={darkMode} theme={theme} />
   )
 }
 
