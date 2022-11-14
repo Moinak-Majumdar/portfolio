@@ -7,8 +7,8 @@ import PopupError from "../tools/PopupError";
 
 const Left = {
     closed: {
-        x: 50,
-        y: 50,
+        x: 0,
+        y: 0,
         opacity: 0.1,
     },
     open: {
