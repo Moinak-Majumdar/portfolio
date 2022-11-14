@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 const Button = ({children, theme, type, onClick, className, disable}) => {
 
   const [Hover, setHover] = useState(false)
-  const def = 'text-white flex justify-center items-center w-11/12 border-0 py-2 px-8 focus:outline-none  rounded text-lg shadow-lg transition-all duration-500 rounded-full'
 
   return (
     <>
@@ -18,7 +17,7 @@ const Button = ({children, theme, type, onClick, className, disable}) => {
           type={type} onClick={onClick} 
           onMouseEnter={() => {setHover(true)}}
           onMouseLeave={() => {setHover(false)}}
-          className={`${def} ${className} ${disable? 'cursor-not-allowed':'cursor-pointer'}`} 
+          className={`text-white flex justify-center items-center w-11/12 border-0 py-2 px-8 focus:outline-none text-lg shadow-lg transition-all duration-500 rounded-full ${className} ${disable? 'cursor-not-allowed':'cursor-pointer'}`} 
           style={Hover?{boxShadow: `4px 2px 20px ${theme.val}`, backgroundColor: `${theme.val}`}:{backgroundColor: `${theme.val}`}}
           disabled={disable}
         >

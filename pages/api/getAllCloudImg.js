@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
     if (req.method === 'GET') {
         try{
-            const images = await CloudImage.find()
+            const images = await CloudImage.find().sort({projectName: 1})
     
             if(images.length > 0) {
                 return res.status(200).json(images)
