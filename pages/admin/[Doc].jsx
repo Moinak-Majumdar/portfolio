@@ -177,7 +177,17 @@ const Doc = ({ project, darkMode, theme }) => {
       <PopupError errors={Error} setErrors={setError} />
     )
   }
-  
+  if (loading) {
+    return (
+      <Loading darkMode={darkMode} />
+    )
+  }
+  if (error) {
+    return (
+      <Err darkMode={darkMode} error={error} />
+    )
+  }
+
   if (user) {
     return (
       <>
@@ -284,19 +294,6 @@ const Doc = ({ project, darkMode, theme }) => {
       </>
     )
   }
-
-  if (error) {
-    return (
-      <Err darkMode={darkMode} error={error} />
-    )
-  }
-
-  if (loading) {
-    return (
-      <Loading darkMode={darkMode} />
-    )
-  }
-
   return (
     <Login darkMode={darkMode} theme={theme} />
   )

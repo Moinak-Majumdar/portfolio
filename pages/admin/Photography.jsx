@@ -29,11 +29,8 @@ const Photography = ({ darkMode, theme, photography }) => {
     async function handelSubmit(e) {
 
         e.preventDefault();
-
         setDisable(true)
         setError('')
-
-        console.log('func', input.url)
         const options = {
             method: 'POST',
             url: process.env.NEXT_PUBLIC_ADD_PHOTOGRAPHY_API,
@@ -122,6 +119,16 @@ const Photography = ({ darkMode, theme, photography }) => {
             <PopupError errors={Error} setErrors={setError} />
         )
     }
+    if (loading) {
+        return (
+            <Loading darkMode={darkMode} />
+        )
+    }
+    if (error) {
+        return (
+            <Err darkMode={darkMode} error={error} />
+        )
+    }
     
     if (user) {
         return (
@@ -135,7 +142,7 @@ const Photography = ({ darkMode, theme, photography }) => {
                         <BsFillImageFill style={{ fontSize: '30px', cursor: 'pointer' }} />
                         <span className='text-lg hidden md:flex ml-2 cursor-pointer'>Upload image</span>
                     </button>
-                    <div className='mt-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8'>
+                    <div className='mt-4 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4'>
                         {ImgDb.map((curr, i) => {
                             return (
                                 <PhotographyCard key={i} data={curr} resetImgDb={resetImgDb} />
@@ -167,16 +174,6 @@ const Photography = ({ darkMode, theme, photography }) => {
                     </form>
                 </section >}
             </>
-        )
-    }
-    if (loading) {
-        return (
-            <Loading darkMode={darkMode} />
-        )
-    }
-    if (error) {
-        return (
-            <Err darkMode={darkMode} error={error} />
         )
     }
     return (

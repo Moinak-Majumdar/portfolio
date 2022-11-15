@@ -132,7 +132,17 @@ const AddProject = ({ darkMode, theme }) => {
       <PopupError errors={Error} setErrors={setError} />
     )
   }
-  
+  if (loading) {
+    return (
+      <Loading darkMode={darkMode} />
+    )
+  }
+  if (error) {
+    return (
+      <Err darkMode={darkMode} error={error} />
+    )
+  }
+
   if (user) {
     return (
       <>
@@ -234,16 +244,6 @@ const AddProject = ({ darkMode, theme }) => {
           </form>
         </section>
       </>
-    )
-  }
-  if (error) {
-    return (
-      <Err darkMode={darkMode} error={error} />
-    )
-  }
-  if (loading) {
-    return (
-      <Loading darkMode={darkMode} />
     )
   }
   return (

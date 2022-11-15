@@ -12,6 +12,16 @@ const landing = ({ darkMode, theme, projects }) => {
 
   const [user, loading, error] = useAuthState(auth);
   
+  if(loading) {
+    return(
+      <Loading darkMode={darkMode}/>
+    )
+  }
+  if(error) {
+    return(
+      <Err darkMode={darkMode} error={error}/>
+    )
+  }
   if(user) {
     return (
       <>
@@ -29,16 +39,6 @@ const landing = ({ darkMode, theme, projects }) => {
           </div>
         </section>
       </>
-    )
-  }
-  if(loading) {
-    return(
-      <Loading darkMode={darkMode}/>
-    )
-  }
-  if(error) {
-    return(
-      <Err darkMode={darkMode} error={error}/>
     )
   }
   return(

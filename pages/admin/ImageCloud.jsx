@@ -53,7 +53,7 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
             headers: { 'Content-Type': 'application/json' }
         };
         await axios.request(options).then((response) => {
-            images = [...response.data]
+            images = response.data
         }).catch((error) => {
             const status = error.response.status;
             const data = error.response.data;
@@ -152,6 +152,16 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
             <PopupError errors={Error} setErrors={setError} />
         )
     }
+    if (loading) {
+        return (
+            <Loading darkMode={darkMode} />
+        )
+    }
+    if (error) {
+        return (
+            <Err darkMode={darkMode} error={error} />
+        )
+    }
     if (user) {
         return (
             <>
@@ -201,7 +211,7 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
                         <BsFillImageFill style={{ fontSize: '30px', cursor: 'pointer' }} />
                         <span className='text-lg hidden md:flex ml-2 cursor-pointer'>Upload image</span>
                     </button>
-                    {CurrentDb && <div className='mt-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8'>
+                    {CurrentDb && <div className='mt-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4'>
                         {CurrentDb.map((curr, index) => {
                             return (
                                 <CloudImgCard key={`${curr.projectName}-_-${index}`}
@@ -213,16 +223,6 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
                     </div>}
                 </section>
             </>
-        )
-    }
-    if (loading) {
-        return (
-            <Loading darkMode={darkMode} />
-        )
-    }
-    if (error) {
-        return (
-            <Err darkMode={darkMode} error={error} />
         )
     }
     return (

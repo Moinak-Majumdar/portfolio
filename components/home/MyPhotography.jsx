@@ -5,6 +5,11 @@ import Image from 'next/image';
 import { useEffect, useState } from "react";
 import PopupError from "../tools/PopupError";
 
+
+const viewport = {
+    once: false,
+    amount: typeof window !== 'undefined' ? (window.innerWidth > 450 ? 0.5 : 0.1) : 0.5
+}
 const outerVariants = {
     open: {
         transition: { staggerChildren: 0.5, delayChildren: 0.3 }
@@ -84,11 +89,10 @@ const MyPhotography = ({ darkMode, theme }) => {
         )
     }
 
-
     return (
         <section id='myHobby' className='relative overflow-hidden'>
             <div className={`myContainer py-[5rem] ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
-                <motion.div variants={outerVariants} className="flex flex-col justify-start">
+                <motion.div initial='closed' whileInView='open' viewport={viewport} variants={outerVariants} className="flex flex-col justify-start">
                     <motion.div variants={Heading}>
                         <h4 className="font-ubuntu tracking-wide text-lg uppercase">Blossoms</h4>
                         <h1 className="text-4xl md:text-5xl mb-4 font-ubuntu">
