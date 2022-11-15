@@ -26,13 +26,21 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
     const [file, setFile] = useState(null)
     const [msg, setMsg] = useState(null)
     const [disable, setDisable] = useState(false)
-    const [dbImages, setDbImages] = useState(imagesFromDb)
+    const [DB, setDB] = useState(imagesFromDb)
     const [CurrentDb, setCurrentDb] = useState(null)
 
     const [user, loading, error] = useAuthState(auth);
 
-    function dbSet () {
-        
+    function dbSet(e) {
+        const dbName = e.target.value;
+        if(dbName !== 'select project') {
+            setCurrentDb(null)
+            setCurrentDb(DB[dbName])
+            setError(null)
+        } else {
+            setError('Please select project first.')
+            setCurrentDb(null)
+        }
     }
     async function reDownloadImages() {
         let images = []
@@ -61,7 +69,7 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
                 console.log(error)
             }
         }).finally(() => {
-            setDbImages(images)
+            setDB(images)
         })
     }
 
@@ -139,7 +147,11 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
             setDisable(false)
         })
     }
-
+    if (Error) {
+        return (
+            <PopupError errors={Error} setErrors={setError} />
+        )
+    }
     if (user) {
         return (
             <>
@@ -174,28 +186,33 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
                         </CopyToClipboard>
                     </div>}
                 </section>
-                {CurrentDb && <section className='myContainer py-[4rem] text-gray-800'>
+                <section className='myContainer py-[4rem] text-gray-800'>
+                    <div className='fixed top-3 left-14 md:left-16 z-10'>
+                        <select className="block w-full px-3 py-1.5 text-lg cursor-pointer text-gray-700 border border-orange-400 rounded transition ease-in-out focus:bg-white bg-orange-200 focus:border-orange-600 outline-none" aria-label="select project" onChange={dbSet}>
+                            <option value='select project'>Select Project</option>
+                            {imagesFromDb['allProjects'].map((curr, index) => {
+                                return(
+                                    <option key={index} value={curr}>{curr}</option>
+                                )
+                            })}
+                        </select>
+                    </div>
                     <button className='fixed top-14 md:left-2 left-0 flex flex-col md:flex-row justify-center items-center p-2 mb-4 z-10 rounded-lg bg-green-300' onClick={() => setUploadBox(!uploadBox)}>
                         <BsFillImageFill style={{ fontSize: '30px', cursor: 'pointer' }} />
                         <span className='text-lg hidden md:flex ml-2 cursor-pointer'>Upload image</span>
                     </button>
-                    <div className='mt-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8'>
-                        {CurrentDb.map((curr) => {
+                    {CurrentDb && <div className='mt-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8'>
+                        {CurrentDb.map((curr, index) => {
                             return (
-                                <CloudImgCard key={curr.projectName}
+                                <CloudImgCard key={`${curr.projectName}-_-${index}`}
                                     data={curr}
                                     reDownloadImages={reDownloadImages}
                                 />
                             )
                         })}
-                    </div>
-                </section>}
+                    </div>}
+                </section>
             </>
-        )
-    }
-    if (Error) {
-        return (
-            <PopupError errors={Error} setErrors={setError} />
         )
     }
     if (loading) {
@@ -217,7 +234,7 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
 
 export async function getServerSideProps() {
 
-    let images = []
+    let data;
     const options = {
         method: 'GET',
         url: process.env.NEXT_PUBLIC_GET_ALL_CLOUD_IMG,
@@ -228,12 +245,12 @@ export async function getServerSideProps() {
     };
 
     await axios.request(options).then((response) => {
-        images = [...response.data]
+        data = response.data
     }).catch((error) => {
         console.error(error);
     });
 
-    return { props: { imagesFromDb: images } }
+    return { props: { imagesFromDb: data } }
 }
 
 export default ImageCloud

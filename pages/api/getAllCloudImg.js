@@ -20,6 +20,10 @@ export default async function handler(req, res) {
     if (req.method === 'GET') {
         try {
             const images = await CloudImage.find().sort({ projectName: 1 })
+            const pn = images.map((curr) => {
+                return curr.projectName
+            })
+            const projectNames = [... new Set(pn)]
             let db = [];
             let projectNameVar = null;
             let j = -1
@@ -29,16 +33,20 @@ export default async function handler(req, res) {
                     db[j].push(curr)
                 } else {
                     projectNameVar = curr.projectName;
-                    j = j+1;
-                    if(db.length < 1) {
+                    j = j + 1;
+                    if (db.length < 1) {
                         db.push([curr])
                     } else {
                         db = [...db, [curr]]
                     }
                 }
             }
+            const result = { allProjects : projectNames}
+            for (let i = 0; i < projectNames.length; i++) {
+                result[projectNames[i]] = db[i]
+            }
             if (db.length > 0) {
-                return res.status(200).json(db)
+                return res.status(200).json(result)
             } else {
                 return res.status(500).json({ error: 'no images to show' })
             }

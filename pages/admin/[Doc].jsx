@@ -172,6 +172,12 @@ const Doc = ({ project, darkMode, theme }) => {
     }
   }
 
+  if (Error) {
+    return (
+      <PopupError errors={Error} setErrors={setError} />
+    )
+  }
+  
   if (user) {
     return (
       <>
@@ -276,12 +282,6 @@ const Doc = ({ project, darkMode, theme }) => {
           </form>
         </section>
       </>
-    )
-  }
-
-  if (Error) {
-    return (
-      <PopupError errors={Error} setErrors={setError} />
     )
   }
 

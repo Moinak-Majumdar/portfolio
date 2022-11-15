@@ -117,6 +117,12 @@ const Photography = ({ darkMode, theme, photography }) => {
         })
     }
 
+    if (Error) {
+        return (
+            <PopupError errors={Error} setErrors={setError} />
+        )
+    }
+    
     if (user) {
         return (
             <>
@@ -161,11 +167,6 @@ const Photography = ({ darkMode, theme, photography }) => {
                     </form>
                 </section >}
             </>
-        )
-    }
-    if (Error) {
-        return (
-            <PopupError errors={Error} setErrors={setError} />
         )
     }
     if (loading) {

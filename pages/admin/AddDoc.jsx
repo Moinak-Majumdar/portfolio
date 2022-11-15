@@ -127,6 +127,12 @@ const AddProject = ({ darkMode, theme }) => {
 
   }
 
+  if (Error) {
+    return (
+      <PopupError errors={Error} setErrors={setError} />
+    )
+  }
+  
   if (user) {
     return (
       <>
@@ -230,25 +236,16 @@ const AddProject = ({ darkMode, theme }) => {
       </>
     )
   }
-
   if (error) {
     return (
       <Err darkMode={darkMode} error={error} />
     )
   }
-
   if (loading) {
     return (
       <Loading darkMode={darkMode} />
     )
   }
-
-  if (Error) {
-    return (
-      <PopupError errors={Error} setErrors={setError} />
-    )
-  }
-
   return (
     <Login darkMode={darkMode} theme={theme} />
   )
