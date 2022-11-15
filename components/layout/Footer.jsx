@@ -1,7 +1,19 @@
+import { motion } from 'framer-motion'
 import Link from "next/link";
-import {AiFillFacebook, AiFillLinkedin, AiFillGithub,} from "react-icons/ai";
-import { motion } from "framer-motion";
+import { AiFillFacebook, AiFillLinkedin, AiFillGithub, } from "react-icons/ai";
 
+const smooth = {
+    closed: {
+        opacity: 0.1,
+    },
+    open: {
+        opacity: 1,
+        transition: {
+            duration: 1,
+            delay: 0.3
+        }
+    }
+}
 const socialLinks = [
     {
         name: "Facebook",
@@ -20,11 +32,11 @@ const socialLinks = [
     },
 ];
 
-function Footer({ theme, darkMode, Left, Right, id }) {
+function Footer({ theme, darkMode }) {
     return (
         <>
-            <footer id={id} className='mt-auto w-full pt-8 pb-2 flex flex-col text-white'>
-                <motion.div variants={Right} className={`ml-auto w-[90%] flex justify-center items-center py-4 ${darkMode ? 'bg-slate-800' : 'bg-black'}`}>
+            <motion.footer variants={smooth} className='mt-auto w-full pt-[4rem] flex flex-col text-white'>
+                <div className={`ml-auto w-[90%] flex justify-center flex-col items-center py-4 ${darkMode ? 'bg-slate-800' : 'bg-black'}`}>
                     <div className="w-[90%] flex md:justify-between justify-center flex-col md:flex-row">
                         <div className="flex flex-col">
                             <h4 className="font-ubuntu">Something in mind</h4>
@@ -49,12 +61,28 @@ function Footer({ theme, darkMode, Left, Right, id }) {
                             </div>
                         </div>
                     </div>
-                </motion.div>
-                <motion.div variants={Left} className="w-[90%] ml-auto justify-center flex mt-4 gap-4" style={{ color: theme.val }}>
-                    <p className="font-ubuntu">Copyright {new Date().getFullYear()} - All rights reserved.</p>
-                    <p className="font-ubuntu">Designed and Developed with Next.js, Framer Motion and Tailwind Css </p>
-                </motion.div>
-            </footer>
+                </div>
+                <div className={`ml-auto my-4 px-4 md:px-20 w-[90%] flex md:justify-between justify-center flex-col-reverse md:flex-row font-roboto ${darkMode? 'text-gray-300' : 'text-gray-800'}`} >
+                    <h1 className="font-roboto font-bold my-auto">
+                        <span>Copyright {new Date().getFullYear()} - All rights reserved.</span> <br/>
+                        <span>Designed and Developed by Moinak05</span>
+                    </h1>
+                    <div className="flex flex-col my-2 md:my-0">
+                        <h2 className="font-roboto font-bold">Credits</h2>
+                        <ul className="mt-2 list-disc list-inside">
+                            <li>
+                                <Link href="http://www.freepik.com" target='_blank'>image: upklyak/Freepik</Link>
+                            </li>
+                            <li>
+                                <Link href='https://www.framer.com/' target='_blank'>animation: framer</Link>
+                            </li>
+                            <li>
+                                <Link href='https://nextjs.org/'  target='_blank'>platform: Next.js</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </motion.footer>
         </>
     );
 }

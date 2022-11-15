@@ -6,6 +6,7 @@ import MyWorks from '../components/home/MyWorks'
 import MyProjects from '../components/home/MyProjects'
 import Footer from '../components/layout/Footer'
 import MyPhotography from '../components/home/MyPhotography'
+import HireMe from '../components/home/HireMe'
 
 const viewport = {
   once: false,
@@ -22,7 +23,7 @@ const transition = {
 }
 
 const index = ({ darkMode, theme }) => {
-  const key = ['intro', 'aboutMe', 'tech', 'myWorks', 'myProjects', 'myHobby','hire']
+  const key = ['intro', 'aboutMe', 'tech', 'myWorks', 'myProjects', 'myHobby','hire', 'footer']
 
   const compo = [
     <Hero key={key[0]} darkMode={darkMode} theme={theme}/>,
@@ -31,7 +32,8 @@ const index = ({ darkMode, theme }) => {
     <MyWorks key={key[3]} darkMode={darkMode} theme={theme}/>,
     <MyProjects key={key[4]} darkMode={darkMode} theme={theme}/>,
     <MyPhotography key={key[5]} darkMode={darkMode} theme={theme}/>,
-    <Footer key={key[6]} darkMode={darkMode} theme={theme}/>,
+    <HireMe key={key[6]} darkMode={darkMode} theme={theme}/>,
+    <Footer key={key[7]} darkMode={darkMode} theme={theme}/>,
   ]
 
   return (

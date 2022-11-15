@@ -114,8 +114,8 @@ const MyPhotography = ({ darkMode, theme }) => {
                         {Photo && <div className="mt-4 mx-auto grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-fit">
                             {Photo.map((curr, index) => {
                                 return (
-                                    <motion.div variants={innerVariants} key={index} className='w-[270px] md:w-[360px] h-[360px] md:h-[480px] relative flex border border-slate-800  rounded-sm'>
-                                        <Image src={curr.url} alt='myHobby.jpg' layout='fill' objFit='cover' className='rounded-sm' />
+                                    <motion.div variants={innerVariants} key={index} className='w-fit h-fit relative flex p-1 border border-slate-800 rounded-sm'>
+                                        <Image src={curr.url} height='480px' width='360px' alt='myHobby.png' className='rounded-sm' />
                                     </motion.div>
                                 )
                             })}
