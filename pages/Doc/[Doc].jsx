@@ -1,17 +1,21 @@
+import { motion } from 'framer-motion'
+import { useRouter } from 'next/router';
 import axios from "axios";
+import Image from "next/image";
+import { FaGithub, FaLink, FaGripfire, FaRegImages } from 'react-icons/fa'
+import { AiOutlineRollback } from 'react-icons/ai'
 import ProjectImgSlider from "../../components/others/ProjectImgSlider";
 import Bg from "../../components/tools/Bg";
-import { motion } from 'framer-motion'
-import { FaGithub, FaLink, FaGripfire, FaRegImages } from 'react-icons/fa'
-import Image from "next/image";
+import Button from '../../components/tools/Button'
 
 const Doc = ({ project, darkMode, theme }) => {
 
+  const router = useRouter();
   const images = [...project.img]
-  
+
   return (
     <section className={`relative min-h-screen ${darkMode ? 'bg-gradient-to-t from-slate-900' : ''}`}>
-      <div className={`myContainer py-[4rem] ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
+      <div className={`myContainer pt-[4rem] pb-[2rem] ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
         <h4 className="mt-8 uppercase">
           {project.type === 'project' ? 'about project' : 'about work'}
         </h4>
@@ -20,16 +24,16 @@ const Doc = ({ project, darkMode, theme }) => {
           <section className="flex lg:flex-row justify-center lg:justify-between flex-col-reverse w-full">
             {/* hl5 description */}
             <motion.div
-              initial={{y:100, x:-100, opacity:0}}
-              animate={{y:0, x:0, opacity:1}}
-              transition={{duration: 1, delay: 0.8}}  
+              initial={{ y: 100, x: -100, opacity: 0 }}
+              animate={{ y: 0, x: 0, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.8 }}
               className="text-lg md:text-xl lg:max-w-2xl 2xl:max-w-3xl py-4 mr-4"
-              dangerouslySetInnerHTML={{__html: project.description}}>
+              dangerouslySetInnerHTML={{ __html: project.description }}>
             </motion.div>
             <motion.div
-              initial={{y: -100, x:100, opacity: 0}}
-              animate={{x:0, y:0, opacity: 1}}
-              transition={{duration: 1.2, delay: 0.5}} 
+              initial={{ y: -100, x: 100, opacity: 0 }}
+              animate={{ x: 0, y: 0, opacity: 1 }}
+              transition={{ duration: 1.2, delay: 0.5 }}
               className="w-fit flex flex-col">
               {/* hl7 links */}
               <div className="w-fit flex xl:flex-row flex-col ml-2 xl:ml-0">
@@ -62,9 +66,9 @@ const Doc = ({ project, darkMode, theme }) => {
             </motion.div>
           </section>
           <motion.div
-            initial={{opacity:0}}
-            animate={{opacity:1}}
-            transition={{duration:1, delay:2}}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 2 }}
             className="mx-auto flex flex-col mt-10 w-full">
             <div className="ml-6 mb-4 flex items-center text-2xl md:text-3xl">
               <FaRegImages className="text-4xl" style={{ color: theme.val }} />
@@ -73,6 +77,14 @@ const Doc = ({ project, darkMode, theme }) => {
               </h1>
             </div>
             <ProjectImgSlider images={images} theme={theme} />
+            <div className='mt-16 mx-auto'>
+              <Button onClick={() => router.back()} theme={theme} darkMode={darkMode}>
+                <div className='text-2xl flex items-center gap-4'>
+                  <AiOutlineRollback />
+                  <span className='font-ubuntu font-bold'>Back</span>
+                </div>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </div>

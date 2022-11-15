@@ -8,7 +8,7 @@ import PopupError from "../tools/PopupError";
 
 const viewport = {
     once: false,
-    amount: typeof window !== 'undefined' ? (window.innerWidth > 450 ? 0.5 : 0.1) : 0.5
+    amount: typeof window !== 'undefined' ? (window.innerWidth > 450 ? 0.5 : 0.05) : 0.5
 }
 const outerVariants = {
     open: {

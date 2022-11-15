@@ -1,11 +1,24 @@
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { GiClick } from 'react-icons/gi'
 
+const innerVariants = {
+    open: {
+        x: 0,
+        y: 0,
+        opacity: 1,
+    },
+    closed: {
+        x: 200,
+        y: -10,
+        opacity: 0,
+    }
+};
 const DocCard = ({ theme, darkMode, data }) => {
 
     return (
         <Link href={`Doc/${data.name}`}>
-            <a className='w-full h-fit group overflow-hidden border-2 p-2 border-slate-800 text-gray-300'>
+            <motion.a variants={innerVariants} className='w-full h-fit group overflow-hidden border p-2 border-slate-800 text-gray-300 hover:cursor-pointer' whileTap={{scale: 0.95}}>
                 <div className='flex bg-gradient-to-b from-[#243B55] to-[#141E30] relative'>
                     <div className='min-w-full h-fit lg:group-hover:opacity-0 duration-500'>
                         <picture>
@@ -29,7 +42,7 @@ const DocCard = ({ theme, darkMode, data }) => {
                         </div>
                     </div>
                 </div>
-            </a>
+            </motion.a>
         </Link>
     )
 }
