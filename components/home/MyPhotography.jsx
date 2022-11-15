@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link';
 import axios from "axios";
+import Image from 'next/image';
 import { useEffect, useState } from "react";
 import PopupError from "../tools/PopupError";
 
@@ -53,9 +54,9 @@ const MyPhotography = ({ darkMode, theme }) => {
             };
 
             await axios.request(options).then((response) => {
-                const shuffled = [...response.data].sort(() => 0.5 - Math.random());
-                const arr = shuffled.slice(0, 4)
-                setPhoto([...arr])
+                const d = response.data
+                const shuffled = d.sort(() => 0.5 - Math.random());
+                setPhoto(shuffled.slice(0, 4))
             }).catch((error) => {
                 const status = error.response.status;
                 const data = error.response.data;
@@ -99,7 +100,7 @@ const MyPhotography = ({ darkMode, theme }) => {
                         </p>
                         <div className='mt-2'>
                             <Link href='/Blossoms'>
-                                <a className='font-roboto text-xl font-bold' style={{color: theme.val}}>View all blossoms</a>
+                                <a className='font-roboto text-xl font-bold' style={{ color: theme.val }}>View all blossoms</a>
                             </Link>
                         </div>
                     </motion.div>
@@ -109,11 +110,8 @@ const MyPhotography = ({ darkMode, theme }) => {
                         {Photo && <div className="mt-4 mx-auto grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-fit">
                             {Photo.map((curr, index) => {
                                 return (
-                                    <motion.div variants={innerVariants} key={index} className='w-fit h-fit relative flex p-1 border border-slate-800 rounded-sm'>
-                                        <picture>
-                                            <source srcSet={curr.url} />
-                                            <img alt='myHobby.jpg' className='min-w-full min-h-[395px] md:min-h-[300px]' style={{ pointerEvents: 'none' }} layout='fill' loading='lazy'/>
-                                        </picture>
+                                    <motion.div variants={innerVariants} key={index} className='w-[270px] md:w-[360px] h-[360px] md:h-[480px] relative flex border border-slate-800  rounded-sm'>
+                                        <Image src={curr.url} alt='myHobby.jpg' layout='fill' objFit='cover' className='rounded-sm' />
                                     </motion.div>
                                 )
                             })}

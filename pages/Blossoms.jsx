@@ -55,11 +55,11 @@ const Blossoms = ({ darkMode, theme, key, photo }) => {
                         </p>
                     </motion.div>
                     <div>
-                        {photo && <div className="mt-4 mx-auto grid 2xl:grid-cols-5 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-fit">
+                        {photo && <div className="mt-4 mx-auto grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-fit">
                             {photo.map((curr, index) => {
                                 return (
                                     <motion.div variants={innerVariants} key={index} className='w-fit h-fit relative flex p-1 border border-slate-800 rounded-sm'>
-                                        <Image src={curr.url} height='395px' width='300px' alt='myHobby.png' className='rounded-sm' />
+                                        <Image src={curr.url} height='480px' width='360px' alt='myHobby.png' className='rounded-sm' />
                                     </motion.div>
                                 )
                             })}

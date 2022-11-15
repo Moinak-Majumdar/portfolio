@@ -21,15 +21,19 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
     const [uploadBox, setUploadBox] = useState(false)
     const [ansLink, setAnsLink] = useState(null)
     const [copied, setCopied] = useState(false)
-    const [Error, setError] = useState(null)
+    const [Error, setError] = useState('Please select project first.')
     const [projectName, setProjectName] = useState('')
     const [file, setFile] = useState(null)
     const [msg, setMsg] = useState(null)
     const [disable, setDisable] = useState(false)
     const [dbImages, setDbImages] = useState(imagesFromDb)
+    const [CurrentDb, setCurrentDb] = useState(null)
 
     const [user, loading, error] = useAuthState(auth);
 
+    function dbSet () {
+        
+    }
     async function reDownloadImages() {
         let images = []
         const options = {
@@ -170,13 +174,13 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
                         </CopyToClipboard>
                     </div>}
                 </section>
-                <section className='myContainer py-[4rem] text-gray-800'>
+                {CurrentDb && <section className='myContainer py-[4rem] text-gray-800'>
                     <button className='fixed top-14 md:left-2 left-0 flex flex-col md:flex-row justify-center items-center p-2 mb-4 z-10 rounded-lg bg-green-300' onClick={() => setUploadBox(!uploadBox)}>
                         <BsFillImageFill style={{ fontSize: '30px', cursor: 'pointer' }} />
                         <span className='text-lg hidden md:flex ml-2 cursor-pointer'>Upload image</span>
                     </button>
                     <div className='mt-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8'>
-                        {dbImages.map((curr) => {
+                        {CurrentDb.map((curr) => {
                             return (
                                 <CloudImgCard key={curr.projectName}
                                     data={curr}
@@ -185,7 +189,7 @@ const ImageCloud = ({ darkMode, theme, imagesFromDb }) => {
                             )
                         })}
                     </div>
-                </section>
+                </section>}
             </>
         )
     }
