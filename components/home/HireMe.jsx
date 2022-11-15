@@ -73,7 +73,7 @@ const HireMe = ({ darkMode, theme }) => {
                                 </p>
                                 <FaQuoteRight className='mt-4 text-4xl' style={{ color: theme.val }} />
                             </div>
-                            <div className='flex mt-8 gap-6'>
+                            <div className='flex mt-8 gap-6 mr-auto ml-auto lg:ml-0'>
                                 {links.map((curr, index) => {
                                     return (
                                         <a key={index} href={curr.url} target='_blank' className='text-3xl cursor-pointer'>
@@ -82,7 +82,7 @@ const HireMe = ({ darkMode, theme }) => {
                                     )
                                 })}
                             </div>
-                            <Button darkMod={darkMode} theme={theme} className='mt-8 max-w-xs ml-auto'>
+                            <Button darkMod={darkMode} theme={theme} className='mt-8 max-w-xs ml-auto mr-auto lg:mr-0'>
                                 Download Resume
                             </Button>
                         </motion.div>
