@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import Link from 'next/link';
 import Image from 'next/image';
 import { FaQuoteLeft, FaQuoteRight, FaFacebookSquare, FaGithub, FaWhatsapp, FaLinkedin, FaPhoneAlt } from 'react-icons/fa'
 import { MdMarkEmailUnread } from 'react-icons/md'
@@ -83,7 +84,11 @@ const HireMe = ({ darkMode, theme }) => {
                                 })}
                             </div>
                             <Button darkMod={darkMode} theme={theme} className='mt-8 max-w-xs ml-auto mr-auto lg:mr-0'>
-                                Download Resume
+                                <Link href='/assets/document/myResume.pdf'>
+                                    <a target='_blank'>
+                                        Download Resume
+                                    </a>
+                                </Link>
                             </Button>
                         </motion.div>
                     </div>

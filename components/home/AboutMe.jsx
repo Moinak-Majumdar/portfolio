@@ -23,7 +23,7 @@ const timeline = [
     sub: 'OOP, computer system architecture, operating system, data structure and algorithm (design), database management systems, fundamentals of artificial intelligence, digital image processing.',
     date: 'jun.2019 - july.2022',
     from: 'Completed B.Sc computer science from Barrackpore Rastraguru Surendranath College (West Bengal State University), West Bengal.',
-    grade: '9.8 (CGPA)' },
+    grade: '9.59 (CGPA)' },
   { name: 'Higher Secondary',
     sub: null,
     date: 'jun.2017 - mar.2019',
