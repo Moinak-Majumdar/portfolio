@@ -2,16 +2,34 @@ import { motion } from 'framer-motion'
 import Link from "next/link";
 import { AiFillFacebook, AiFillLinkedin, AiFillGithub, } from "react-icons/ai";
 
+const viewport = {
+    once: false,
+    amount: typeof window !== 'undefined' ? (window.innerWidth > 450 ? 0.5 : 0.05) : 0.5
+}
+const outerVariants = {
+    open: {
+        transition: { staggerChildren: 0.5, delayChildren: 0.3 }
+    },
+    closed: {
+        transition: { staggerChildren: 0.5, staggerDirection: -1 }
+    }
+};
 const smooth = {
     closed: {
         opacity: 0.1,
     },
     open: {
         opacity: 1,
-        transition: {
-            duration: 1,
-            delay: 0.3
-        }
+    }
+}
+const smooth2 = {
+    closed: {
+        opacity: 0,
+        y: -100,
+    },
+    open: {
+        opacity: 1,
+        y: 0,
     }
 }
 const socialLinks = [
@@ -32,11 +50,11 @@ const socialLinks = [
     },
 ];
 
-function Footer({ theme, darkMode }) {
+function Footer({ darkMode }) {
     return (
         <>
-            <motion.footer variants={smooth} className='mt-auto w-full pt-[4rem] flex flex-col text-white'>
-                <div className={`ml-auto w-[90%] flex justify-center flex-col items-center py-4 ${darkMode ? 'bg-slate-800' : 'bg-black'}`}>
+            <motion.footer initial='closed' whileInView='open' viewport={viewport} variants={outerVariants} className='w-full pt-[4rem] flex flex-col text-white'>
+                <motion.div  variants={smooth} className={`ml-auto w-[90%] flex justify-center flex-col items-center py-4 ${darkMode ? 'bg-slate-800' : 'bg-black'}`}>
                     <div className="w-[90%] flex md:justify-between justify-center flex-col md:flex-row">
                         <div className="flex flex-col">
                             <h4 className="font-ubuntu">Something in mind</h4>
@@ -48,7 +66,7 @@ function Footer({ theme, darkMode }) {
                         </div>
                         <div className="space-y-1 mt-4 md:mt-auto">
                             <p className="text-base text-left md:text-right font-bold">
-                                Connect with me
+                                Follow me at
                             </p>
                             <div className="flex items-center md:justify-end gap-2">
                                 {socialLinks.map((link) => (
@@ -61,8 +79,8 @@ function Footer({ theme, darkMode }) {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className={`ml-auto my-4 px-4 md:px-20 w-[90%] flex md:justify-between justify-center flex-col-reverse md:flex-row font-roboto ${darkMode? 'text-gray-300' : 'text-gray-800'}`} >
+                </motion.div>
+                <motion.div variants={smooth2} className={`ml-auto my-4 px-4 md:px-20 w-[90%] flex md:justify-between justify-center flex-col-reverse md:flex-row font-roboto ${darkMode? 'text-gray-300' : 'text-gray-800'}`} >
                     <h1 className="font-roboto font-bold my-auto">
                         <span>Copyright {new Date().getFullYear()} - All rights reserved.</span> <br/>
                         <span>Designed and Developed by Moinak05</span>
@@ -74,6 +92,9 @@ function Footer({ theme, darkMode }) {
                                 <Link href="http://www.freepik.com" target='_blank'>image: upklyak/Freepik</Link>
                             </li>
                             <li>
+                                <Link href="https://patternpad.com/" target='_blank'>svg: patternpad</Link>
+                            </li>
+                            <li>
                                 <Link href='https://www.framer.com/' target='_blank'>animation: framer</Link>
                             </li>
                             <li>
@@ -81,7 +102,7 @@ function Footer({ theme, darkMode }) {
                             </li>
                         </ul>
                     </div>
-                </div>
+                </motion.div>
             </motion.footer>
         </>
     );

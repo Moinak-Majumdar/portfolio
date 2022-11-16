@@ -16,7 +16,7 @@ function PageTransition({ children }) {
       // y: 0,
       // width: '100%',
       opacity:1,
-      transition:{duration: 1}
+      transition:{duration: .4}
     },
     exit: {
       //x: typeof window !== 'undefined' ? -window.innerWidth : '-100vw',

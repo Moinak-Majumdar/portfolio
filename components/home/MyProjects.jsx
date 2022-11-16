@@ -1,9 +1,6 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link';
-import axios from 'axios'
-import { useEffect, useState } from "react"
 import DocCard from "../others/DocCard";
-import PopupError from '../tools/PopupError'
 
 const viewport = {
   once: false,
@@ -31,53 +28,8 @@ const Heading = {
 }
 
 
-const MyProjects = ({ darkMode, theme }) => {
-  const [data, setData] = useState(null)
-  const [isLoading, setLoading] = useState(true)
-  const [Error, setError] = useState(null)
-
-  const options = {
-    method: 'POST',
-    url: process.env.NEXT_PUBLIC_GET_ALL_DOC_API,
-    params: {
-      apiKey: process.env.NEXT_PUBLIC_DB_KEY
-    },
-    headers: { 'Content-Type': 'application/json' },
-    data: { type: 'project' }
-  };
-  useEffect(() => {
-    setLoading(true)
-    async function getData() {
-      await axios.request(options).then((response) => {
-        const projects = response.data
-        setData([...projects])
-      }).catch((error) => {
-        const status = error.response.status;
-        const data = error.response.data;
-        const s = status.toString()
-        if (s === '404' || s === '400') {
-          setError(data.error)
-          console.log(error);
-        } else if (s === '420') {
-          setError(data.badRequest)
-          console.log(error);
-        } else {
-          setError('Check Console')
-          console.log(Error)
-        }
-      }).then(() => {
-        setLoading(false)
-      });
-    }
-    getData()
-  }, [])
-
-  if (Error) {
-    return (
-      <PopupError errors={Error} setErrors={setError} />
-    )
-  }
-
+const MyProjects = ({ darkMode, theme, Project }) => {
+  
   return (
     <section id='myProjects' className='relative overflow-hidden'>
       <div className={`myContainer py-[5rem] ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
@@ -97,10 +49,9 @@ const MyProjects = ({ darkMode, theme }) => {
             </div>
           </motion.div>
           <div>
-            {isLoading && <h1 className="text-center text-5xl mt-40"><span style={{ color: `${theme.val}` }}>Loading...</span></h1>}
-            {!data && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Server Error:</span> Failed to fetch projects.</h1>}
-            {data && <div  className="mt-4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
-              {data.map((curr, index) => {
+            {!Project && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Server Error:</span> Failed to fetch projects.</h1>}
+            {Project && <div  className="mt-4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+              {Project.map((curr, index) => {
                 return (
                   <DocCard key={index} darkMode={darkMode} theme={theme} data={curr}/>
                 )

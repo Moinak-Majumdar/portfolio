@@ -1,9 +1,6 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link';
-import axios from "axios";
 import Image from 'next/image';
-import { useEffect, useState } from "react";
-import PopupError from "../tools/PopupError";
 
 const outerVariants = {
     open: {
@@ -35,54 +32,7 @@ const Heading = {
     }
 }
 
-const MyPhotography = ({ darkMode, theme }) => {
-
-    const [Photo, setPhoto] = useState(null)
-    const [isLoading, setLoading] = useState(true)
-    const [Error, setError] = useState(null)
-
-    useEffect(() => {
-        setLoading(true)
-        async function getPhoto() {
-            const options = {
-                method: 'GET',
-                url: process.env.NEXT_PUBLIC_GET_ALL_PHOTOGRAPHY_API,
-                params: {
-                    apiKey: process.env.NEXT_PUBLIC_DB_KEY
-                },
-                headers: { 'Content-Type': 'application/json' }
-            };
-
-            await axios.request(options).then((response) => {
-                const d = response.data
-                const shuffled = d.sort(() => 0.5 - Math.random());
-                setPhoto(shuffled.slice(0, 4))
-            }).catch((error) => {
-                const status = error.response.status;
-                const data = error.response.data;
-                const s = status.toString()
-                if (s === '404' || s === '400') {
-                    setError(data.error)
-                    console.log(error);
-                } else if (s === '420') {
-                    setError(data.badRequest)
-                    console.log(error);
-                } else {
-                    setError('Check Console')
-                    console.log(Error)
-                }
-            }).then(() => {
-                setLoading(false)
-            });
-        }
-        getPhoto()
-    }, [])
-
-    if (Error) {
-        return (
-            <PopupError errors={Error} setErrors={setError} />
-        )
-    }
+const MyPhotography = ({ darkMode, theme, Hobby }) => {
 
     return (
         <section id='myHobby' className='relative overflow-hidden'>
@@ -104,10 +54,9 @@ const MyPhotography = ({ darkMode, theme }) => {
                         </div>
                     </motion.div>
                     <div>
-                        {isLoading && <h1 className="text-center text-5xl mt-40"><span style={{ color: `${theme.val}` }}>Loading...</span></h1>}
-                        {!Photo && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Server Error:</span> Failed to fetch projects.</h1>}
-                        {Photo && <div className="mt-4 mx-auto grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-fit">
-                            {Photo.map((curr, index) => {
+                        {!Hobby && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Server Error:</span> Failed to fetch images.</h1>}
+                        {Hobby && <div className="mt-4 mx-auto grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-fit">
+                            {Hobby.map((curr, index) => {
                                 return (
                                     <motion.div variants={innerVariants} key={index} className='w-fit h-fit relative flex p-1 border border-slate-800 rounded-sm'>
                                         <Image src={curr.url} height='480px' width='360px' alt='myHobby.png' className='rounded-sm' />
