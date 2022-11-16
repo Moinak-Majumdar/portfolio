@@ -55,10 +55,12 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <title>moinak05 - portfolio</title>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name='author' content="Moinak Majumdar"/>
-        <meta name='description' content='personal portfolio website'/>
-        <meta name='keywords' content='Next js, express js, nodejs, firebase, reactjs, mongo, portfolio, github'/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name='author' content="Moinak Majumdar" />
+        <meta name='description' content='personal portfolio website' />
+        <meta name='keywords' content='Next js, express js, nodejs, firebase, reactjs, mongo, portfolio, github' />
+        <link rel="apple-touch-icon" sizes="500x500" href="/favicon.png"/>
+        <link rel="icon" type="image/png" sizes="500x500" href="/favicon.png"/>
       </Head>
       <PageTransition>
         {theme && <Component {...pageProps} darkMode={darkMode} theme={theme} />}
