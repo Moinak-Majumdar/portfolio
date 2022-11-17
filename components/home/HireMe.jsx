@@ -43,12 +43,12 @@ const Heading = {
 }
 
 const links = [
-    { url: 'https://github.com/Moinak-Majumdar', icon: <FaGithub /> },
-    { url: 'https://www.linkedin.com/in/moinak-majumdar-b7a85b238/', icon: <FaLinkedin /> },
-    { url: 'mailto:moinak2030@gmail.com', icon: <MdMarkEmailUnread /> },
-    { url: 'https://www.facebook.com/moinak.majumdar.9', icon: <FaFacebookSquare /> },
-    { url: 'https://api.whatsapp.com/send?phone=+919804139678&text=I%20like%20your%20work', icon: <FaWhatsapp /> },
-    { url: 'tel:+919804139678', icon: <FaPhoneAlt /> },
+    { url: 'https://github.com/Moinak-Majumdar', icon: <FaGithub />, toolTip: 'GitHub' },
+    { url: 'https://www.linkedin.com/in/moinak-majumdar-b7a85b238/', icon: <FaLinkedin />, toolTip: 'Linkedin' },
+    { url: 'mailto:moinak2030@gmail.com', icon: <MdMarkEmailUnread />, toolTip: 'Email' },
+    { url: 'https://www.facebook.com/moinak.majumdar.9', icon: <FaFacebookSquare />, toolTip: 'Facebook' },
+    { url: 'https://api.whatsapp.com/send?phone=+919804139678&text=I%20like%20your%20work', icon: <FaWhatsapp />, toolTip: 'Whatsapp' },
+    { url: 'tel:+919804139678', icon: <FaPhoneAlt />, toolTip: 'Phone' },
 ]
 
 const HireMe = ({ darkMode, theme }) => {
@@ -77,8 +77,8 @@ const HireMe = ({ darkMode, theme }) => {
                             <div className='flex mt-8 gap-6 mr-auto ml-auto lg:ml-0'>
                                 {links.map((curr, index) => {
                                     return (
-                                        <a key={index} href={curr.url} target='_blank' className='text-3xl cursor-pointer'>
-                                            {curr.icon}
+                                        <a key={`${curr.toolTip}_${index}`} href={curr.url} target='_blank'>
+                                           <span title={curr.toolTip}  className='text-3xl cursor-pointer'>{curr.icon}</span>
                                         </a>
                                     )
                                 })}

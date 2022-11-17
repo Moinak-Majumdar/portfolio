@@ -16,10 +16,12 @@ const outerVariants = {
 };
 const smooth = {
     closed: {
-        opacity: 0.1,
+        opacity: 0,
+        x: -200
     },
     open: {
         opacity: 1,
+        x: 0
     }
 }
 const smooth2 = {
@@ -54,8 +56,8 @@ function Footer({ darkMode }) {
     return (
         <>
             <motion.footer initial='closed' whileInView='open' viewport={viewport} variants={outerVariants} className='w-full pt-[4rem] flex flex-col text-white'>
-                <motion.div  variants={smooth} className={`ml-auto w-[90%] flex justify-center flex-col items-center py-4 ${darkMode ? 'bg-slate-800' : 'bg-black'}`}>
-                    <div className="w-[90%] flex md:justify-between justify-center flex-col md:flex-row">
+                <div className={`ml-auto w-[90%] flex justify-center flex-col items-center py-4 ${darkMode ? 'bg-slate-800' : 'bg-black'}`}>
+                    <motion.div variants={smooth} className="w-[90%] flex md:justify-between justify-center flex-col md:flex-row">
                         <div className="flex flex-col">
                             <h4 className="font-ubuntu">Something in mind</h4>
                             <h1 className="text-4xl font-ubuntu font-bold">Lets talk</h1>
@@ -71,15 +73,15 @@ function Footer({ darkMode }) {
                             <div className="flex items-center md:justify-end gap-2">
                                 {socialLinks.map((link) => (
                                     <Link key={link.name} href={link.url}>
-                                        <a className="text-2xl" target="_blank">
+                                        <a title={link.name} className="text-2xl" target="_blank">
                                             {link.icon}
                                         </a>
                                     </Link>
                                 ))}
                             </div>
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                </div>
                 <motion.div variants={smooth2} className={`ml-auto my-4 px-4 md:px-20 w-[90%] flex md:justify-between justify-center flex-col-reverse md:flex-row font-roboto ${darkMode? 'text-gray-300' : 'text-gray-800'}`} >
                     <h1 className="font-roboto font-bold my-auto">
                         <span>Copyright {new Date().getFullYear()} - All rights reserved.</span> <br/>
