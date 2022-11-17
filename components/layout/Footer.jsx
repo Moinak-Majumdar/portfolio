@@ -31,7 +31,7 @@ const smooth2 = {
     open: {
         opacity: 1,
         y: 0,
-        transition: { delay: .3},
+        transition: { delay: 1},
     }
 }
 const socialLinks = [
