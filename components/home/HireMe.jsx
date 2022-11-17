@@ -84,7 +84,7 @@ const HireMe = ({ darkMode, theme }) => {
                                 })}
                             </div>
                             <Button darkMod={darkMode} theme={theme} className='mt-8 max-w-xs ml-auto mr-auto lg:mr-0'>
-                                <Link href='/assets/document/myResume.pdf'>
+                                <Link href='/assets/doc/myResume.pdf'>
                                     <a target='_blank'>
                                         Download Resume
                                     </a>
