@@ -17,11 +17,10 @@ const outerVariants = {
 const smooth = {
     closed: {
         opacity: 0,
-        x: -200
     },
     open: {
         opacity: 1,
-        x: 0
+        transition: { duration: .8},
     }
 }
 const smooth2 = {
