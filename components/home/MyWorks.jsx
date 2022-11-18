@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion'
+import axios from 'axios';
 import Link from 'next/link';
+import { useState, useEffect } from 'react'
 import { GiClick } from 'react-icons/gi'
 import DocCard from "../others/DocCard";
 import Bg from '../tools/Bg'
+import PopupError from '../tools/PopupError'
 
 
 const viewport = {
@@ -29,7 +32,49 @@ const Heading = {
   }
 }
 
-const MyWorks = ({ darkMode, theme, Work }) => {
+const MyWorks = ({ darkMode, theme }) => {
+
+  const [Work, setWork] = useState(null)
+  const [Error, setError] = useState(null)
+  const [Loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setLoading(true)
+    async function getWork() {
+      const optWork = {
+        method: 'POST',
+        url: process.env.NEXT_PUBLIC_GET_ALL_DOC_API,
+        params: {
+          apiKey: process.env.NEXT_PUBLIC_DB_KEY
+        },
+        headers: { 'Content-Type': 'application/json' },
+        data: { type: 'work' }
+      };
+      await axios.request(optWork).then((response) => {
+        setWork(response.data)
+        setLoading(false)
+      }).catch((error) => {
+          const status = error.response.status;
+          const data = error.response.data;
+          const s = status.toString()
+
+          if(s === '420') {
+            setError(data.badRequest)
+            console.log(error)
+          } else if(s === '422' || s === '404' || s === '400') {
+            setError(data.error)
+            console.log(error)
+          }
+      })
+    }
+    getWork()
+  }, [])
+
+  if(Error) {
+    return (
+      <PopupError errors={Error} setErrors={setError}/>
+    )
+  }
   
   return (
     <section id='myWorks' className='relative overflow-hidden'>
@@ -54,8 +99,8 @@ const MyWorks = ({ darkMode, theme, Work }) => {
             </p>
           </motion.div>
           <div >
-            {!Work && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Server Error:</span> Failed to fetch projects.</h1>}
-            {Work && <div className="mt-4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+            {!Work && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Loading :</span>Please wait until data being fetched 🥰.</h1>}
+            {!Loading && Work && <div className="mt-4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
               {Work.map((curr, index) => {
                 return (
                   <DocCard key={index} darkMode={darkMode} theme={theme} data={curr}/>

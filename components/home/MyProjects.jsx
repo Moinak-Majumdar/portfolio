@@ -1,5 +1,8 @@
 import { motion } from 'framer-motion'
+import axios from 'axios'
 import Link from 'next/link';
+import { useState, useEffect } from 'react'
+import PopupError from '../tools/PopupError'
 import DocCard from "../others/DocCard";
 
 const viewport = {
@@ -8,10 +11,10 @@ const viewport = {
 }
 const outerVariants = {
   open: {
-      transition: { staggerChildren: 0.3, delayChildren: 0.3 }
+    transition: { staggerChildren: 0.3, delayChildren: 0.3 }
   },
   closed: {
-      transition: { staggerChildren: 0.3, staggerDirection: -1 }
+    transition: { staggerChildren: 0.3, staggerDirection: -1 }
   }
 };
 
@@ -28,8 +31,50 @@ const Heading = {
 }
 
 
-const MyProjects = ({ darkMode, theme, Project }) => {
-  
+const MyProjects = ({ darkMode, theme }) => {
+
+  const [Project, setProject] = useState(null)
+  const [Error, setError] = useState(null)
+  const [Loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setLoading(true)
+    async function getProject() {
+      const optProject = {
+        method: 'POST',
+        url: process.env.NEXT_PUBLIC_GET_ALL_DOC_API,
+        params: {
+          apiKey: process.env.NEXT_PUBLIC_DB_KEY
+        },
+        headers: { 'Content-Type': 'application/json' },
+        data: { type: 'project' }
+      };
+      await axios.request(optProject).then((response) => {
+        setProject(response.data)
+        setLoading(false)
+      }).catch((error) => {
+        const status = error.response.status;
+        const data = error.response.data;
+        const s = status.toString()
+
+        if (s === '420') {
+          setError(data.badRequest)
+          console.log(error)
+        } else if (s === '422' || s === '404' || s === '400') {
+          setError(data.error)
+          console.log(error)
+        }
+      })
+    }
+    getProject()
+  }, [])
+
+  if (Error) {
+    return (
+      <PopupError errors={Error} setErrors={setError} />
+    )
+  }
+
   return (
     <section id='myProjects' className='relative overflow-hidden'>
       <div className={`myContainer py-[5rem] ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
@@ -40,7 +85,7 @@ const MyProjects = ({ darkMode, theme, Project }) => {
               Learning<span className="font-ubuntu font-bold ml-2">By Building</span>
             </h1>
             <p className='font-roboto text-lg mt-4 max-w-[35rem]'>
-            Learning tech by building solo projects.
+              Learning tech by building solo projects.
             </p>
             <div className='mt-2'>
               <Link href='/Projects'>
@@ -49,11 +94,11 @@ const MyProjects = ({ darkMode, theme, Project }) => {
             </div>
           </motion.div>
           <div>
-            {!Project && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Server Error:</span> Failed to fetch projects.</h1>}
-            {Project && <div  className="mt-4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+            {!Project && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Loading :</span>Please wait until data being fetched 🥰.</h1>}
+            {!Loading && Project && <div className="mt-4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
               {Project.map((curr, index) => {
                 return (
-                  <DocCard key={index} darkMode={darkMode} theme={theme} data={curr}/>
+                  <DocCard key={index} darkMode={darkMode} theme={theme} data={curr} />
                 )
               })}
             </div>}
