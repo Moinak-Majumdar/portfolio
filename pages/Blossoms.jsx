@@ -60,8 +60,8 @@ const Blossoms = ({ darkMode, theme, key, photo }) => {
                             {photo && <div className="mt-4 mx-auto grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-fit">
                                 {photo.map((curr, index) => {
                                     return (
-                                        <motion.div variants={innerVariants} key={index} className='w-fit h-fit relative flex p-1 border border-slate-800 rounded-sm'>
-                                            <Image src={curr.url} height='480px' width='360px' alt='myHobby.png' className='rounded-sm' />
+                                        <motion.div variants={innerVariants} key={index} className='w-fit h-fit relative flex p-1 border border-slate-800 rounded-sm overflow-hidden'>
+                                            <Image src={curr.url} height='480px' width='360px' alt='myHobby.png' className='rounded-sm lg:hover:scale-[1.03] duration-500' />
                                         </motion.div>
                                     )
                                 })}

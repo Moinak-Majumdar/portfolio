@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react'
 import { FaQuoteLeft, FaQuoteRight, FaFacebookSquare, FaGithub, FaWhatsapp, FaLinkedin, FaPhoneAlt } from 'react-icons/fa'
-import { MdMarkEmailUnread } from 'react-icons/md'
+import { MdBorderClear, MdMarkEmailUnread } from 'react-icons/md'
 import Button from '../../components/tools/Button'
 
 
@@ -52,12 +53,14 @@ const links = [
 ]
 
 const HireMe = ({ darkMode, theme }) => {
+    const [hover, setHover] = useState(false)
+
     return (
         <section id='hire' className='relative overflow-hidden'>
             <div className='myContainer py-[8rem]'>
                 <motion.div initial='closed' whileInView='open' viewport={viewport} variants={outerVariants} className={`flex flex-col bg-gradient-to-b ${darkMode ? 'text-gray-300 to-[#121214] from-[#141E30]' : 'text-gray-800 from-[#f2fcfe] to-[#E0EAFC]'}`}>
                     <div className='flex flex-col lg:flex-row lg:justify-start justify-center lg:items-start items-center p-4 lg:p-10'>
-                        <motion.div variants={Heading} className='px-1 pt-1 w-fit border relative -top-16 lg:-top-20' style={{ borderColor: theme.val }}>
+                        <motion.div variants={Heading} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className='px-1 pt-1 w-fit border relative -top-16 lg:-top-20' style={{borderColor : hover ? theme.val: 'rgb(30,41,59)', WebkitTransition: 'all .8s ease-in-out'}}>
                             <Image src='/assets/image/me.jpg' height={600} width={450} alt='me.jpg' className='grayscale hover:filter-none hover:grayscale-0 ' style={{ WebkitTransition: 'all .8s ease-in-out' }} />
                         </motion.div>
                         <motion.div variants={subHeading} className='ml-0 lg:ml-24 lg:max-w-[60%] max-w-full flex flex-col'>

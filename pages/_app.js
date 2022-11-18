@@ -5,27 +5,17 @@ import Head from 'next/head'
 import Header from '../components/layout/Header'
 
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+function MyApp({ Component, ...pageProps }) {
 
   const [darkMode, setDarkMode] = useState()
   const [theme, setTheme] = useState()
 
   useEffect(() => {
-    if (localStorage.getItem('darkMode') === null) {
-      localStorage.setItem('darkMode', JSON.stringify(false))
-      document.body.style.backgroundColor = '#ffffff'
-      setDarkMode(false)
-    } else {
-      const mode = JSON.parse(localStorage.getItem('darkMode'))
-      if (mode === false) {
-        document.body.style.backgroundColor = '#ffffff'
-        setDarkMode(false)
-      }
-      if (mode === true) {
-        document.body.style.backgroundColor = '#000011'
-        setDarkMode(true)
-      }
-    }
+
+    const mode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    localStorage.setItem('darkMode', JSON.stringify(mode))
+    document.body.style.backgroundColor = mode ? '#000011' : '#ffffff'
+    setDarkMode(mode)
 
     if (localStorage.getItem('theme') === null) {
       localStorage.setItem('theme', JSON.stringify({ name: 'pink', val: '#ec4899' }))
@@ -59,8 +49,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <meta name='author' content="Moinak Majumdar" />
         <meta name='description' content='personal portfolio website' />
         <meta name='keywords' content='Next js, express js, nodejs, firebase, reactjs, mongo, portfolio, github' />
-        <link rel="apple-touch-icon" sizes="500x500" href="/favicon.png"/>
-        <link rel="icon" type="image/png" sizes="500x500" href="/favicon.png"/>
+        <link rel="apple-touch-icon" sizes="500x500" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="500x500" href="/favicon.png" />
       </Head>
       <PageTransition>
         {theme && <Component {...pageProps} darkMode={darkMode} theme={theme} />}
