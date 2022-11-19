@@ -40,7 +40,6 @@ const Heading = {
 }
 
 const Blossoms = ({ darkMode, theme, key, photo }) => {
-
     return (
         <>
             <section key={key} id='myHobby' className='relative overflow-hidden'>
@@ -70,13 +69,13 @@ const Blossoms = ({ darkMode, theme, key, photo }) => {
                     </motion.div>
                 </div>
             </section>
-            <Footer key={'footer'} darkMode={darkMode}/>
+            <Footer key={'footer'} darkMode={darkMode} />
         </>
     )
 }
 
 export async function getServerSideProps() {
-    let photo = []
+    let photo = null
     const options = {
         method: 'GET',
         url: process.env.NEXT_PUBLIC_GET_ALL_PHOTOGRAPHY_API,
@@ -85,14 +84,13 @@ export async function getServerSideProps() {
         },
         headers: { 'Content-Type': 'application/json' }
     };
-
     await axios.request(options).then((response) => {
-        photo = [...response.data]
+        photo = response.data
     }).catch((error) => {
-        console.error(error);
+        console.log(error);
     });
 
-    return { props: { photo: photo } }
+    return { props: { photo : photo } }
 }
 
 export default Blossoms

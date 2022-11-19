@@ -94,8 +94,8 @@ const MyProjects = ({ darkMode, theme }) => {
             </div>
           </motion.div>
           <div>
-            {!Project && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Loading :</span>Please wait until data being fetched 🥰.</h1>}
-            {!Loading && Project && <div className="mt-4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+            {Loading && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Loading :</span>Please wait until data being fetched 🥰.</h1>}
+            {Project && <div className="mt-4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
               {Project.map((curr, index) => {
                 return (
                   <DocCard key={index} darkMode={darkMode} theme={theme} data={curr} />

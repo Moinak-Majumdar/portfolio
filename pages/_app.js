@@ -5,7 +5,7 @@ import Head from 'next/head'
 import Header from '../components/layout/Header'
 
 
-function MyApp({ Component, ...pageProps }) {
+function MyApp({ Component, pageProps: { ...pageProps} }) {
 
   const [darkMode, setDarkMode] = useState()
   const [theme, setTheme] = useState()
@@ -13,7 +13,6 @@ function MyApp({ Component, ...pageProps }) {
   useEffect(() => {
 
     const mode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    localStorage.setItem('darkMode', JSON.stringify(mode))
     document.body.style.backgroundColor = mode ? '#000011' : '#ffffff'
     setDarkMode(mode)
 

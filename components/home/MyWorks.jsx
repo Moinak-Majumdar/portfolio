@@ -99,8 +99,8 @@ const MyWorks = ({ darkMode, theme }) => {
             </p>
           </motion.div>
           <div >
-            {!Work && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Loading :</span>Please wait until data being fetched 🥰.</h1>}
-            {!Loading && Work && <div className="mt-4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+            {Loading && <h1 className="text-center text-4xl mt-40"><span className="font-ubuntu font-bold" style={{ color: `${theme.val}` }}>Loading :</span>Please wait until data being fetched 🥰.</h1>}
+            {Work && <div className="mt-4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
               {Work.map((curr, index) => {
                 return (
                   <DocCard key={index} darkMode={darkMode} theme={theme} data={curr}/>
