@@ -90,6 +90,7 @@ const Projects = ({ darkMode, theme, Work, Project }) => {
           </div>
         </motion.div>
       </div>
+      <Footer darkMode={darkMode}/>
     </section>
   )
 }
