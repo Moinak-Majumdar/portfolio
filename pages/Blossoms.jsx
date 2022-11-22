@@ -26,13 +26,11 @@ const innerVariants = {
 const Heading = {
     closed: {
         opacity: 0.5,
-        y: -50,
-        x: -50,
+        y: -200,
     },
     open: {
         opacity: 1,
         y: 0,
-        x: 0,
         transition: {
             delay: 0.2
         }

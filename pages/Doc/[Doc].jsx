@@ -8,6 +8,43 @@ import ProjectImgSlider from "../../components/others/ProjectImgSlider";
 import Bg from "../../components/tools/Bg";
 import Button from '../../components/tools/Button'
 
+const viewport = {
+  once: false,
+  amount: typeof window !== 'undefined' ? (window.innerWidth > 450 ? 0.5 : 0.05) : 0.5
+}
+const outerVariants = {
+  open: {
+      transition: { staggerChildren: 0.5, delayChildren: 0.3 }
+  },
+  closed: {
+      transition: { staggerChildren: 0.5, staggerDirection: -1 }
+  }
+};
+const Left = {
+  open : {
+    y: 0, x: 0, opacity: 1,
+  },
+  closed: {
+    y: 100, x: -100, opacity: 0 
+  }
+}
+const Right = { 
+  open: {
+    x: 0, y: 0, opacity: 1,
+  },
+  closed : {
+    y: -100, x: 100, opacity: 0
+  }
+}
+const Bottom = {
+  open: {
+    opacity: 1 
+  },
+  closed: {
+    opacity: 0
+  }
+}
+
 const Doc = ({ project, darkMode, theme }) => {
 
   const router = useRouter();
@@ -20,21 +57,12 @@ const Doc = ({ project, darkMode, theme }) => {
           {project.type === 'project' ? 'about project' : 'about work'}
         </h4>
         <h1 className="font-ubuntu font-bold lg:text-5xl text-4xl capitalize">{project.name}</h1>
-        <div className="flex flex-col">
-          <section className="flex lg:flex-row justify-center lg:justify-between flex-col-reverse w-full">
+        <motion.div initial='closed' whileInView='open' viewport={viewport} variants={outerVariants} className="flex flex-col">
+          <div className="flex lg:flex-row justify-center lg:justify-between flex-col w-full">
             {/* hl5 description */}
-            <motion.div
-              initial={{ y: 100, x: -100, opacity: 0 }}
-              animate={{ y: 0, x: 0, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="text-lg md:text-xl lg:max-w-2xl 2xl:max-w-3xl py-4 mr-4"
-              dangerouslySetInnerHTML={{ __html: project.description }}>
+            <motion.div variants={Left} className="text-lg md:text-xl lg:max-w-2xl 2xl:max-w-3xl py-4 mr-4" dangerouslySetInnerHTML={{ __html: project.description }}>
             </motion.div>
-            <motion.div
-              initial={{ y: -100, x: 100, opacity: 0 }}
-              animate={{ x: 0, y: 0, opacity: 1 }}
-              transition={{ duration: 1.2, delay: 0.5 }}
-              className="w-fit flex flex-col">
+            <motion.div variants={Right} className="w-fit flex flex-col-reverse lg:flex-col">
               {/* hl7 links */}
               <div className="w-fit flex xl:flex-row flex-col ml-2 xl:ml-0">
                 <a className="mt-4 text-xl py-2 px-4 rounded-full flex items-center mr-2 border-2" style={{ borderColor: theme.val, boxShadow: `0px 0px 25px ${theme.val}` }} href={project.liveUrl} target='_blank' rel="noreferrer">
@@ -64,12 +92,8 @@ const Doc = ({ project, darkMode, theme }) => {
                 </div>
               </div>
             </motion.div>
-          </section>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 2 }}
-            className="mx-auto flex flex-col mt-10 w-full">
+          </div>
+          <motion.div variants={Bottom} className="mx-auto flex flex-col mt-10 w-full">
             <div className="ml-6 mb-4 flex items-center text-2xl md:text-3xl">
               <FaRegImages className="text-4xl" style={{ color: theme.val }} />
               <h1 className='font-ubuntu ml-2'>Some
@@ -86,7 +110,7 @@ const Doc = ({ project, darkMode, theme }) => {
               </Button>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
       <div className="absolute w-full md:w-1/3 h-full top-0 right-0  -z-10">
         <div className={`absolute w-full h-full inset-0 bg-gradient-to-r z-10 ${darkMode ? 'from-[#000011]' : 'from-[#ffffff]'}`}></div>

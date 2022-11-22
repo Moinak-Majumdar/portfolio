@@ -9,7 +9,7 @@
     position: relative;
     width: 250px;
     height: 250px;
-    background: url(../public/assets/image/qr-code1.svg);
+    background: url(../public/assets/image/qr-code1.png);
     background-size: 250px;
 }
 
@@ -20,7 +20,7 @@
     left: 0;
     width: 100%;
     overflow: hidden;
-    background: url(../public/assets/image/qr-code2.svg);
+    background: url(../public/assets/image/qr-code2.png);
     background-size: 250px;
     background-repeat: no-repeat;
     animation: anm 6s ease-in-out infinite;
@@ -36,8 +36,8 @@
 .qr::after {
     content: '';
     position: absolute;
-    inset: -15px;
-    width: calc(100% + 30px);
+    inset: -6px;
+    width: calc(100% + 12px);
     height: 5px;
     background: #2dd4bf;
     filter: drop-shadow(0 0 20px #2dd4bf) drop-shadow(0 0 60px #2dd4bf);
@@ -71,10 +71,22 @@
     .qr::after {
         content: '';
         position: absolute;
-        inset: -18px;
-        width: calc(100% + 35px);
+        inset: -8px;
+        width: calc(100% + 16px);
         height: 5px;
         background: #2dd4bf;
         filter: drop-shadow(0 0 20px #2dd4bf) drop-shadow(0 0 60px #2dd4bf);
     }
+}
+
+.qr:hover::before, .qr:hover::after{
+    -webkit-animation-play-state:paused;
+    -moz-animation-play-state:paused;
+    -o-animation-play-state:paused;
+    animation-play-state:paused;
+    cursor: pointer;
+}
+
+.qr:hover {
+    cursor: pointer;
 }

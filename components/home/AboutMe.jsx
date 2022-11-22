@@ -4,13 +4,11 @@ import { motion } from 'framer-motion'
 
 const Left = {
   closed: {
-    y: -80,
-    x: 80,
+    scale: 0,
     opacity: 0.5,
   },
   open: {
-    y: 0,
-    x: 0,
+    scale: 1,
     opacity: 1,
     transition: {
       duration: 1
