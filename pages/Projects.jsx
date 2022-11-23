@@ -34,7 +34,7 @@ const Projects = ({ darkMode, theme, Work, Project }) => {
   return (
     <section className='flex flex-col'>
       <div id='myWorks' className={`relative overflow-hidden myContainer py-[5rem] ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
-        <motion.div initial='closed' whileInView='open' viewport={viewport} variants={outerVariants} className="flex flex-col justify-start">
+        <motion.div initial='closed' whileInView='open' variants={outerVariants} className="flex flex-col justify-start">
           <motion.div variants={Heading}>
             <h4 className="font-ubuntu tracking-wide text-lg">PROJECTS</h4>
             <h1 className="text-4xl md:text-5xl mb-4 font-ubuntu">

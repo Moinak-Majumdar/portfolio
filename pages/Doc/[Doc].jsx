@@ -8,10 +8,6 @@ import ProjectImgSlider from "../../components/others/ProjectImgSlider";
 import Bg from "../../components/tools/Bg";
 import Button from '../../components/tools/Button'
 
-const viewport = {
-  once: false,
-  amount: typeof window !== 'undefined' ? (window.innerWidth > 450 ? 0.5 : 0.05) : 0.5
-}
 const outerVariants = {
   open: {
       transition: { staggerChildren: 0.5, delayChildren: 0.3 }
@@ -57,7 +53,7 @@ const Doc = ({ project, darkMode, theme }) => {
           {project.type === 'project' ? 'about project' : 'about work'}
         </h4>
         <h1 className="font-ubuntu font-bold lg:text-5xl text-4xl capitalize">{project.name}</h1>
-        <motion.div initial='closed' whileInView='open' viewport={viewport} variants={outerVariants} className="flex flex-col">
+        <motion.div variants={outerVariants} initial='closed' animate='open' className="flex flex-col">
           <div className="flex lg:flex-row justify-center lg:justify-between flex-col w-full">
             {/* hl5 description */}
             <motion.div variants={Left} className="text-lg md:text-xl lg:max-w-2xl 2xl:max-w-3xl py-4 mr-4" dangerouslySetInnerHTML={{ __html: project.description }}>
