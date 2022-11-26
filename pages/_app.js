@@ -1,14 +1,15 @@
-import '../styles/globals.css'
-import { useState, useEffect } from "react"
-import PageTransition from '../components/tools/PageTransition'
+import NextNProgress from 'nextjs-progressbar';
 import Head from 'next/head'
+import { useState, useEffect } from "react"
+import '../styles/globals.css'
+import PageTransition from '../components/tools/PageTransition'
 import Header from '../components/layout/Header'
 
 
 function MyApp({ Component, pageProps: { ...pageProps} }) {
 
   const [darkMode, setDarkMode] = useState()
-  const [theme, setTheme] = useState()
+  const [theme, setTheme] = useState(null)
 
   useEffect(() => {
 
@@ -51,6 +52,7 @@ function MyApp({ Component, pageProps: { ...pageProps} }) {
         <link rel="apple-touch-icon" sizes="500x500" href="/favicon.png" />
         <link rel="icon" type="image/png" sizes="500x500" href="/favicon.png" />
       </Head>
+      {theme && <NextNProgress color={theme.val} height={3} showOnShallow={true}/>}
       <PageTransition>
         {theme && <Component {...pageProps} darkMode={darkMode} theme={theme} />}
         {theme && <Header theme={theme} darkMode={darkMode} setTheme={setTheme} setDarkMode={setDarkMode} />}
