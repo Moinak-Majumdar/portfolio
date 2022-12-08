@@ -18,9 +18,9 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-        const { id, name, type, intro, role, liveUrl, gitRepo, slug, description, img, tools, toolsLogo } = req.body;
+        const { id, name, type, status, intro, role, liveUrl, gitRepo, slug, description, img, tools, toolsLogo } = req.body;
 
-        if(!id || !name || !type || !intro || !role || !liveUrl || !gitRepo || !slug || !description || !img || !tools || !toolsLogo) {
+        if(!id || !name || !type || !status || !intro || !role || !liveUrl || !gitRepo || !slug || !description || !img || !tools || !toolsLogo) {
             return res.status(422).json({error: "all fields are required"})
         }
 
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         
             if(exist) {
                 const query = {"_id" : id}
-                const update = { "$set" : { "name":name, "type":type, "role":role, "intro":intro, "liveUrl":liveUrl, "gitRepo":gitRepo, "slug":slug, "description":description, "img":img, "tools":tools, "toolsLogo":toolsLogo }}
+                const update = { "$set" : { "name":name, "type":type, "status":status, "role":role, "intro":intro, "liveUrl":liveUrl, "gitRepo":gitRepo, "slug":slug, "description":description, "img":img, "tools":tools, "toolsLogo":toolsLogo }}
                 const options = { "upsert": false };
 
                 Projects.updateOne(query, update, options).then(result => {

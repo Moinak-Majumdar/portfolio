@@ -17,7 +17,7 @@ const AddProject = ({ darkMode, theme }) => {
 
   const [disable, setDisable] = useState(false)
   const [Error, setError] = useState(null)
-  const [data, setData] = useState({ name: '', type: '', intro: '', role: '', liveUrl: '', gitRepo: '', description: '', img: [], tools: '', toolsLogo: '' })
+  const [data, setData] = useState({ name: '', type: '', status : '',intro: '', role: '', liveUrl: '', gitRepo: '', description: '', img: [], tools: '', toolsLogo: '' })
   const [imgFields, setImgFields] = useState([{ url: '' }])
   const [toolsFields, setToolsFields] = useState([{ name: '' }])
 
@@ -98,7 +98,7 @@ const AddProject = ({ darkMode, theme }) => {
       },
       headers: { 'Content-Type': 'application/json' },
       data: {
-        name: data.name, type: data.type, role: data.role, intro: data.intro, liveUrl: data.liveUrl, gitRepo: data.gitRepo, slug: data.name, description: data.description, img: imgArr, tools: toolsArr, toolsLogo: toolsLogoArr
+        name: data.name, type: data.type, status: data.status, role: data.role, intro: data.intro, liveUrl: data.liveUrl, gitRepo: data.gitRepo, slug: data.name, description: data.description, img: imgArr, tools: toolsArr, toolsLogo: toolsLogoArr
       }
     };
     await axios.request(options).then((response) => {
@@ -151,14 +151,14 @@ const AddProject = ({ darkMode, theme }) => {
         </Head>
         <DashboardNavbar />
         <section className={`myContainer py-[4rem] ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
-          <form onSubmit={handelSubmit} className='md:p-2 mt-8 mx-auto grid grid-cols-4 2xl:grid-cols-8 gap-4 md:gap-8 '>
+          <form onSubmit={handelSubmit} className='md:p-2 mt-8 mx-auto grid grid-cols-4 2xl:grid-cols-8 gap-4'>
             <div className='col-span-4 2xl:col-span-2'>
-              <label className='text-sm md:text-base' htmlFor='project-name'>Project Name **</label>
+              <label className='text-sm md:text-base font-bold' htmlFor='project-name'>Project Name **</label>
               <Input id='project-name' autoComplete='project-name' theme={theme} onChange={(e) => setData({ ...data, name: e.target.value })} value={data.name} required={true} type="text" darkMode={darkMode} disable={disable} />
               <h3 className='text-sm text-pink-600'>Be Careful: Can not be updated after submit.</h3>
             </div>
             <div className='col-span-4 2xl:col-span-2 flex flex-col'>
-              <label className='text-sm md:text-base'>Type **</label>
+              <label className='text-sm md:text-base font-bold'>Type **</label>
               <div className='flex mt-2 gap-6'>
                 <span>
                   <input id='client-work' value='work' onChange={(e) => setData({ ...data, type: 'work' })} name='type' required={true} type="radio" disable={disable} />
@@ -170,24 +170,37 @@ const AddProject = ({ darkMode, theme }) => {
                 </span>
               </div>
             </div>
-            <div className='col-span-4 2xl:col-span-2'>
-              <label className='text-sm md:text-base' htmlFor='Live-url'>Live project Url</label>
-              <Input id='Live-url' autoComplete='Live-url' theme={theme} onChange={(e) => setData({ ...data, liveUrl: e.target.value })} value={data.liveUrl} required={true} type="text" darkMode={darkMode} disable={disable} placeholder='Deployment url' />
+            <div className='col-span-4 2xl:col-span-2 flex flex-col'>
+              <label className='text-sm md:text-base font-bold'>Current Status **</label>
+              <div className='flex mt-2 gap-6'>
+                <span>
+                  <input id='status-done' value='completed' onChange={(e) => setData({ ...data, status: 'completed' })} name='status' required={true} type="radio" disable={disable} />
+                  <label className='text-sm md:text-base ml-2 cursor-pointer' htmlFor='status-done' style={{ color: theme.val }}>Completed</label>
+                </span>
+                <span>
+                  <input id='status-running' value='under development' onChange={(e) => setData({ ...data, status: 'under development' })} name='status' required={true} type="radio" disable={disable} />
+                  <label className='text-sm md:text-base ml-2 cursor-pointer' htmlFor='status-running' style={{ color: theme.val }}>Under Deployment</label>
+                </span>
+              </div>
             </div>
             <div className='col-span-4 2xl:col-span-2'>
-              <label className='text-sm md:text-base' htmlFor='git-repositories'>Project Repositories</label>
+              <label className='text-sm md:text-base font-bold' htmlFor='Live-url'>Live project Url</label>
+              <Input id='Live-url' autoComplete='Live-url' theme={theme} onChange={(e) => setData({ ...data, liveUrl: e.target.value })} value={data.liveUrl} required={true} type="text" darkMode={darkMode} disable={disable} placeholder='Deployment url' />
+            </div>
+            <div className='col-span-4'>
+              <label className='text-sm md:text-base font-bold' htmlFor='git-repositories'>Project Repositories</label>
               <Input id='git-repositories' autoComplete='git-repositories' theme={theme} onChange={(e) => setData({ ...data, gitRepo: e.target.value })} value={data.gitRepo} required={true} type="text" darkMode={darkMode} disable={disable} placeholder='Git repositories link' />
             </div>
             <div className='col-span-4'>
-              <label className='text-sm md:text-base' htmlFor='project-role'>Project Role</label>
+              <label className='text-sm md:text-base font-bold' htmlFor='project-role'>Project Role</label>
               <Input id='project-role' autoComplete='project-role' onChange={(e) => setData({ ...data, role: e.target.value })} value={data.role} required={true} type="text" theme={theme} darkMode={darkMode} disable={disable} placeholder='Eg: design and development.' />
             </div>
-            <div className='col-span-4'>
-              <label className='text-sm md:text-base' htmlFor='project-intro'>Project Introduction</label>
+            <div className='col-span-full'>
+              <label className='text-sm md:text-base font-bold' htmlFor='project-intro'>Project Introduction</label>
               <Input id='project-intro' autoComplete='project-intro' onChange={(e) => setData({ ...data, intro: e.target.value })} value={data.intro} required={true} type="text" theme={theme} darkMode={darkMode} disable={disable} placeholder='Small Introduction' />
             </div>
             <div className='col-span-full'>
-              <label className='text-sm md:text-base' htmlFor='project-description'>Project Description</label>
+              <label className='text-sm md:text-base font-bold' htmlFor='project-description'>Project Description</label>
               <Textarea id='project-description' autoComplete='project-description' onChange={(e) => setData({ ...data, description: e.target.value })} value={data.description} required={true} type="text" theme={theme} darkMode={darkMode} disable={disable} placeholder='Note: Use <br/> tag to add new line at final representation view.' />
             </div>
             <div className='col-span-full flex'>

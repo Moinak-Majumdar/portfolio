@@ -18,10 +18,10 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-        const { name, type, role, intro, liveUrl, gitRepo, slug, description, img, tools, toolsLogo } = req.body;
+        const { name, type, status, role, intro, liveUrl, gitRepo, slug, description, img, tools, toolsLogo } = req.body;
 
         
-        if(!name || !type || !role || !intro || !liveUrl || !gitRepo || !slug || !description || !img || !tools || !toolsLogo) {
+        if(!name || !type || !status || !role || !intro || !liveUrl || !gitRepo || !slug || !description || !img || !tools || !toolsLogo) {
             return res.status(422).json({error: "all fields are required"})
         }
 
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
                 return res.status(500).json({error: "project already exist"})
             }
 
-            const data = new Projects({ name, type, role, intro, liveUrl, gitRepo, slug, description, img, tools, toolsLogo })
+            const data = new Projects({ name, type, status, role, intro, liveUrl, gitRepo, slug, description, img, tools, toolsLogo })
             const newProject = await data.save()
 
             if(newProject) {

@@ -9,6 +9,10 @@ const projectSchema = new Schema({
         type: String,
         require: true,
     },
+    status: {
+        type: String,
+        require: true,
+    },
     role: {
         type: String,
         require: true,

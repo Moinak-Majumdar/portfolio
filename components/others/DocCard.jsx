@@ -36,6 +36,10 @@ const DocCard = ({ theme, darkMode, data }) => {
                             <span className='font-roboto font-bold'>Project Role</span>:
                             <span className='ml-2'>{data.role}</span>
                         </p>
+                        <p className='mt-4 text-lg'>
+                            <span className='font-roboto font-bold'>Current Status</span>:
+                            <span className='ml-2'>{data.status}</span>
+                        </p>
                         <div className='mt-auto flex items-center'>
                             <GiClick style={{ color: theme.val, fontSize: '20px' }} />
                             <span className='ml-2 font-roboto text-lg'>Click to view full description</span>

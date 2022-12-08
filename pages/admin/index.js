@@ -52,22 +52,22 @@ export async function getServerSideProps() {
 
   let projects = []
   const option1 = {
-    method: 'POST',
+    method: 'GET',
     url: process.env.NEXT_PUBLIC_GET_ALL_DOC_API,
     params: {
-      apiKey: process.env.NEXT_PUBLIC_DB_KEY
+      apiKey: process.env.NEXT_PUBLIC_DB_KEY,
+      type: 'project'
     },
     headers: { 'Content-Type': 'application/json' },
-    data: { type: 'project' }
   };
   const option2 = {
-    method: 'POST',
+    method: 'GET',
     url: process.env.NEXT_PUBLIC_GET_ALL_DOC_API,
     params: {
-      apiKey: process.env.NEXT_PUBLIC_DB_KEY
+      apiKey: process.env.NEXT_PUBLIC_DB_KEY,
+      type: 'work'
     },
     headers: { 'Content-Type': 'application/json' },
-    data: { type: 'work' }
   };
   
   await axios.request(option1).then((response) => {
