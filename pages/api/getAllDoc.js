@@ -17,8 +17,8 @@ export default async function handler(req, res) {
         return res.status(420).json({badRequest: 'Invalid Api Key !!'})
     }
 
-    if (req.method === 'POST') {
-        const type = req.body.type;
+    if (req.method === 'GET') {
+        const type = req.query.type;
 
         if(!type) {
             return res.status(422).json({error:"Project type is missing !!"})

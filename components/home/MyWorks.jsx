@@ -42,13 +42,13 @@ const MyWorks = ({ darkMode, theme }) => {
     setLoading(true)
     async function getWork() {
       const optWork = {
-        method: 'POST',
+        method: 'GET',
         url: process.env.NEXT_PUBLIC_GET_ALL_DOC_API,
         params: {
-          apiKey: process.env.NEXT_PUBLIC_DB_KEY
+          apiKey: process.env.NEXT_PUBLIC_DB_KEY,
+          type: 'work'
         },
         headers: { 'Content-Type': 'application/json' },
-        data: { type: 'work' }
       };
       await axios.request(optWork).then((response) => {
         setWork(response.data)

@@ -41,13 +41,13 @@ const MyProjects = ({ darkMode, theme }) => {
     setLoading(true)
     async function getProject() {
       const optProject = {
-        method: 'POST',
+        method: 'GET',
         url: process.env.NEXT_PUBLIC_GET_ALL_DOC_API,
         params: {
-          apiKey: process.env.NEXT_PUBLIC_DB_KEY
+          apiKey: process.env.NEXT_PUBLIC_DB_KEY,
+          type: 'project'
         },
         headers: { 'Content-Type': 'application/json' },
-        data: { type: 'project' }
       };
       await axios.request(optProject).then((response) => {
         setProject(response.data)
