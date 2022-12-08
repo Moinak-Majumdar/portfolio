@@ -70,3 +70,4 @@ node_modules/
 */.env
 .next
 .github
+.vscode
