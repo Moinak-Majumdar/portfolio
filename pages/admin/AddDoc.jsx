@@ -162,11 +162,11 @@ const AddProject = ({ darkMode, theme }) => {
               <div className='flex mt-2 gap-6'>
                 <span>
                   <input id='client-work' value='work' onChange={(e) => setData({ ...data, type: 'work' })} name='type' required={true} type="radio" disable={disable} />
-                  <label className='text-sm md:text-base ml-2 cursor-pointer' htmlFor='client-work' style={{ color: theme.val }}>Client Work</label>
+                  <label className='text-sm font-bold md:text-base ml-2 cursor-pointer' htmlFor='client-work' style={{ color: theme.val }}>Client Work</label>
                 </span>
                 <span>
                   <input id='personal-project' value='project' onChange={(e) => setData({ ...data, type: 'project' })} name='type' required={true} type="radio" disable={disable} />
-                  <label className='text-sm md:text-base ml-2 cursor-pointer' htmlFor='personal-project' style={{ color: theme.val }}>Personal Project</label>
+                  <label className='text-sm font-bold md:text-base ml-2 cursor-pointer' htmlFor='personal-project' style={{ color: theme.val }}>Personal Project</label>
                 </span>
               </div>
             </div>
@@ -175,11 +175,11 @@ const AddProject = ({ darkMode, theme }) => {
               <div className='flex mt-2 gap-6'>
                 <span>
                   <input id='status-done' value='completed' onChange={(e) => setData({ ...data, status: 'completed' })} name='status' required={true} type="radio" disable={disable} />
-                  <label className='text-sm md:text-base ml-2 cursor-pointer' htmlFor='status-done' style={{ color: theme.val }}>Completed</label>
+                  <label className='text-sm font-bold md:text-base ml-2 cursor-pointer' htmlFor='status-done' style={{ color: theme.val }}>Completed</label>
                 </span>
                 <span>
                   <input id='status-running' value='under development' onChange={(e) => setData({ ...data, status: 'under development' })} name='status' required={true} type="radio" disable={disable} />
-                  <label className='text-sm md:text-base ml-2 cursor-pointer' htmlFor='status-running' style={{ color: theme.val }}>Under Deployment</label>
+                  <label className='text-sm font-bold md:text-base ml-2 cursor-pointer' htmlFor='status-running' style={{ color: theme.val }}>Under Development</label>
                 </span>
               </div>
             </div>

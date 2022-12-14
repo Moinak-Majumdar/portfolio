@@ -6,7 +6,7 @@ import PageTransition from '../components/tools/PageTransition'
 import Header from '../components/layout/Header'
 
 
-function MyApp({ Component, pageProps: { ...pageProps} }) {
+function MyApp({ Component, pageProps: { ...pageProps } }) {
 
   const [darkMode, setDarkMode] = useState()
   const [theme, setTheme] = useState(null)
@@ -48,11 +48,11 @@ function MyApp({ Component, pageProps: { ...pageProps} }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name='author' content="Moinak Majumdar" />
         <meta name='description' content='personal portfolio website' />
-        <meta name='keywords' content='Next js, express js, nodejs, firebase, reactjs, mongo, portfolio, github' />
+        <meta name='keywords' content='Next js, express js, nodejs, firebase, react js, mongo, portfolio, github' />
         <link rel="apple-touch-icon" sizes="500x500" href="/favicon.png" />
         <link rel="icon" type="image/png" sizes="500x500" href="/favicon.png" />
       </Head>
-      {theme && <NextNProgress color={theme.val} height={3} showOnShallow={true}/>}
+      {theme && <NextNProgress color={theme.val} height={3} showOnShallow={true} />}
       <PageTransition>
         {theme && <Component {...pageProps} darkMode={darkMode} theme={theme} />}
         {theme && <Header theme={theme} darkMode={darkMode} setTheme={setTheme} setDarkMode={setDarkMode} />}

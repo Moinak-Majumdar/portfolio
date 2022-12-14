@@ -90,7 +90,7 @@ const Projects = ({ darkMode, theme, Work, Project }) => {
           </div>
         </motion.div>
       </div>
-      <Footer darkMode={darkMode}/>
+      <Footer darkMode={darkMode} />
     </section>
   )
 }
@@ -98,22 +98,22 @@ const Projects = ({ darkMode, theme, Work, Project }) => {
 export async function getServerSideProps() {
   let Work, Project;
   const optWork = {
-    method: 'POST',
+    method: 'GET',
     url: process.env.NEXT_PUBLIC_GET_ALL_DOC_API,
     params: {
-      apiKey: process.env.NEXT_PUBLIC_DB_KEY
+      apiKey: process.env.NEXT_PUBLIC_DB_KEY,
+      type: 'work'
     },
     headers: { 'Content-Type': 'application/json' },
-    data: { type: 'work' }
   };
   const optProject = {
-    method: 'POST',
+    method: 'GET',
     url: process.env.NEXT_PUBLIC_GET_ALL_DOC_API,
     params: {
-      apiKey: process.env.NEXT_PUBLIC_DB_KEY
+      apiKey: process.env.NEXT_PUBLIC_DB_KEY,
+      type: 'project'
     },
     headers: { 'Content-Type': 'application/json' },
-    data: { type: 'project' }
   };
   await axios.request(optWork).then((response) => {
     Work = response.data
