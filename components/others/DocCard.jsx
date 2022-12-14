@@ -23,7 +23,7 @@ const DocCard = ({ theme, darkMode, data }) => {
                     <div className='min-w-full h-fit lg:group-hover:opacity-0 duration-500'>
                         <picture>
                             <source srcSet={data.img[0]} />
-                            <img alt='project.jpg' className='min-w-full min-h-[300px] md:min-h-[380px]' style={{ pointerEvents: 'none' }} layout='fill' />
+                            <img alt='project.jpg' className='min-w-full min-h-[300px] md:min-h-[380px]' style={{ pointerEvents: 'none' }} layout='fill' loading='lazy' />
                         </picture>
                         <div className='absolute bottom-4 left-1 px-4 py-2 rounded-full' style={{ backgroundColor: theme.val }}>
                             <span className={`font-comicNeue capitalize text-2xl ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>{data.name}</span>

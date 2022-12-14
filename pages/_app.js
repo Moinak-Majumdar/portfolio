@@ -1,6 +1,7 @@
 import NextNProgress from 'nextjs-progressbar';
 import Head from 'next/head'
 import { useState, useEffect } from "react"
+import { Analytics } from '@vercel/analytics/react';
 import '../styles/globals.css'
 import PageTransition from '../components/tools/PageTransition'
 import Header from '../components/layout/Header'
@@ -57,6 +58,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
         {theme && <Component {...pageProps} darkMode={darkMode} theme={theme} />}
         {theme && <Header theme={theme} darkMode={darkMode} setTheme={setTheme} setDarkMode={setDarkMode} />}
       </PageTransition>
+      <Analytics />
     </>
   )
 }

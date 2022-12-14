@@ -10,7 +10,7 @@
     "export": "next build && next export"
   },
   "dependencies": {
-    "@builder.io/partytown": "^0.7.3",
+    "@vercel/analytics": "^0.1.6",
     "axios": "^1.1.2",
     "firebase": "^9.10.0",
     "firebase-tools": "^11.16.0",
