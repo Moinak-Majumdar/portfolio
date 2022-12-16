@@ -1,8 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M24 48C37.2548 48 48 37.2548 48 24C48 10.7452 37.2548 0 24 0C10.7452 0 0 10.7452 0 24C0 37.2548 10.7452 48 24 48Z" fill="white"/>
-<path d="M14.4 32H24V41.6L14.4 32Z" fill="#0055FF"/>
-<path d="M14.4 22.4H24V32H14.4V22.4Z" fill="#00AAFF"/>
-<path d="M24 22.4L33.6 32H24V22.4Z" fill="#00AAFF"/>
-<path d="M24 12.8H33.6V22.4H24V12.8Z" fill="#88DDFF"/>
-<path d="M14.4 12.8H24V22.4L14.4 12.8Z" fill="#88DDFF"/>
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="body_1" width="1402" height="1402">
+
+<g transform="matrix(2.9208333 0 0 2.9208333 0 0)">
+	<g transform="matrix(2 0 0 2 0 0)">
+		<g transform="matrix(5 0 0 5 0 0)">
+            <path d="M14.4 32L24 32L24 41.6L14.4 32z" stroke="none" fill="#0055FF" fill-rule="nonzero" />
+            <path d="M14.4 22.4L24 22.4L24 32L14.4 32L14.4 22.4z" stroke="none" fill="#00AAFF" fill-rule="nonzero" />
+            <path d="M24 22.4L33.6 32L24 32L24 22.4z" stroke="none" fill="#00AAFF" fill-rule="nonzero" />
+            <path d="M24 12.8L33.6 12.8L33.6 22.4L24 22.4L24 12.8z" stroke="none" fill="#88DDFF" fill-rule="nonzero" />
+            <path d="M14.4 12.8L24 12.8L24 22.4L14.4 12.8z" stroke="none" fill="#88DDFF" fill-rule="nonzero" />
+		</g>
+	</g>
+</g>
 </svg>

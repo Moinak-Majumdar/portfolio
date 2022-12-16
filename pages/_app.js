@@ -50,6 +50,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
         <meta name='author' content="Moinak Majumdar" />
         <meta name='description' content='personal portfolio website' />
         <meta name='keywords' content='Next js, express js, nodejs, firebase, react js, mongo, portfolio, github' />
+        <meta name="color-scheme" content="dark light"/>
         <link rel="apple-touch-icon" sizes="500x500" href="/favicon.png" />
         <link rel="icon" type="image/png" sizes="500x500" href="/favicon.png" />
       </Head>
