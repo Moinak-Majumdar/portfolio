@@ -2,11 +2,12 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import { BsMoonStarsFill, BsSunFill, BsBookmarkHeartFill } from 'react-icons/bs'
+import { BsBookmarkHeartFill, BsGearFill } from 'react-icons/bs'
 import { CgMenuRight } from 'react-icons/cg'
-import { MdOutlineDashboardCustomize } from 'react-icons/md'
+import { MdOutlineDashboardCustomize, } from 'react-icons/md'
+import CustomizeModal from '../others/CustomizeModal'
 import Button from '../tools/Button'
-import ThemeMotion from './ThemeMotion'
+
 
 const divVariants = {
     open: {
@@ -18,7 +19,7 @@ const divVariants = {
         width: '300px',
         height: '100vh',
         x: '500px',
-        transition: { delay: 1.4 }
+        transition: { delay: .8 }
     }
 }
 const ulVariants = {
@@ -34,7 +35,7 @@ const liVariants = {
         y: 0,
         opacity: 1,
         transition: {
-            y: { stiffness: 1000}
+            y: { stiffness: 1000 }
         }
     },
     closed: {
@@ -45,21 +46,6 @@ const liVariants = {
         }
     }
 };
-
-const themes = [
-    { themeName: 'teal', themeColor: '#2dd4bf' },
-    { themeName: 'cyan', themeColor: '#22d3ee' },
-    { themeName: 'yellow', themeColor: '#eab308' },
-    { themeName: 'green', themeColor: '#22c55e' },
-    { themeName: 'sky', themeColor: '#0ea5e9' },
-    { themeName: 'pink', themeColor: '#ec4899' },
-    { themeName: 'orange', themeColor: '#f97316' },
-    { themeName: 'red', themeColor: '#ef4444' },
-    { themeName: 'purple', themeColor: '#a855f7' },
-    { themeName: 'blue', themeColor: '#3b82f6' },
-    { themeName: 'indigo', themeColor: '#6366f1' },
-    { themeName: 'slate', themeColor: '#64748b' },
-]
 
 const navLinkHome = [
     { name: 'Intro', link: '#intro' },
@@ -89,57 +75,41 @@ const navLinkOthers = [
 const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
+    const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [activeLink, setActiveLink] = useState(null)
     const [navLink, setNavLink] = useState(null)
 
     useEffect(() => {
         const pName = router.pathname
-        if(pName === '/') {
+        if (pName === '/') {
             setNavLink(navLinkHome)
-        } else if(pName === '/Blossoms') {
+        } else if (pName === '/Blossoms') {
             setNavLink(navLinkBlossoms)
-        } else if(pName === '/Projects') {
+        } else if (pName === '/Projects') {
             setNavLink(navLinkProjects)
         } else {
             setNavLink(navLinkOthers)
         }
-    },[])
+    }, [])
     function navigate(link) {
         setIsOpen(false)
         router.push(link)
     }
 
-    function changeMode(params) {
-        if (params === 'lite') {
-            localStorage.setItem('darkMode', JSON.stringify(false))
-            document.body.style.backgroundColor = '#ffffff'
-            setDarkMode(false)
-        }
-        if (params === 'dark') {
-            document.body.style.backgroundColor = '#000011'
-            localStorage.setItem('darkMode', JSON.stringify(true))
-            setDarkMode(true)
-        }
+    function handelDialog() {
+        setIsDialogOpen(false)
     }
+
     return (
         <>
-            <div className='fixed top-0 right-4 w-fit mt-2 rounded-full overflow-hidden z-50'>
-                {!darkMode && <button onClick={() => changeMode('dark')} className='cursor-pointer rounded-full mr-2 bg-yellow-400 p-3' aria-label='dark mode light mode toggle button'>
-                    <BsSunFill className='text-xl' onClick={() => changeMode('dark')} />
-                </button>}
-                {darkMode && <button onClick={() => changeMode('lite')} className='cursor-pointer rounded-full mr-2 p-3 bg-slate-700' aria-label='dark mode light mode toggle button'>
-                    <BsMoonStarsFill className='text-xl text-blue-300' onClick={() => changeMode('lite')} />
-                </button>}
-                <button onClick={() => setIsOpen(!isOpen)} className={`rounded-full cursor-pointer text-2xl ${darkMode ? 'bg-blue-300' : 'bg-pink-300'}`} style={{ padding: '9px' }} area-labelledby='sideNavBar'>
-                    <CgMenuRight className={darkMode ? 'text-black' : 'text-pink-800'} />
-                </button>
-            </div>
+            <button onClick={() => setIsOpen(!isOpen)} className={`fixed top-0 right-4 w-fit mt-2 z-50 rounded-full cursor-pointer text-2xl ${darkMode ? 'bg-blue-300' : 'bg-pink-300'}`} style={{ padding: '9px' }} area-labelledby='sideNavBar'>
+                <CgMenuRight className={darkMode ? 'text-black' : 'text-pink-800'} />
+            </button>
             {/* hl3 side navbar */}
             <motion.div
-                initial={false}
+                initial='closed'
                 animate={isOpen ? 'open' : 'closed'}
                 className={`z-40 fixed top-0 right-0 min-h-full flex ${isOpen ? "w-full" : 'max-w-0'}`}
-                id='sideNavBar'
             >
                 <div onClick={() => setIsOpen(!isOpen)} className='bg-transparent min-w-full min-h-full'></div>
                 <motion.div
@@ -159,29 +129,36 @@ const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
                                         <Link href={curr.link}>
                                             <a onClick={() => setActiveLink(curr.name)} className='text-xl ml-4 mb-3 font-ubuntu flex items-center'>
                                                 <span className='font-ubuntu'>{curr.name}</span>
-                                                <BsBookmarkHeartFill className={activeLink === curr.name ? 'ml-4 text-2xl' : 'hidden'} style={{ color: theme.val}}/>
+                                                <BsBookmarkHeartFill className={activeLink === curr.name ? 'ml-4 text-2xl' : 'hidden'} style={{ color: theme.val }} />
                                             </a>
                                         </Link>
                                     </motion.div>
                                 )
                             })}
-                            <motion.div variants={liVariants} className='text-lg mt-8 font-comicNeue ml-4'>
-                                This website is built with various color themes. Try by changing following color themes. 🌈
-                            </motion.div>
                             <motion.div variants={liVariants} className='mt-4 ml-4'>
-                                <span className='capitalize text-xl font-comicNeue'>Current Theme :</span>
-                                <span className='ml-2 capitalize text-xl font-comicNeue' style={{ color: theme.val }}>{theme.name}</span>
+                                <h2>
+                                    <span className='capitalize text-xl font-comicNeue'>Color Theme :</span>
+                                    <span className='ml-2 capitalize text-xl font-comicNeue font-bold'>{darkMode ? 'Dark' : 'Lite'}</span>
+                                </h2>
+                                <h2 className='mt-2'>
+                                    <span className='capitalize text-xl font-comicNeue'>Color Scheme :</span>
+                                    <span className='ml-2 capitalize text-xl font-comicNeue' style={{ color: theme.val }}>{theme.name}</span>
+                                </h2>
                             </motion.div>
-                            <div className='w-fit grid grid-cols-4 mt-4 gap-3 mx-auto'>
-                                {themes.map((curr, index) => {
-                                    return (
-                                        <ThemeMotion key={index} setTheme={setTheme} variants={liVariants}
-                                            themeName={curr.themeName} themeColor={curr.themeColor} />
-                                    )
-                                })}
-                            </div>
-                            <motion.div variants={liVariants} className='mt-8'>
-                                <Button onClick={() => navigate('/admin')} theme={theme} type='button'>
+
+                            <motion.div variants={liVariants} className='mt-8 flex flex-col items-center'>
+                                <motion.div
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                    className='flex w-full justify-center'
+                                >
+                                    <button onClick={() => setIsDialogOpen(true)} type='button' className='w-11/12 flex items-center justify-center border-0 py-2 px-8 focus:outline-none text-lg  transition-all rounded-full text-white bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045]'>
+                                        <BsGearFill />
+                                        <span className='ml-2'>Customize</span>
+                                    </button>
+                                </motion.div>
+                                <Button onClick={() => navigate('/admin')} theme={theme} type='button' className='mt-8'>
                                     <div className='flex items-center justify-center'>
                                         <MdOutlineDashboardCustomize />
                                         <span className='ml-2'>Admin Dashboard</span>
@@ -192,6 +169,7 @@ const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
                     </section>}
                 </motion.div>
             </motion.div>
+            {isDialogOpen && <CustomizeModal visible={isDialogOpen} isClose={handelDialog} theme={theme} darkMode={darkMode} setTheme={setTheme} setDarkMode={setDarkMode} />}
         </>
     )
 }

@@ -17,7 +17,7 @@ const ThemeMotion = ({ setTheme, themeName, themeColor, variants }) => {
       variants={variants}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}>
-      <button onClick={changeTheme} className='h-8 w-12 cursor-pointer rounded-full' style={{ boxShadow: `0px 0px 15px ${themeColor}`, backgroundColor: `${themeColor}` }} />
+      <button onClick={changeTheme} className='h-8 w-14 cursor-pointer rounded-full' style={{ boxShadow: `0px 0px 15px ${themeColor}`, backgroundColor: `${themeColor}` }} />
     </motion.div>
   )
 }
