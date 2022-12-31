@@ -58,14 +58,14 @@ const Doc = ({ project, darkMode, theme }) => {
             {/* hl5 description */}
             <motion.div variants={Left} className="text-lg md:text-xl lg:max-w-2xl 2xl:max-w-3xl py-4 mr-4" dangerouslySetInnerHTML={{ __html: project.description }}>
             </motion.div>
-            <motion.div variants={Right} className="w-fit flex flex-col-reverse lg:flex-col">
+            <motion.div variants={Right} className="w-fit flex flex-col-reverse lg:flex-col mx-auto">
               {/* hl7 links */}
-              <div className="w-fit flex xl:flex-row flex-col ml-2 xl:ml-0">
-                <a className="mt-4 text-xl py-2 px-4 rounded-full flex items-center mr-2 border-2" style={{ borderColor: theme.val, boxShadow: `0px 0px 25px ${theme.val}` }} href={project.liveUrl} target='_blank' rel="noreferrer">
+              <div className="w-full flex flex-row xl:flex-row lg:flex-col ml-2 xl:ml-0 lg:text-xl text-lg justify-center lg:justify-start">
+                <a className="mt-4 py-2 px-3 md:px-4 rounded-full flex items-center mr-2 border-2" style={{ borderColor: theme.val, boxShadow: `0px 0px 25px ${theme.val}` }} href={project.liveUrl} target='_blank' rel="noreferrer">
                   <FaLink />
                   <span className="ml-2 font-ubuntu">Live Url</span>
                 </a>
-                <a className="mt-4 text-xl py-2 px-4 rounded-full flex items-center border-2" style={{ borderColor: theme.val, boxShadow: `0px 0px 25px ${theme.val}` }} href={project.gitRepo} target='_blank' rel="noreferrer">
+                <a className="mt-4 py-2 px-3 md:px-4 rounded-full flex items-center border-2" style={{ borderColor: theme.val, boxShadow: `0px 0px 25px ${theme.val}` }} href={project.gitRepo} target='_blank' rel="noreferrer">
                   <FaGithub />
                   <span className="ml-2 font-ubuntu">Git Repositories</span>
                 </a>
@@ -73,7 +73,7 @@ const Doc = ({ project, darkMode, theme }) => {
               {/* hl3 tools */}
               <div className="text-lg md:text-xl mt-8 flex flex-col">
                 <div className="text-2xl flex items-center">
-                  <FaGripfire className="text-4xl" style={{ color: theme.val }} />
+                  <FaGripfire className="text-3xl md:text-4xl" style={{ color: theme.val }} />
                   <span className="ml-2 font-ubuntu">Language, Frameworks / Libraries</span>
                 </div>
                 <div className="mt-2 grid grid-cols-3 md:grid-cols-5 lg:grid-cols-3 2xl:grid-cols-4 gap-4 w-fit">
