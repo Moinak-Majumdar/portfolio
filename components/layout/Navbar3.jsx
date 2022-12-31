@@ -153,7 +153,10 @@ const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
                                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                                     className='flex w-full justify-center'
                                 >
-                                    <button onClick={() => setIsDialogOpen(true)} type='button' className='w-11/12 flex items-center justify-center border-0 py-2 px-8 focus:outline-none text-lg  transition-all rounded-full text-white bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045]'>
+                                    <button onClick={() => {
+                                        setIsDialogOpen(true)
+                                        setIsOpen(false)
+                                    }} type='button' className='w-11/12 flex items-center justify-center border-0 py-2 px-8 focus:outline-none text-lg  transition-all rounded-full text-white bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045]'>
                                         <BsGearFill />
                                         <span className='ml-2'>Customize</span>
                                     </button>
