@@ -18,14 +18,14 @@ const DocCard = ({ theme, darkMode, data }) => {
 
     return (
         <Link href={`Doc/${data.name}`}>
-            <motion.a variants={innerVariants} className='w-full h-fit group overflow-hidden border p-2 border-slate-800 text-gray-300 hover:cursor-pointer' whileTap={{scale: 0.95}}>
-                <div className='flex bg-gradient-to-b from-[#243B55] to-[#141E30] relative'>
+            <motion.a variants={innerVariants} className='w-full h-fit group overflow-hidden border p-2 border-slate-800 text-gray-300 hover:cursor-pointer rounded-tl-[40px] rounded-br-[40px]' whileTap={{scale: 0.95}}>
+                <div className='flex bg-gradient-to-b from-[#243B55] to-[#141E30] relative rounded-tl-[40px] rounded-br-[40px] overflow-hidden'>
                     <div className='min-w-full h-fit lg:group-hover:opacity-0 duration-500'>
                         <picture>
                             <source srcSet={data.img[0]} />
                             <img alt='project.jpg' className='min-w-full min-h-[300px] md:min-h-[380px]' style={{ pointerEvents: 'none' }} layout='fill' loading='lazy' />
                         </picture>
-                        <div className='absolute bottom-4 left-1 px-4 py-2 rounded-full' style={{ backgroundColor: theme.val }}>
+                        <div className='absolute bottom-4 left-1 px-4 py-2 rounded-tr-2xl rounded-bl-2xl' style={{ backgroundColor: theme.val }}>
                             <span className={`font-comicNeue capitalize text-2xl ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>{data.name}</span>
                         </div>
                     </div>

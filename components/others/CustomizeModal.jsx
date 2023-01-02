@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BsMoonStarsFill, BsSunFill, } from 'react-icons/bs'
-import { MdOutlineDashboardCustomize, MdMonitor, MdClose } from 'react-icons/md'
+import { MdMonitor, MdClose } from 'react-icons/md'
 import ThemeMotion from '../layout/ThemeMotion'
 import Button from '../tools/Button'
 
@@ -56,8 +56,15 @@ const themes = [
 const CustomizeModal = ({ visible, isClose, darkMode, setDarkMode, theme, setTheme }) => {
 
     const [Visibility, setVisibility] = useState(visible)
-    const [modeLite, setModeLite] = useState('System')
+    const [modeLight, setModeLight] = useState()
 
+    useEffect(() => {
+        const temp = JSON.parse(localStorage.getItem('theme'))
+        const { KitMode } = temp
+        setModeLight(KitMode)
+    }, [])
+    
+    
     function changeVisibility() {
         setVisibility(false)
         setTimeout(() => {
@@ -68,19 +75,23 @@ const CustomizeModal = ({ visible, isClose, darkMode, setDarkMode, theme, setThe
     function changeMode(params) {
         if (params === 'Lite') {
             document.body.style.backgroundColor = '#ffffff'
-            setModeLite('Lite')
+            setModeLight('Lite')
             setDarkMode(false)
+            localStorage.setItem('theme', JSON.stringify({ name: theme.name, val: theme.val, KitMode: 'Lite' }))
         }
         if (params === 'Dark') {
             document.body.style.backgroundColor = '#000011'
-            setModeLite('Dark')
+            setModeLight('Dark')
             setDarkMode(true)
+            localStorage.setItem('theme', JSON.stringify({ name: theme.name, val: theme.val, KitMode: 'Dark' }))
         }
         if (params === 'System') {
-            setModeLite('System')
+            setModeLight('System')
             const mode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
             document.body.style.backgroundColor = mode ? '#000011' : '#ffffff'
             setDarkMode(mode)
+            localStorage.setItem('theme', JSON.stringify({ name: theme.name, val: theme.val, KitMode: 'System' }))
+
         }
     }
 
@@ -100,7 +111,7 @@ const CustomizeModal = ({ visible, isClose, darkMode, setDarkMode, theme, setThe
                 <motion.div variants={liVariants} className='flex gap-3 mt-2'>
                     {mode.map((curr, i) => {
                         return (
-                            <motion.button key={`mode_button_${i}`} variants={liVariants} className={`px-2 md:px-4 py-2 w-fit flex items-center rounded-sm text-lg border-b border-slate-500 ${curr.name === modeLite ? 'bg-slate-400/50' : ''}`} onClick={() => changeMode(curr.name)}>
+                            <motion.button key={`mode_button_${i}`} variants={liVariants} className={`px-2 md:px-4 py-2 w-fit flex items-center rounded-sm text-lg border-b border-slate-500 ${curr.name === modeLight ? 'bg-slate-400/50' : ''}`} onClick={() => changeMode(curr.name)}>
                                 {curr.icon}
                                 <span className='ml-3'>{curr.name}</span>
                             </motion.button>

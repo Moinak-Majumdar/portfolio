@@ -14,12 +14,11 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
 
   useEffect(() => {
 
-    const mode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    document.body.style.backgroundColor = mode ? '#000011' : '#ffffff'
-    setDarkMode(mode)
-
     if (localStorage.getItem('theme') === null) {
-      localStorage.setItem('theme', JSON.stringify({ name: 'pink', val: '#ec4899' }))
+      const mode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      document.body.style.backgroundColor = mode ? '#000011' : '#ffffff'
+      setDarkMode(mode)
+      localStorage.setItem('theme', JSON.stringify({ name: 'pink', val: '#ec4899', KitMode: 'System' }))
       setTheme({ name: 'pink', val: '#ec4899' })
       const style = document.createElement('style');
       style.setAttribute('id', 'selection')
@@ -29,7 +28,20 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
       }
     } else {
       const temp = JSON.parse(localStorage.getItem('theme'))
-      setTheme(temp)
+      const { name, val, KitMode } = temp
+      setTheme({ name, val })
+      if (KitMode === 'System') {
+        const mode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        document.body.style.backgroundColor = mode ? '#000011' : '#ffffff'
+        setDarkMode(mode)
+      }
+      if (KitMode === 'Dark') {
+        setDarkMode(true)
+      }
+      if (KitMode === 'Lite') {
+        setDarkMode(false)
+      }
+    
       const style = document.createElement('style');
       style.setAttribute('id', 'selection')
       style.textContent = `::selection { background-color: ${temp.val}; color: black;}`
@@ -50,7 +62,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
         <meta name='author' content="Moinak Majumdar" />
         <meta name='description' content='personal portfolio website' />
         <meta name='keywords' content='Next js, express js, nodejs, firebase, react js, mongo, portfolio, github' />
-        <meta name="color-scheme" content="dark light"/>
+        <meta name="color-scheme" content="dark light" />
         <link rel="apple-touch-icon" sizes="500x500" href="/favicon.png" />
         <link rel="icon" type="image/png" sizes="500x500" href="/favicon.png" />
       </Head>
