@@ -37,9 +37,11 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
       }
       if (KitMode === 'Dark') {
         setDarkMode(true)
+        document.body.style.backgroundColor = '#000011'
       }
       if (KitMode === 'Lite') {
         setDarkMode(false)
+        document.body.style.backgroundColor = '#ffffff'
       }
     
       const style = document.createElement('style');

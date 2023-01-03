@@ -62,7 +62,7 @@ const CustomizeModal = ({ visible, isClose, darkMode, setDarkMode, theme, setThe
         const temp = JSON.parse(localStorage.getItem('theme'))
         const { KitMode } = temp
         setModeLight(KitMode)
-    }, [])
+    },[])
     
     
     function changeVisibility() {
