@@ -43,7 +43,6 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
         setDarkMode(false)
         document.body.style.backgroundColor = '#ffffff'
       }
-    
       const style = document.createElement('style');
       style.setAttribute('id', 'selection')
       style.textContent = `::selection { background-color: ${temp.val}; color: black;}`

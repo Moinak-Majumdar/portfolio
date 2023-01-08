@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { MdNavigateNext } from 'react-icons/md'
-import Image from 'next/image'
 
 function ProjectImgSlider({ images, theme }) {
 
@@ -42,7 +41,7 @@ function ProjectImgSlider({ images, theme }) {
                 {images.map((curr, index) => {
                     return (
                         // item
-                        <motion.div ref={imgRef} key={index} className='min-w-full min-h-[18rem] h-fit px-4 flex'>
+                        <motion.div ref={imgRef} key={index} className='min-w-full min-h-[18rem] h-fit px-4 flex justify-center'>
                             <picture>
                                 <source srcSet={curr}/>
                                 <img alt={`${index}.jpg`} className='rounded-3xl min-w-full min-h-full my-auto' style={{ pointerEvents: 'none' }} layout='fill' />

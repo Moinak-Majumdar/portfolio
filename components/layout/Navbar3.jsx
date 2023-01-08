@@ -156,7 +156,7 @@ const Navbar3 = ({ darkMode, setDarkMode, theme, setTheme }) => {
                                     <button onClick={() => {
                                         setIsDialogOpen(true)
                                         setIsOpen(false)
-                                    }} type='button' className='w-11/12 flex items-center justify-center border-0 py-2 px-8 focus:outline-none text-lg  transition-all rounded-tl-3xl rounded-br-3xl text-white bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045]'>
+                                    }} type='button' className='w-11/12 flex items-center justify-center border-0 py-2 px-8 focus:outline-none text-lg  transition-all rounded-tl-2xl rounded-br-2xl text-white bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045]'>
                                         <BsGearFill />
                                         <span className='ml-2'>Customize</span>
                                     </button>
