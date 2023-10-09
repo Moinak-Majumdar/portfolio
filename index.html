@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moinak Majumdar | Portfolio</title>
+    <meta name='author' content="Moinak Majumdar" />
+    <meta name='description'
+        content='Hey! this is @moinak05, A passionate full stack web and flutter developer from India, Welcome to my portfolio. Let me introduce you with my various projects.' />
+    <meta name='keywords'
+        content='Next js, express js, node js, firebase, react js, mongo, portfolio, github, vercel, typescript' />
+    <meta property='og:title' content='Moinak Majumdar | Portfolio' />
+    <meta property='og:keyword'
+        content='Next js, express js, node js, firebase, react js, mongo, portfolio, github, vercel, typescript' />
+    <meta property='og:description'
+        content='Hey! this is @moinak05, A passionate full stack web and flutter developer from India, Welcome to my portfolio. Let me introduce you with my various projects.' />
+    <meta property='og:type' content='website' />
+    <meta property='og:image' content='https://avatars.githubusercontent.com/u/99950805?v=4' />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="center">
+        <h1>Why are you seeing this page ?</h1>
+        <p class="message">
+            <span>Dear Visitors,</span>
+            <br /><br />
+            Due to financial constraints, we are unable to afford premium hosting services at the moment. Additionally,
+            some social media platforms have temporarily blocked our domain <span class="highlight">.vercel.app</span>.
+            As a result, this
+            page is currently unable to function as intended on those platforms.
+            <br /><br />
+            To ensure you can access our content seamlessly, we have set up a temporary redirect. You will be redirected
+            to our website hosted at <span class="highlight">moinak05.vercel.app</span>.
+            <br /><br />
+            We appreciate your understanding and continued support.
+        </p>
+        <h2>Redirecting to vercel within <span id="counter">5</span> seconds. </h2>
+    </div>
+</body>
+<script>
+    let count = 4;
+    const counter = document.querySelector('#counter');
+    setInterval(() => {
+        counter.innerHTML = count;
+        if (count == 3) {
+            window.location.href = "https://moinak05.vercel.app";
+        } else {
+            count--;
+        }
+    }, 1000);
+</script>
+
+</html>
