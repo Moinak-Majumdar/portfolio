@@ -2,16 +2,13 @@
 
 import loadingImg from '@/public/assets/image/loading.gif'
 import Image from 'next/image'
-import { useAppTheme } from '@/app/components/theme/AppTheme'
 import { Background, BackgroundOption } from '@/app/components/others/Background'
 import AnimatedHeading from '@/app/components/others/AnimatedHeading'
+import { Poppins } from 'next/font/google'
 
-
+const poppins = Poppins({ display: 'swap', weight: ['400', '500', '600', '700'], subsets: ['latin'] })
 
 export default function loading() {
-
-    const { poppins } = useAppTheme();
-
 
     return (
         <main className='relative min-h-screen overflow-hidden'>
