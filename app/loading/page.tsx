@@ -8,7 +8,7 @@ import AnimatedHeading from '@/app/components/others/AnimatedHeading'
 
 
 
-export default function loading() {
+export default function Loading() {
 
     const { poppins } = useAppTheme();
 
