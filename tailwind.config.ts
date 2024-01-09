@@ -8,13 +8,27 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      width:{
+        '30r': '30rem',
+        '35r': '35rem',
+        '40r': '40rem'
       },
+      height:{
+        '30r': '30rem',
+        '35r': '35rem',
+        '40r': '40rem'
+      },
+    },
+    screens: {
+      'xs': '480px',
+      'sm': '640px', 
+      'md': '768px',     
+      'lg': '1080px',     
+      'xl': '1280px',
+      '2xl': '1536px',
     },
   },
   plugins: [],
+  darkMode: "class",
 }
 export default config
