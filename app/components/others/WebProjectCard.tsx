@@ -23,28 +23,32 @@ type T_data = { _id: string, name: string, type: string, role: string, intro: st
 const WebProjectCard = ({ data }: { data: T_data }) => {
     const { comicNeue, poppins, ubuntu, themeColor } = useAppTheme();
     const [webCardCss, setWebCardCss] = useState<string>();
-    const {resolvedTheme} = useTheme();
+    const { resolvedTheme } = useTheme();
 
     useEffect(() => {
         resolvedTheme === 'dark' ? setWebCardCss(cardStyle.darkWebCard2) : setWebCardCss(cardStyle.lightWebCard2);
     }, [resolvedTheme])
 
     return (
-        <Link href={`Web/${data.slug}`} className="relative">
+        <Link href={`Web/${data.slug}`} scroll={false} className="relative">
             <motion.section className="relative group" whileTap={{ scale: 0.9 }}>
-                <div className="translate-x-0 translate-y-0 grayscale-0 xl:grayscale dark:xl:grayscale-0 xl:group-hover:-translate-x-7 xl:group-hover:-translate-y-6 xl:group-hover:grayscale-0 ease-linear duration-500 absolute top-0 z-20 px-[5px] group-hover:px-0">
+                <div className="-translate-x-6 -translate-y-6 xl:translate-x-0 xl:translate-y-0 grayscale-0 xl:grayscale dark:xl:grayscale-0 xl:group-hover:-translate-x-7 xl:group-hover:-translate-y-6 xl:group-hover:grayscale-0 ease-linear duration-500 absolute top-0 z-20 px-[5px] group-hover:px-0">
                     <Image src={data.cover} width={650} height={400} alt={`${data.name}-cover pic`} className="rounded-lg overflow-hidden" placeholder='blur' blurDataURL='/assets/image/imgPlaceholder.jpg' />
                 </div>
                 <div className={webCardCss} style={{ '--stroke-color': themeColor } as CSSProperties}  >
+                    {/* take equal size for top space */}
+                    <div className="opacity-0">
+                        <Image src={data.cover} width={650} height={400} alt={`${data.name}-cover pic`} className="rounded-lg overflow-hidden" placeholder='blur' blurDataURL='/assets/image/imgPlaceholder.jpg' />
+                    </div>
                     <div className="z-10 h-fit">
-                        <p className={`hidden xl:flex absolute -rotate-90 top-16 font-bold uppercase text-sm text-slate-500 ${data.type == 'project' ? '-right-[2.15rem]' : '-right-6'}`} style={ubuntu.style}>
+                        <p className={`flex absolute -rotate-90 top-16 font-bold uppercase text-sm text-slate-500 ${data.type == 'project' ? '-right-[2.15rem]' : '-right-6'}`} style={ubuntu.style}>
                             {data.type == 'project' ? 'web project' : 'web work'}
                         </p>
-                        <motion.div initial='closed' whileInView='open' viewport={{ once: false, amount: 0.3 }} variants={outerVariants} className="px-4 py-4" style={poppins.style}>
-                            <motion.p variants={innerVariants} className={`mb-2 px-4 py-1 rounded-xl text-xs text-center text-white w-fit ${data.status == 'completed' ? 'bg-green-500' : 'bg-red-500'}`}>
-                                {data.status}
-                            </motion.p>
-                            <motion.div variants={innerVariants} >
+                        <motion.div initial='closed' whileInView='open' viewport={{ once: false, amount: 0.3 }} variants={outerVariants} className="px-4 pb-4" style={poppins.style}>
+                            <motion.div variants={innerVariants} className="" >
+                                <p className={`-translate-y-4 xl:translate-y-0 mb-0 xl:mb-2 px-2 md:px-4 py-1 rounded-xl text-xs text-center text-white w-fit ${data.status == 'completed' ? 'bg-green-500' : 'bg-red-500'}`}>
+                                    {data.status}
+                                </p>
                                 <AnimatedHeading title={data.name} color={themeColor} classList="text-xl xl:text-2xl capitalize" font={comicNeue} />
                             </motion.div>
                             <motion.p variants={innerVariants} className='mt-2'>{data.intro}</motion.p>
@@ -53,7 +57,6 @@ const WebProjectCard = ({ data }: { data: T_data }) => {
                     </div>
                 </div>
             </motion.section>
-
         </Link>
     )
 }

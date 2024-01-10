@@ -23,7 +23,7 @@ type T_Flutter = { _id: string, __v: number, name: string, intro: string, gitRep
 const FlutterCard = ({ info }: { info: T_Flutter }) => {
 
   return (
-    <Link href={`Flutter/${info.slug}`} className='flex flex-col-reverse md:flex-row justify-start group rounded-xl dark:bg-slate-800 dark:text-gray-300 dark:shadow-black bg-gray-100 text-gray-800 shadow-slate-400'>
+    <Link href={`Flutter/${info.slug}`} scroll={false} className='flex flex-col-reverse md:flex-row justify-start group rounded-xl dark:bg-slate-800 dark:text-gray-300 dark:shadow-black bg-gray-100 text-gray-800 shadow-slate-400'>
       <motion.div className="p-6 flex flex-col w-full md:w-1/2" initial='closed' whileInView='open' viewport={{ once: false, amount: 0.3 }} variants={outerVariants}>
         <motion.div variants={innerVariants} className="flex items-center">
           <AnimatedHeading classList="text-2xl md:text-3xl" title="PixelPerks" />

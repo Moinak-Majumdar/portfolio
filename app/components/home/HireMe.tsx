@@ -52,7 +52,7 @@ const HireMe = () => {
                 </div>
                 <SocialMedia classList='flex mt-8 gap-6 mr-auto ml-auto lg:ml-0' />
                 <Button className='mt-8 max-w-xs ml-auto mr-auto lg:mr-0'>
-                    <Link href="/assets/doc/Moinak's Resume.pdf" style={poppins.style} target='_blank'>
+                    <Link href="/assets/doc/Moinak's Resume.pdf" scroll={false} style={poppins.style} target='_blank'>
                         <p>Download Resume</p>
                     </Link>
                 </Button>

@@ -9,6 +9,7 @@ import { BsAndroid2 } from 'react-icons/bs';
 import { AiOutlineRollback } from 'react-icons/ai';
 import Button from '@/app/components/others/Button';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 
 const outerVariants = { open: { transition: { staggerChildren: 0.2, delayChildren: 0.5 } }, closed: { transition: { staggerChildren: 0.7, staggerDirection: -1 } } };
@@ -34,10 +35,10 @@ const Details = ({ Data }: { Data: T_Flutter }) => {
                     <div className="w-[90%] lg:max-w-[18rem] flex flex-col ml-0 xl:ml-8 lg:text-xl text-lg justify-center lg:justify-start">
                         {links.map((curr, i) => {
                             return (
-                                <motion.a key={`links-${i}`} variants={linkVariants} className="mt-4 py-2 px-3 md:px-4 rounded-full flex items-center border-2" style={{ borderColor: themeColor, boxShadow: `0px 0px 25px ${themeColor}` }} href={curr.url} target='_blank' rel="noreferrer">
+                                <motion.button key={`links-${i}`} variants={linkVariants} className="mt-4 py-2 px-3 md:px-4 rounded-full flex items-center border-2" style={{ borderColor: themeColor, boxShadow: `0px 0px 25px ${themeColor}` }} >
                                     {curr.icon}
-                                    <span className="ml-2" style={poppins.style}>{curr.text}</span>
-                                </motion.a>
+                                    <Link href={curr.url} target='_blank' rel="noreferrer" scroll={false} className="ml-2" style={poppins.style}>{curr.text}</Link>
+                                </motion.button>
                             )
                         })}
                     </div>

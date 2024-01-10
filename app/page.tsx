@@ -6,8 +6,6 @@ import AboutMe from './components/home/AboutMe';
 import { useAppTheme } from './components/theme/AppTheme';
 import Tech from './components/home/Tech';
 import WebProjects from './components/home/WebProjects';
-import { Suspense } from 'react';
-import WebProjectLoader from './components/home/WebProjectLoader';
 import FlutterProjects from './components/home/FlutterProjects';
 import Hobby from './components/home/Hobby';
 import HireMe from './components/home/HireMe';
@@ -36,15 +34,13 @@ export default function Home() {
         <Tech poppins={poppins} roboto={roboto} ubuntu={ubuntu} themeColor={themeColor} />
       </motion.section>
       <motion.section id='WebProjects' initial='closed' whileInView='open' viewport={viewport} transition={transition} className='relative overflow-hidden bg-gradient-to-br dark:from-black dark:to-transparent from-gray-100 to-slate-100'>
-        {/* <Suspense fallback={<WebProjectLoader />}> */}
         <WebProjects />
-        {/* </Suspense> */}
       </motion.section>
       <motion.section id='FlutterProjects' initial='closed' whileInView='open' viewport={viewport} transition={transition} className='relative overflow-hidden'>
         <FlutterProjects />
       </motion.section>
       <motion.section id='myHobby' initial='closed' whileInView='open' viewport={viewport} transition={transition} className=' relative overflow-hidden'>
-        <Hobby/>
+        <Hobby />
       </motion.section>
       <motion.section id='hire' initial='closed' whileInView='open' viewport={viewport} transition={transition} className=' relative overflow-hidden myContainer py-[8rem]'>
         <HireMe />

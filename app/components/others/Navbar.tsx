@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import AnimatedHeading from "./AnimatedHeading";
 
 import { useAppTheme } from "../theme/AppTheme";
-import HamBurger from "./Hambuger";
+import HamBurger from "./Hamburger";
 
 const link = [
   { name: 'Home', url: '/' },
@@ -26,7 +26,7 @@ export default function Navbar() {
         <nav className="flex items-center lg:text-xl text-base gap-4 lg:gap-6 xl:gap-8  dark:text-gray-200 text-black">
           {link.map((curr, index) => {
             return (
-              <Link href={curr.url} key={index} style={ubuntu.style} className={`hidden capitalize md:inline-block noSelection ${pathName === curr.url ? "font-ubuntu underline underline-offset-8 cursor-pointer" : ""}`}>
+              <Link scroll={false} href={curr.url} key={index} style={ubuntu.style} className={`hidden capitalize md:inline-block noSelection ${pathName === curr.url ? "font-ubuntu underline underline-offset-8 cursor-pointer" : ""}`}>
                 {curr.name}
               </Link>
             )

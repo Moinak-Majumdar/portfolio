@@ -5,6 +5,7 @@ import ImgSlider2 from "@/app/components/others/ImgSlider2";
 import { useAppTheme } from "@/app/components/theme/AppTheme";
 import { Variants, motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AiOutlineRollback } from "react-icons/ai";
 import { FaGithub, FaGripfire, FaLink, FaRegImages } from "react-icons/fa";
@@ -34,10 +35,10 @@ const Details = ({ Data }: { Data: T_Web }) => {
                     <div className="w-[90%] lg:max-w-[18rem] flex flex-col ml-0 xl:ml-8 lg:text-xl text-lg justify-center lg:justify-start">
                         {links.map((curr, i) => {
                             return (
-                                <motion.a key={`links-${i}`} variants={linkVariants} className="mt-4 py-2 px-3 md:px-4 rounded-full flex items-center border-2" style={{ borderColor: themeColor, boxShadow: `0px 0px 25px ${themeColor}` }} href={curr.url} target='_blank' rel="noreferrer">
+                                <motion.button key={`links-${i}`} variants={linkVariants} className="mt-4 py-2 px-3 md:px-4 rounded-full flex items-center border-2" style={{ borderColor: themeColor, boxShadow: `0px 0px 25px ${themeColor}` }} >
                                     {curr.icon}
-                                    <span className="ml-2" style={poppins.style}>{curr.text}</span>
-                                </motion.a>
+                                    <Link href={curr.url} target='_blank' rel="noreferrer" scroll={false} className="ml-2" style={poppins.style}>{curr.text}</Link>
+                                </motion.button>
                             )
                         })}
                     </div>
@@ -66,7 +67,7 @@ const Details = ({ Data }: { Data: T_Web }) => {
                         <span className="ml-2 font-bold">Screenshots</span>
                     </h1>
                 </div>
-                <ImgSlider2 images={Data.img} />
+                <ImgSlider2 images={Data.img} fade={true} />
                 <div className='mt-16 mx-auto'>
                     <Button onClick={() => router.back()}>
                         <div className='text-2xl flex items-center gap-4'>

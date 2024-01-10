@@ -4,7 +4,7 @@ import { Analytics } from '@vercel/analytics/react'
 import './css/globals.css'
 import AppTheme from './components/theme/AppTheme'
 import Navbar from './components/others/Navbar'
-import Footer from './components/others/Footer';
+import Footer from './components/others/Footer'
 
 export const metadata: Metadata = {
   title: 'Moinak Majumdar | Home',

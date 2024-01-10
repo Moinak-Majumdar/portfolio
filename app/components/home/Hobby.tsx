@@ -57,7 +57,7 @@ export default async function Hobby() {
                             My device - <a style={roboto.style} className='font-bold' href='https://www.motorola.in/smartphones-motorola-one-macro/p' target='_blank'>Motorola One Macro</a>
                         </p>
                         <div className='mt-2'>
-                            <Link href='/Blossoms' className={`${roboto.className} text-xl font-semibold cursor-pointer`}>
+                            <Link href='/Blossoms' className={`${roboto.className} text-xl font-semibold cursor-pointer`} scroll={false}>
                                 View all blossoms
                             </Link>
                         </div>

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import Link from "next/link"
 import { FaFacebookSquare, FaGithub, FaWhatsapp, FaLinkedin, FaPhoneAlt } from 'react-icons/fa'
 import { MdMarkEmailUnread } from 'react-icons/md'
 
@@ -17,9 +18,9 @@ const SocialMedia = ({classList}:props) => {
     <div className={classList}>
       {links.map((curr, index) => {
         return (
-          <motion.a className="text-gray-500" whileHover={{ scale: 1.3, color: curr.color, transition: {duration: .5}}} whileTap={{ scale: 0.8 }} key={`${curr.toolTip}_${index}`} href={curr.url} target='_blank'>
-            <span title={curr.toolTip} className='text-3xl cursor-pointer'>{curr.icon}</span>
-          </motion.a>
+          <motion.button className="text-gray-500" whileHover={{ scale: 1.3, color: curr.color, transition: {duration: .5}}} whileTap={{ scale: 0.8 }} key={`${curr.toolTip}_${index}`} >
+            <Link scroll={false} href={curr.url} target='_blank' title={curr.toolTip} className='text-3xl cursor-pointer'>{curr.icon}</Link>
+          </motion.button>
         )
       })}
     </div>

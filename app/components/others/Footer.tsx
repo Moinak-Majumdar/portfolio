@@ -74,17 +74,17 @@ function Footer() {
                         <h2 className="font-bold" >Credits</h2>
                         <ul className="mt-2 list-disc list-inside" style={poppins.style}>
                             <li>
-                                <Link href="http://www.freepik.com" target='_blank'>image: upklyak/Freepik</Link>
+                                <Link scroll={false} href="http://www.freepik.com" target='_blank'>image: upklyak/Freepik</Link>
                             </li>
                             <li>
-                                <Link href="https://patternpad.com/" target='_blank'>svg: patternpad, </Link>
-                                <Link href="https://haikei.app/" target='_blank'>haikei</Link>
+                                <Link scroll={false} href="https://patternpad.com/" target='_blank'>svg: patternpad, </Link>
+                                <Link scroll={false} href="https://haikei.app/" target='_blank'>haikei</Link>
                             </li>
                             <li>
-                                <Link href='https://www.framer.com/' target='_blank'>animation: framer</Link>
+                                <Link scroll={false} href='https://www.framer.com/' target='_blank'>animation: framer</Link>
                             </li>
                             <li>
-                                <Link href='https://nextjs.org/'  target='_blank'>platform: Next.js</Link>
+                                <Link scroll={false} href='https://nextjs.org/'  target='_blank'>platform: Next.js</Link>
                             </li>
                         </ul>
                     </div>

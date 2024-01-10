@@ -1,14 +1,11 @@
 'use client'
 
 import { Variants, motion, useScroll, useTransform, } from 'framer-motion'
-import { useState, useEffect } from "react";
-import stylesDark from '../../css/Hero.module.css'
-import stylesLight from '@/app/css/HeroLight.module.css'
 import ReactTypingEffect from 'react-typing-effect';
 import { TbArrowsDownUp } from 'react-icons/tb'
 import { useRef } from 'react'
 import { useAppTheme } from '../theme/AppTheme';
-import { useTheme } from 'next-themes';
+import { HeroBg } from './HeroBg';
 
 const viewport = {
     once: false,
@@ -36,21 +33,11 @@ const Bottom: Variants = {
 export default function Hero() {
 
     const { poppins, ubuntu, roboto, themeColor } = useAppTheme();
-    const { resolvedTheme } = useTheme();
     const mainRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({ target: mainRef, offset: ["start start", "end start"] });
     const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '-0%']);
     const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
-    const [starClassList, setStarClassList] = useState<string[]>([]);
-
-    useEffect(() => {
-        if (resolvedTheme === 'dark') {
-            setStarClassList([`absolute ${stylesDark.stars}`, `absolute ${stylesDark.stars2}`, `absolute ${stylesDark.stars3}`]);
-        } else {
-            setStarClassList([`absolute ${stylesLight.stars}`, `absolute ${stylesLight.stars2}`, `absolute ${stylesLight.stars3}`]);
-        }
-    }, [resolvedTheme])
-
+   
     return (
         <section id='intro' ref={mainRef} className='relative min-h-screen overflow-hidden'>
             <motion.div className='min-h-screen flex overflow-hidden z-10' initial='closed' whileInView='open' viewport={viewport} transition={transition} style={{ y: contentY }}>
@@ -101,14 +88,7 @@ export default function Hero() {
                     <span className='ml-1 lg:text-lg text-xs' style={poppins.style}>Keep Scrolling</span>
                 </div>
             </motion.div>
-
-            {/* hl2 background */}
-            <motion.div className={` min-h-screen flex absolute inset-0 overflow-hidden -z-10`} style={{ y: backgroundY, background: `${resolvedTheme === 'dark' ? 'radial-gradient(ellipse at bottom, #1b2735 0%,#090a0f 100%)' : 'radial-gradient(ellipse at bottom, #f3f4f6 0%, #ffffff 100%)'}` }}>
-                <div className={starClassList[0]}></div>
-                <div className={starClassList[1]}></div>
-                <div className={starClassList[2]}></div>    
-            </motion.div>
-
+            <HeroBg y={backgroundY} />
         </section>
 
     )

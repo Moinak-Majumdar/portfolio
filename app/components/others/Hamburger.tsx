@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-import { FaRegHandPeace, FaFileSignature, FaHome, FaAngleDoubleLeft, FaUserCheck, FaSun, FaRegMoon } from 'react-icons/fa'
+import { FaRegHandPeace, FaFileSignature, FaHome, FaAngleDoubleLeft, FaUserCheck } from 'react-icons/fa'
 import { BsGearFill, BsCameraFill, BsCodeSlash } from 'react-icons/bs'
 import { SiFlutter } from 'react-icons/si'
 import { useState, useEffect, ReactNode } from 'react'
@@ -11,6 +11,7 @@ import { BiMessageDetail } from 'react-icons/bi'
 import { useAppTheme } from '../theme/AppTheme'
 import { useTheme } from 'next-themes'
 import { DarkModeSwitch } from 'react-toggle-dark-mode'
+import Link from 'next/link'
 
 const divVariants = {
     open: { width: '300px', height: '100vh', x: '0px' },
@@ -107,7 +108,7 @@ export default function HamBurger() {
                             {navLink.map((curr, index) => {
                                 return (
                                     <motion.div key={index} variants={liVariants} whileTap={{ scale: 0.88 }}>
-                                        <a href={curr.link}>
+                                        <Link href={curr.link} scroll={false}>
                                             <motion.button onClick={() => setActiveLink(curr.name)} className="text-2xl ml-4 mb-3 flex items-center dark:text-gray-300 text-gray-800" style={ubuntu.style}
                                                 whileHover={{ scale: 1.2, originX: 0, color: themeColor }}
                                                 transition={{ type: 'spring', stiffness: 300 }}
@@ -116,7 +117,7 @@ export default function HamBurger() {
                                                 <span className='ml-3 text-xl'>{curr.name}</span>
                                                 <FaAngleDoubleLeft className={activeLink === curr.name ? 'ml-4 text-2xl' : 'hidden'} style={{ color: themeColor }} />
                                             </motion.button>
-                                        </a>
+                                        </Link>
                                     </motion.div>
                                 )
                             })}

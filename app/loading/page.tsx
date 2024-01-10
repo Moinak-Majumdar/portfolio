@@ -5,12 +5,20 @@ import Image from 'next/image'
 import { useAppTheme } from '@/app/components/theme/AppTheme'
 import { Background, BackgroundOption } from '@/app/components/others/Background'
 import AnimatedHeading from '@/app/components/others/AnimatedHeading'
+import { useEffect } from 'react'
 
 
 
 export default function Loading() {
 
     const { poppins } = useAppTheme();
+
+    useEffect(() => {
+      if(typeof window != 'undefined') {
+        window.scrollTo(0,0);
+      }
+    }, [])
+    
 
 
     return (

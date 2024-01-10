@@ -5,7 +5,6 @@ import DevFlag from "@/app/components/others/DevFlag";
 import Ring from "@/app/components/others/Ring";
 import { useAppTheme } from "@/app/components/theme/AppTheme";
 import { useRouter } from "next/navigation";
-
 import Button from "@/app/components/others/Button";
 import { BsArrowBarRight } from "react-icons/bs";
 import { Background, BackgroundOption } from "@/app/components/others/Background";
