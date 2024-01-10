@@ -1,0 +1,79 @@
+.darkWebCard2,
+.lightWebCard2 {
+    position: relative;
+    top: 0px;
+    overflow: hidden;
+    border-radius: 6px;
+    display: flex;
+    justify-content: flex-start;
+    height: fit-content;
+    padding-top: 170px;
+    border-radius: 12px;
+}
+
+.darkWebCard2:hover:before,
+.lightWebCard2:hover:before {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    right: 40%;
+    height: 150%;
+    width: 25%;
+    border-radius: 8px;
+    animation: rot 4s linear infinite;
+    background-color: var(--stroke-color);
+    z-index: 1;
+    overflow: hidden;
+}
+
+@keyframes rot {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.darkWebCard2::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    background-color: rgb(30, 41, 59);
+    color: rgb(209, 213, 219);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgb(148, 163, 184 / 0.1);
+    z-index: 2;
+}
+
+.lightWebCard2::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    background-color: #f2f4fa;
+    color: rgb(31, 41, 55);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgb(0, 0, 0 / 0.1);
+    z-index: 2;
+}
+
+@media (min-width: 768px) {
+    .darkWebCard2, .lightWebCard2 {
+        padding-top: 170px;
+    }
+}
+
+@media (min-width: 1080px) {
+    .darkWebCard2, .lightWebCard2 {
+        padding-top: 160px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .darkWebCard2, .lightWebCard2 {
+        padding-top: 170px;
+    }
+}
+
+@media (min-width: 1536px) {
+    .darkWebCard2, .lightWebCard2 {
+        padding-top: 170px;
+    }
+}

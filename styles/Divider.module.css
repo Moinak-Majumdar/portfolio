@@ -1,0 +1,40 @@
+.shape_bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: -10;
+}
+.shape_bottom svg {
+    position: relative;
+    display: none;
+    width: calc(100% + 1.3px);
+    height: 350px;
+}
+
+.shape_top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: -10;
+}
+.shape_top svg {
+    position: relative;
+    display: none;
+    width: calc(100% + 1.3px);
+    height: 350px;
+}
+
+@media (min-width: 1080px) {
+ .shape_bottom svg {
+    display: block;
+ }
+ .shape_top svg { 
+    display: block;
+ }   
+}

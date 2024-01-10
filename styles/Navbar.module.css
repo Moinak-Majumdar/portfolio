@@ -1,0 +1,41 @@
+
+.button {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color:white;
+    background: linear-gradient(
+        60deg,
+        #f79533,
+        #f37055,
+        #ef4e7b,
+        #a166ab,
+        #5073b8,
+        #1098ad,
+        #07b39b,
+        #6fba82
+      );
+    /* border: 5px solid black; */
+    box-shadow: 3px -2px 0 rgb(213, 219, 242), 5px -4px 0 thistle, 7px -6px 0 rgb(211, 179, 245), 9px -8px 0 gray, 11px -10px 0 rgb(49, 43, 56);
+    transition: 500ms ease-in-out;
+    border-radius: 100vh;
+    /* border-top-right-radius: 60px; */
+    /* border-bottom-right-radius: 60px; */
+}
+
+.button:hover {
+    box-shadow: -2px 3px 0 rgb(213, 219, 242), -4px 5px 0 thistle, -6px 7px 0 rgb(211, 179, 245), -8px 9px 0 gray, -10px 11px 0 rgb(49, 43, 56);
+}
+
+.button:focus {
+    outline: none;
+}
