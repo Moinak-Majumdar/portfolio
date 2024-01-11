@@ -12,6 +12,7 @@ import { useAppTheme } from '../theme/AppTheme'
 import { useTheme } from 'next-themes'
 import { DarkModeSwitch } from 'react-toggle-dark-mode'
 import Link from 'next/link'
+import { ModeSwitch2 } from './ModeSwitch'
 
 const divVariants = {
     open: { width: '300px', height: '100vh', x: '0px' },
@@ -60,8 +61,8 @@ export default function HamBurger() {
     const [activeLink, setActiveLink] = useState<string | null>(null)
     const [navLink, setNavLink] = useState<I_links[] | null>(null)
 
-    const { ubuntu, comicNeue, roboto, themeColor } = useAppTheme();
-    const { resolvedTheme, setTheme } = useTheme();
+    const { ubuntu, roboto, themeColor } = useAppTheme();
+    const { resolvedTheme } = useTheme();
 
     useEffect(() => {
         if (pathName === '/') {
@@ -77,13 +78,6 @@ export default function HamBurger() {
 
     return (
         <>
-            <div className='fixed top-0 right-16 mt-2 z-50 bg-slate-100/50 dark:bg-slate-900/70 p-[9px] rounded-full hidden md:inline'>
-                <DarkModeSwitch
-                    checked={resolvedTheme === 'dark' ? true : false}
-                    onChange={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-                    size={28}
-                />
-            </div>
             <button onClick={() => setIsOpen(!isOpen)} className="fixed top-0 right-4 w-fit mt-2 z-50 rounded-full cursor-pointer text-2xl p-[9px] dark:bg-blue-300 bg-pink-300" area-label='sideNavBar' title='sideNavbar'>
                 <CgMenuRight className="dark:text-black text-pink-800" />
             </button>
@@ -122,14 +116,7 @@ export default function HamBurger() {
                                 )
                             })}
                             <motion.div variants={liVariants} className='mt-16 flex justify-center items-center w-full' style={roboto.style}>
-                                <button onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')} className='bg-slate-200/50 dark:bg-slate-900/70 shadow-md shadow-gray-700 dark:shadow-black p-2 rounded-lg flex justify-center items-center '>
-                                    <p className='capitalize mr-3 font-semibold'>{`${resolvedTheme} mode`}</p>
-                                    <DarkModeSwitch
-                                        checked={resolvedTheme === 'dark' ? true : false}
-                                        onChange={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-                                        size={35}
-                                    />
-                                </button>
+                                <ModeSwitch2 />
                             </motion.div>
                         </motion.div>
                     </section>}

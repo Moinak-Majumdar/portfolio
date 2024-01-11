@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import AnimatedHeading from "./AnimatedHeading";
-
+import { ModeSwitch1 } from "./ModeSwitch";
 import { useAppTheme } from "../theme/AppTheme";
 import HamBurger from "./Hamburger";
 
@@ -36,6 +36,7 @@ export default function Navbar() {
           </Link>
         </nav>
       </header>
+      <ModeSwitch1 />
       <HamBurger />
     </>
   )

@@ -24,20 +24,20 @@ const AnimatedHeading = ({ title, classList, font, color }: props) => {
     const {themeColor, comicNeue} = useAppTheme();
 
     return (
-        <motion.span className={`${classList} noSelection ${font == null ? 'font-bold': ''}`}
-            variants={outerVariants} initial='initial' animate='animate' style={font != undefined ? font.style : comicNeue.style}
+        <motion.p className={`${classList} noSelection ${font === undefined ? 'font-bold': ''}`}
+            variants={outerVariants} initial='initial' animate='animate' style={font !== undefined ? font.style : comicNeue.style}
         >
             {words.map((curr: string, i: number) => {
                 return (
                     <motion.span key={`${i}_words`}
                         variants={innerVariants}
-                        style={{ color: color ?? themeColor}}
+                        style={{ color: color !== undefined ? color : themeColor}}
                     >
                         {curr}
                     </motion.span>
                 )
             })}
-        </motion.span>
+        </motion.p>
     )
 }
 

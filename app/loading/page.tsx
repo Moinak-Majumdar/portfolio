@@ -28,7 +28,7 @@ export default function Loading() {
                     <div className='bg-gray-300 dark:bg-slate-800 py-1 px-2 rounded-lg mt-4 mb-14 '>
                         <AnimatedHeading title='Loading ...' classList='text-3xl' font={poppins} />
                     </div>
-                    <Image src={loadingImg} alt='loading-gif' height={400} width={350}  />
+                    <Image src={loadingImg} alt='loading-gif' height={400}  />
                 </div>
             </section>
             <div className="fixed w-full  h-full bottom-0 left-0 -z-40">

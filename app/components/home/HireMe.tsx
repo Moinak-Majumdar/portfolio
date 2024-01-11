@@ -27,7 +27,7 @@ const Right = {
 const HireMe = () => {
     const [hover, setHover] = useState(false)
     const { ubuntu, roboto, poppins, themeColor } = useAppTheme();
-    const {resolvedTheme} = useTheme()
+    const {resolvedTheme} = useTheme();
 
     return (
         <motion.div initial='closed' whileInView='open' viewport={{ once: true, amount: 0.2 }} variants={outerVariants} className='relative flex flex-col lg:flex-row lg:justify-start justify-center lg:items-start items-center p-4 lg:p-10 bg-gradient-to-b dark:text-gray-300 dark:from-[#0f0c29] dark:via-[#302b63] dark:to-[#24243e] text-gray-800 from-[#f1f1f1] to-[#e1e1e1]'>

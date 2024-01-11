@@ -32,7 +32,7 @@ const Details = ({ Data }: { Data: T_Flutter }) => {
                 <motion.article variants={textVariants} style={poppins.style} className="text-base lg:text-lg w-full py-4 mr-4" dangerouslySetInnerHTML={{ __html: Data.description }}>
                 </motion.article>
                 <div className="w-fit mt-8 flex flex-col lg:flex-row items-center justify-center mx-auto lg:gap-10">
-                    <div className="w-[90%] lg:max-w-[18rem] flex flex-col ml-0 xl:ml-8 lg:text-xl text-lg justify-center lg:justify-start">
+                    <div className="w-[90%] lg:max-w-[18rem] flex flex-col ml-0 lg:ml-8 mb-8 lg:mb-0 lg:text-xl text-lg justify-center lg:justify-start">
                         {links.map((curr, i) => {
                             return (
                                 <motion.button key={`links-${i}`} variants={linkVariants} className="mt-4 py-2 px-3 md:px-4 rounded-full flex items-center border-2" style={{ borderColor: themeColor, boxShadow: `0px 0px 25px ${themeColor}` }} >

@@ -32,13 +32,13 @@ const Details = ({ Data }: { Data: T_Web }) => {
                 </motion.article>
                 {/* hl5 ____________*/}
                 <div className="w-fit mt-8 flex flex-col lg:flex-row items-center justify-center mx-auto lg:gap-10">
-                    <div className="w-[90%] lg:max-w-[18rem] flex flex-col ml-0 xl:ml-8 lg:text-xl text-lg justify-center lg:justify-start">
+                    <div className="w-[90%] lg:max-w-[18rem] flex flex-col ml-0 lg:ml-8 mb-8 lg:mb-0 lg:text-xl text-lg justify-center lg:justify-start">
                         {links.map((curr, i) => {
                             return (
-                                <motion.button key={`links-${i}`} variants={linkVariants} className="mt-4 py-2 px-3 md:px-4 rounded-full flex items-center border-2" style={{ borderColor: themeColor, boxShadow: `0px 0px 25px ${themeColor}` }} >
+                                <motion.div key={`links-${i}`} variants={linkVariants} className="mt-4 py-2 px-3 md:px-4 rounded-full flex items-center border-2" style={{ borderColor: themeColor, boxShadow: `0px 0px 25px ${themeColor}` }} >
                                     {curr.icon}
                                     <Link href={curr.url} target='_blank' rel="noreferrer" scroll={false} className="ml-2" style={poppins.style}>{curr.text}</Link>
-                                </motion.button>
+                                </motion.div>
                             )
                         })}
                     </div>
@@ -63,9 +63,9 @@ const Details = ({ Data }: { Data: T_Web }) => {
             <motion.div variants={Bottom} className="mx-auto flex flex-col mt-20 w-full">
                 <div className="mx-auto mb-6 flex items-center text-2xl md:text-3xl">
                     <FaRegImages className="text-4xl" style={{ color: themeColor }} />
-                    <h1 className='ml-2' style={ubuntu.style}>Some
+                    <h4 className='ml-2' style={ubuntu.style}>Some
                         <span className="ml-2 font-bold">Screenshots</span>
-                    </h1>
+                    </h4>
                 </div>
                 <ImgSlider2 images={Data.img} fade={true} />
                 <div className='mt-16 mx-auto'>

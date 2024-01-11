@@ -32,14 +32,14 @@ export default async function Flutter({ params }: { params: { slug: string } }) 
     return (
         <>
             {devFlag && <DevFlag />}
-            <section className='relative min-h-screen'>
+            <main className='relative min-h-screen'>
                 <div className='myContainer pt-[4rem] pb-[2rem] dark:text-gray-300 text-gray-700'>
                     <AnimatedHeading classList="mt-8 uppercase" title="Flutter Project" />
                     <h1 style={ubuntu.style} className="font-bold lg:text-5xl text-4xl capitalize">{Data.name}</h1>
                     <Details Data={Data} />
                 </div>
                 <Bg />
-            </section>
+            </main>
         </>
     )
 }
