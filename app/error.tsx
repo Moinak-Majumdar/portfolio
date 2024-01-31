@@ -1,8 +1,8 @@
 "use client"
 
 import { Variants, motion } from "framer-motion"
-import { useAppTheme } from "./components/theme/AppTheme"
 import { MdOutlineHighlightOff, MdOutlineWarning } from "react-icons/md"
+import { useAppTheme } from "./components/theme/AppTheme"
 import SocialMedia from "./components/others/SocialMedia"
 
 const outerVariants: Variants = {

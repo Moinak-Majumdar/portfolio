@@ -21,7 +21,7 @@ const innerVariants: Variants = {
 type T_data = { _id: string, name: string, type: string, role: string, intro: string, liveUrl: string, gitRepo: string, slug: string, description: string, img: string[], tools: string[], toolsLogo: string[], __v: number, status: string, cover: string }
 
 const WebProjectCard = ({ data }: { data: T_data }) => {
-    const { comicNeue, poppins, ubuntu, themeColor } = useAppTheme();
+    const { poppins, ubuntu, themeColor } = useAppTheme();
     const [webCardCss, setWebCardCss] = useState<string>();
     const { resolvedTheme } = useTheme();
 
@@ -49,7 +49,7 @@ const WebProjectCard = ({ data }: { data: T_data }) => {
                                 <p className={`-translate-y-4 xl:translate-y-0 mb-0 xl:mb-2 px-2 md:px-4 py-1 rounded-xl text-xs text-center text-white w-fit ${data.status == 'completed' ? 'bg-green-500' : 'bg-red-500'}`}>
                                     {data.status}
                                 </p>
-                                <AnimatedHeading title={data.name} color={themeColor} classList="text-xl xl:text-2xl capitalize" font={comicNeue} />
+                                <AnimatedHeading title={data.name} classList="text-xl xl:text-2xl capitalize"  />
                             </motion.div>
                             <motion.p variants={innerVariants} className='mt-2'>{data.intro}</motion.p>
                             <motion.p variants={innerVariants} className='mt-4 text-sm group-hover:text-blue-500 px-4 py-2 rounded-lg w-fit dark:bg-slate-700  dark:text-white bg-gray-200 text-black'>Read More</motion.p>

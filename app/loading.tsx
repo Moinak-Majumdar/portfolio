@@ -2,10 +2,10 @@
 
 import loadingImg from '@/public/assets/image/loading.gif'
 import Image from 'next/image'
-import { Background, BackgroundOption } from '@/app/components/others/Background'
-import AnimatedHeading from '@/app/components/others/AnimatedHeading'
 import { Poppins } from 'next/font/google'
 import { useEffect } from 'react'
+import AnimatedHeading from './components/others/AnimatedHeading'
+import { Background, BackgroundOption } from './components/others/Background'
 
 const poppins = Poppins({ display: 'swap', weight: ['400', '500', '600', '700'], subsets: ['latin'] })
 

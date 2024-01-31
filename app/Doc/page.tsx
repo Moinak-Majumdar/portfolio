@@ -12,11 +12,11 @@ export default function Doc() {
 
     const { roboto, poppins, themeColor } = useAppTheme();
     const origin = typeof window != 'undefined' ? window.location.origin : '';
-    const devFlag: boolean = process.env.NEXT_PUBLIC_DEV_FLAG == 'yes' ? true : false;
+
 
     return (
         <>
-            {devFlag && <DevFlag />}
+            <DevFlag />
             <main className='relative max-h-screen overflow-hidden'>
                 <div className='myContainer flex justify-center items-center min-h-screen  dark:text-gray-300 text-gray-800'>
                     <div className='p-6 rounded-md backdrop-blur-sm  dark:bg-slate-900/30 bg-gray-100/30 shadow-2xl dark:shadow-black shadow-gray-200'>
@@ -36,7 +36,7 @@ export default function Doc() {
                             </p>
                             <p className="mt-8 text-lg">Thank you for your understanding and continued support.</p>
                         </article>
-                        
+
                     </div>
                 </div>
                 <Ring />

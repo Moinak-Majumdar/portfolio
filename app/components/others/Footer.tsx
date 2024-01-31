@@ -33,7 +33,7 @@ const socialLinks = [
 
 function Footer() {
 
-    const { ubuntu, poppins, roboto, pacifico, themeColor } = useAppTheme();
+    const { ubuntu, poppins, roboto, pacifico, themeColor, isClient } = useAppTheme();
     const {resolvedTheme} = useTheme();
 
 
@@ -68,7 +68,7 @@ function Footer() {
                     <h1 style={poppins.style} className="my-auto">
                         <span>Copyright {new Date().getFullYear()} - All rights reserved.</span> <br/>
                         <span>Designed and Developed by : </span>
-                        <span className={pacifico.className} style={{color: themeColor}}>moinak05</span>
+                        <span className={pacifico.className} style={{color: isClient ? themeColor : 'blue'}}>moinak05</span>
                     </h1>
                     <div className="flex flex-col my-2 md:my-0">
                         <h2 className="font-bold" >Credits</h2>

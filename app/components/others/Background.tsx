@@ -18,7 +18,12 @@ interface props {
 function Background({ option, className = "", w, h, layout, position, objFit }: props) {
     const [Loading, setLoading] = useState(true);
     const [source, setSource] = useState<string>('');
+    const [isClient, setIsClient] = useState(false);
     const { resolvedTheme } = useTheme();
+
+    useEffect(() => {
+        setIsClient(true);
+    }, [])
 
     useEffect(() => {
         if (resolvedTheme === 'dark') {
@@ -28,24 +33,28 @@ function Background({ option, className = "", w, h, layout, position, objFit }: 
         }
     }, [resolvedTheme, option])
 
-    return (
-        <Image
-            src={source}
-            alt="background-svg-pattern"
-            objectFit={objFit || "cover"}
-            objectPosition={position || "center"}
-            layout={layout || "fill"}
-            height={h}
-            width={w}
-            loading="eager"
-            className={`noSelection ${className} ${Loading ? "cursor-progress" : ""}`}
-            onLoadingComplete={() => setLoading(false)}
-            onDragStart={(e) => { e.preventDefault() }}
-            priority={true}
-            placeholder='blur'
-            blurDataURL={resolvedTheme === 'dark' ? patternDark : patternLight}
-        />
-    )
+    if(isClient) {
+        return (
+            <Image
+                src={source}
+                alt="background-svg-pattern"
+                objectFit={objFit || "cover"}
+                objectPosition={position || "center"}
+                layout={layout || "fill"}
+                height={h}
+                width={w}
+                loading="eager"
+                className={`noSelection ${className} ${Loading ? "cursor-progress" : ""}`}
+                onLoadingComplete={() => setLoading(false)}
+                onDragStart={(e) => { e.preventDefault() }}
+                priority={true}
+                placeholder='blur'
+                blurDataURL={resolvedTheme === 'dark' ? patternDark : patternLight}
+            />
+        )
+    } else {
+        return <></>
+    }
 
 
 }

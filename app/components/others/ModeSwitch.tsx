@@ -1,33 +1,40 @@
-'use client'
+"use client"
 
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { useTheme } from "next-themes"
+import { useAppTheme } from "../theme/AppTheme";
 
 function ModeSwitch1() {
     const { resolvedTheme, setTheme } = useTheme();
+    const {isClient} = useAppTheme()
 
-    if (resolvedTheme === 'dark') {
-        return (
-            <div className='absolute top-0 right-16 mt-2 z-40 bg-slate-900/70 p-[9px] rounded-full hidden md:inline'>
-                <DarkModeSwitch
-                    checked={true}
-                    onChange={() => setTheme('light')}
-                    size={28}
-                />
-            </div>
-        )
-    }
 
-    if (resolvedTheme === 'light') {
-        return (
-            <div className='absolute top-0 right-16 mt-2 z-40 bg-slate-100/50 p-[9px] rounded-full hidden md:inline'>
-                <DarkModeSwitch
-                    checked={false}
-                    onChange={() => setTheme('dark')}
-                    size={28}
-                />
-            </div>
-        )
+    if (isClient) {
+        if (resolvedTheme === 'dark') {
+            return (
+                <div className='absolute top-0 right-16 mt-2 z-40 bg-slate-900/70 p-[9px] rounded-full hidden md:inline'>
+                    <DarkModeSwitch
+                        checked={true}
+                        onChange={() => setTheme('light')}
+                        size={28}
+                    />
+                </div>
+            )
+        }
+
+        if (resolvedTheme === 'light') {
+            return (
+                <div className='absolute top-0 right-16 mt-2 z-40 bg-slate-100/50 p-[9px] rounded-full hidden md:inline'>
+                    <DarkModeSwitch
+                        checked={false}
+                        onChange={() => setTheme('dark')}
+                        size={28}
+                    />
+                </div>
+            )
+        }
+    } else {
+        return <></>
     }
 }
 

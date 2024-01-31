@@ -1,8 +1,7 @@
 import { Metadata } from "next";
-import DevFlag from "../components/others/DevFlag";
-import Bg from "./components/Bg";
+import DevFlag from "@/app/components/others/DevFlag";
 import Details from "./components/Details";
-
+import Bg from "./components/Bg";
 
 type T_photography = { id: string, url: string, __v: Number }
 
@@ -23,12 +22,12 @@ async function fetchBlossoms() {
 
 export default async function Blossoms() {
 
-    const devFlag: boolean = process.env.NEXT_PUBLIC_DEV_FLAG == 'yes' ? true : false;
+    
     const photo: T_photography[] = await fetchBlossoms();
 
     return (
         <>
-            {devFlag && <DevFlag />}
+            <DevFlag />
             <main className='relative overflow-hidden'>
                 <div className='myContainer py-[5rem] dark:text-gray-300 text-gray-800'>
                     <Details photo={photo} />

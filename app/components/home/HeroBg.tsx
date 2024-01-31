@@ -2,10 +2,10 @@
 
 import { useTheme } from "next-themes"
 import { MotionValue, motion } from "framer-motion"
-import stylesDark from '../../css/Hero.module.css'
+import stylesDark from '@/app/css/Hero.module.css'
 import stylesLight from '@/app/css/HeroLight.module.css'
 
-export async function HeroBg({y}: {y: MotionValue<string>}) {
+export function HeroBg({y}: {y: MotionValue<string>}) {
     const { resolvedTheme } = useTheme()
 
     if (resolvedTheme == 'dark') {

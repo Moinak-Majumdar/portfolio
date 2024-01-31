@@ -4,6 +4,8 @@ import AnimatedHeading from "@/app/components/others/AnimatedHeading";
 import { useAppTheme } from "@/app/components/theme/AppTheme";
 import { motion } from "framer-motion"
 import Image from "next/legacy/image";
+import Link from "next/link";
+
 
 const outerVariants = {
     open: { transition: { staggerChildren: 0.5, delayChildren: 0.3, delay: 0.2 } },
@@ -17,10 +19,10 @@ type T_photography = { id: string, url: string, __v: Number }
 
 const Details = ({ photo }: { photo: T_photography[] }) => {
 
-    const { ubuntu, roboto, themeColor } = useAppTheme()
+    const { ubuntu, roboto, themeColor } = useAppTheme();
 
     return (
-        <motion.div variants={outerVariants} viewport={{ once: true, amount: 0.2 }} initial='closed' whileInView='open' className="flex flex-col justify-start">
+        <motion.div variants={outerVariants} viewport={{ once: true}} initial='closed' whileInView='open' className="flex flex-col justify-start">
             <div>
                 <AnimatedHeading classList="tracking-wide text-lg uppercase" font={ubuntu} title='Blossoms' />
                 <h1 className="text-4xl md:text-5xl mb-4" style={ubuntu.style}>
@@ -28,7 +30,7 @@ const Details = ({ photo }: { photo: T_photography[] }) => {
                     my rooftop
                 </h1>
                 <p style={roboto.style} className='text-lg mt-4 max-w-[35rem]'>Being a versatile person, I have a pretty large list of my pastimes. One of the ones I enjoy doing is gardening and clicking on good photos of those with my cell phone. <br />
-                    My device - <a className='font-bold' href='https://www.motorola.in/smartphones-motorola-one-macro/p' target='_blank' style={{color: themeColor}}>Motorola One Macro</a>
+                    My device - <Link className='font-bold' href='https://www.motorola.in/smartphones-motorola-one-macro/p' style={{ color: themeColor }}>Motorola One Macro</Link>
                 </p>
             </div>
             <div>
@@ -45,5 +47,8 @@ const Details = ({ photo }: { photo: T_photography[] }) => {
         </motion.div>
     )
 }
+
+
+
 
 export default Details

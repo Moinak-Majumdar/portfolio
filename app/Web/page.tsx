@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import WebProjects from "../components/home/WebProjects"
+import WebProjects from "@/app/components/home/WebProjects"
 
 const viewport = {
     once: false,

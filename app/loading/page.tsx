@@ -1,11 +1,11 @@
 'use client'
 
-import loadingImg from '@/public/assets/image/loading.gif'
 import Image from 'next/image'
+import { useEffect } from 'react'
+import loadingImg from '@/public/assets/image/loading.gif'
 import { useAppTheme } from '@/app/components/theme/AppTheme'
 import { Background, BackgroundOption } from '@/app/components/others/Background'
 import AnimatedHeading from '@/app/components/others/AnimatedHeading'
-import { useEffect } from 'react'
 
 
 

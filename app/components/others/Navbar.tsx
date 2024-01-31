@@ -16,8 +16,7 @@ const link = [
 export default function Navbar() {
 
   const pathName = usePathname();
-  const { themeColor, ubuntu, roboto, pacifico } = useAppTheme();
-
+  const { ubuntu, roboto, pacifico } = useAppTheme();
 
   return (
     <>

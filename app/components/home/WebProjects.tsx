@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import AnimatedHeading from '../others/AnimatedHeading'
-import WebProjectCard from '../others/WebProjectCard';
 import { Ubuntu } from 'next/font/google';
+import WebProjectCard from '../others/WebProjectCard';
 
 const ubuntu = Ubuntu({ display: 'swap', weight: ['400', '700'], subsets: ['latin'] });
 

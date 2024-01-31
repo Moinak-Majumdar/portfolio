@@ -77,7 +77,7 @@ const Tech = ({ ubuntu, poppins, roboto, themeColor }: props) => {
             </div>
             <div className="absolute w-full h-full top-0 right-0  -z-10">
                 <div className='absolute w-full h-full inset-0 bg-gradient-to-b z-10 dark:from-[#00001180] from-white to-transparent'></div>
-                <Background option={BackgroundOption.pattern} className='opacity-25 dark:opacity-100'/>
+                <Background option={BackgroundOption.pattern} className='opacity-25 dark:opacity-70'/>
             </div>
         </>
     )

@@ -41,12 +41,11 @@ async function fetchData(): Promise<data> {
 
 export default async function Projects() {
 
-    const devFlag: boolean = process.env.NEXT_PUBLIC_DEV_FLAG == 'yes' ? true : false;
     const data = await fetchData();
 
     return (
         <>
-            {devFlag && <DevFlag />}
+            <DevFlag />
             <main className='flex flex-col dark:text-gray-300 text-gray-800'>
                 <Web web={data.web} />
                 <Flutter flutter={data.flutter} />

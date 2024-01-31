@@ -6,6 +6,7 @@ import AppTheme from './components/theme/AppTheme'
 import Navbar from './components/others/Navbar'
 import Footer from './components/others/Footer'
 
+
 export const metadata: Metadata = {
   title: 'Moinak Majumdar | Home',
   description: 'Hey! this is @moinak05, A passionate full stack web developer from India, Welcome to my portfolio. Let me introduce you with my various projects.',

@@ -26,22 +26,23 @@ type T_data = { _id: string, url: string, __v: number }
 async function getHobby() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/getAllPhotography?testDb=${process.env.TEST_DB}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY }),
         next: { revalidate: 3600 }
     });
 
-    if(!res.ok) {
+    if (!res.ok) {
         throw new Error('Failed to fetch hobby data.');
     }
 
     const data: T_data[] = await res.json();
-    return [...data.slice(0,4)]
+    const random = Math.floor(Math.random() * (data.length - 4));
+    return [...data.slice(random, random + 4)]
 }
 
 export default async function Hobby() {
 
-    const data:T_data[] = await getHobby();
+    const data: T_data[] = await getHobby();
 
     return (
         <>
@@ -76,7 +77,7 @@ export default async function Hobby() {
             {/* background */}
             <div className="absolute w-full h-full md:w-1/3 top-0 left-0 -z-10">
                 <div className='absolute w-full h-full inset-0 bg-gradient-to-l z-10 dark:from-[#000011] from-[#ffffff]'></div>
-                        <Background option={BackgroundOption.body} />
+                <Background option={BackgroundOption.body} />
                 <div className='absolute w-full h-full inset-0 bg-gradient-to-t z-10 dark:from-[#000011] from-[#ffffff]'></div>
             </div>
         </>

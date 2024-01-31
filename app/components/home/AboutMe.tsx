@@ -90,7 +90,7 @@ const AboutMe = ({ubuntu, poppins, roboto, themeColor}: props) => {
       {/* background */}
       <div className="absolute w-full h-full top-0 left-0  -z-10">
         {/* <div className='absolute w-full h-full inset-0 bg-gradient-to-l z-10 dark:from-[#000011] from-[#ffffff] to-transparent'></div> */}
-        <Background option={BackgroundOption.pattern} className='opacity-20 dark:opacity-100' />
+        <Background option={BackgroundOption.pattern} className='opacity-20 dark:opacity-70' />
         <div className='absolute w-full h-full inset-0 bg-gradient-to-t z-10 dark:from-[#000011] from-[#ffffff] to-transparent'></div>
       </div>
       <div className='w-full overflow-hidden'>
