@@ -18,7 +18,9 @@ const Heading: Variants = {
 type T_Flutter = { _id: string, __v: number, name: string, intro: string, gitRepo: string, slug: string, description: string, release: string, cover: string, img: string[], status: string, badge: string[], libraries: string[] }
 
 async function getFlutterProjects() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/getAllFlutter?testDb=${process.env.NEXT_PUBLIC_TEST_DB}`, {
+    const uri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/getAllFlutter?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/getAllFlutter`;
+
+    const res = await fetch(uri, {
         method: 'POST',
         headers: { "Content-Type": "application/json"},
         body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY }),

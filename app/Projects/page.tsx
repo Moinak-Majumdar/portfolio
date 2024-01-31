@@ -9,14 +9,16 @@ type T_Flutter = { _id: string, __v: number, name: string, intro: string, gitRep
 type data = { web: T_Web[], flutter: T_Flutter[] }
 
 async function fetchData(): Promise<data> {
-    const web = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/getAllWeb?testDb=${process.env.NEXT_PUBLIC_TEST_DB}`, {
+    const webUri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/getAllWeb?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/getAllWeb`;
+    const web = await fetch(webUri, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY }),
         next: { revalidate: 3600 }
     });
-
-    const flutter = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/getAllFlutter?testDb=${process.env.NEXT_PUBLIC_TEST_DB}`, {
+    
+    const flutterUri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/getAllFlutter?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/getAllFlutter`;
+    const flutter = await fetch(flutterUri, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY }),

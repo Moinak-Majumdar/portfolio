@@ -6,7 +6,9 @@ import Bg from "./components/Bg";
 type T_photography = { id: string, url: string, __v: Number }
 
 async function fetchBlossoms() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/getAllPhotography?testDb=${process.env.NEXT_PUBLIC_TEST_DB}`, {
+    const uri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/getAllPhotography?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/getAllPhotography`;
+
+    const res = await fetch(uri, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY }),

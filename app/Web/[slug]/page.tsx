@@ -9,7 +9,9 @@ const ubuntu = Ubuntu({ display: 'swap', weight: ['400', '700'], subsets: ['lati
 type T_Web = { _id: string, name: string, type: string, role: string, intro: string, liveUrl: string, gitRepo: string, slug: string, description: string, img: string[], tools: string[], toolsLogo: string[], __v: number, status: string, cover: string }
 
 async function fetchDetails(slug: string) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/getWeb?testDb=${process.env.NEXT_PUBLIC_TEST_DB}`, {
+    const uri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/getWeb?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/getWeb`;
+
+    const res = await fetch(uri, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY, slug }),
