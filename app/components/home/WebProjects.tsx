@@ -39,7 +39,7 @@ export default async function WebProjects() {
     const data: T_data[] = await getWebProjects();
 
     return (
-        <div className='myContainer my-4 md:my-9 xl:my-16 2xl:my-36 rounded-lg shadow-2x dark:text-gray-300 bg-transparent  dark:md:bg-slate-950 dark:shadow-black text-gray-800  md:bg-slate-50 shadow-slate-200' style={ubuntu.style}>
+        <div className='myContainer my-4 md:my-9 xl:my-16 2xl:my-36 rounded-lg shadow-2x dark:text-gray-300 text-gray-800 dark:bg-slate-800/40 bg-gray-100' style={ubuntu.style}>
             <motion.div initial='closed' whileInView='open' viewport={{ once: true, amount: 0.2 }} variants={outerVariants} className="p-4 md:p-8 xl:p-16 flex flex-col justify-start">
                 <motion.div variants={Heading}>
                     <AnimatedHeading classList="tracking-wide text-lg" title="WEB PROJECTS" />

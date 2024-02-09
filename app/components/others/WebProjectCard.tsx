@@ -23,22 +23,24 @@ type T_data = { _id: string, name: string, type: string, role: string, intro: st
 const WebProjectCard = ({ data }: { data: T_data }) => {
     const { poppins, ubuntu, themeColor } = useAppTheme();
     const [webCardCss, setWebCardCss] = useState<string>();
+    const [shadow, setShadow] = useState<string>();
     const { resolvedTheme } = useTheme();
 
     useEffect(() => {
         resolvedTheme === 'dark' ? setWebCardCss(cardStyle.darkWebCard2) : setWebCardCss(cardStyle.lightWebCard2);
+        resolvedTheme === 'dark' ? setShadow("-10px -10px 10px 1px #1e293b50, 10px 10px 10px 2px #03071280") : setShadow("-10px -10px 10px 1px #ffffff80, 10px 10px 10px 2px #1e293b20");
     }, [resolvedTheme])
 
     return (
         <Link href={`Web/${data.slug}`} scroll={false} className="relative">
-            <motion.section className="relative group" whileTap={{ scale: 0.9 }}>
-                <div className="-translate-x-6 -translate-y-6 xl:translate-x-0 xl:translate-y-0 grayscale-0 xl:grayscale dark:xl:grayscale-0 xl:group-hover:-translate-x-7 xl:group-hover:-translate-y-6 xl:group-hover:grayscale-0 ease-linear duration-500 absolute top-0 z-20 px-[5px] group-hover:px-0">
+            <motion.section className="relative group rounded-2xl" whileTap={{ scale: 0.9 }} style={{boxShadow: shadow}}>
+                <div className="-translate-x-6 -translate-y-6 xl:-translate-x-7 xl:-translate-y-6 absolute top-0 z-20">
                     <Image src={data.cover} width={650} height={400} alt={`${data.name}-cover pic`} className="rounded-lg overflow-hidden" placeholder='blur' blurDataURL='/assets/image/imgPlaceholder.jpg' />
                 </div>
                 <div className={webCardCss} style={{ '--stroke-color': themeColor } as CSSProperties}  >
                     {/* take equal size for top space */}
                     <div className="opacity-0">
-                        <Image src={data.cover} width={650} height={400} alt={`${data.name}-cover pic`} className="rounded-lg overflow-hidden" placeholder='blur' blurDataURL='/assets/image/imgPlaceholder.jpg' />
+                        <Image src={data.cover} width={650} height={400} alt={`${data.name}-cover pic`} hidden className="rounded-lg overflow-hidden " />
                     </div>
                     <div className="z-10 h-fit">
                         <p className={`flex absolute -rotate-90 top-16 font-bold uppercase text-sm text-slate-500 ${data.type == 'project' ? '-right-[2.15rem]' : '-right-6'}`} style={ubuntu.style}>

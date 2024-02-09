@@ -31,7 +31,7 @@ const FlutterCard = ({ info }: { info: T_Flutter }) => {
         </motion.div>
         <motion.p variants={innerVariants} className="mt-4 text-xl" style={ubuntu.style}>{info.intro}</motion.p>
         <motion.p variants={innerVariants} className="mt-4 text-sm" style={poppins.style} dangerouslySetInnerHTML={{ __html: info.description.slice(0, 350).concat(' ...') }}></motion.p>
-        <motion.p variants={innerVariants} className='mt-6 text-sm group-hover:text-blue-500 px-4 py-2 rounded-md w-fit dark:bg-slate-700  dark:text-white bg-slate-200 text-black'>Read More</motion.p>
+        <motion.p variants={innerVariants} className='mt-6 lg:mt-auto text-sm group-hover:text-blue-500 px-4 py-2 rounded-md w-fit dark:bg-slate-700  dark:text-white bg-slate-200 text-black'>Read More</motion.p>
       </motion.div>
       <div className="w-full md:w-1/2">
         <div className="m-3 rounded-l-xl md:rounded-l-none rounded-r-xl overflow-hidden">

@@ -3,7 +3,7 @@
     position: relative;
     top: 0px;
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -19,7 +19,7 @@
     right: 40%;
     height: 150%;
     width: 25%;
-    border-radius: 8px;
+    border-radius: 16px;
     animation: rot 4s linear infinite;
     background-color: var(--stroke-color);
     z-index: 1;
@@ -35,10 +35,10 @@
 .darkWebCard2::after {
     content: '';
     position: absolute;
-    inset: 5px;
-    background-color: rgb(30, 41, 59);
+    inset: 2px;
+    background-color: #1e293b;
     color: rgb(209, 213, 219);
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 1px 2px 0 rgb(148, 163, 184 / 0.1);
     z-index: 2;
 }
@@ -46,16 +46,11 @@
 .lightWebCard2::after {
     content: '';
     position: absolute;
-    inset: 5px;
-    background-color: rgb(249,250,251);
+    inset: 2px;
+    background-color: #f3f4f6;
     color: rgb(31, 41, 55);
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 1px 2px 0 rgb(0, 0, 0 / 0.1);
     z-index: 2;
 }
 
-@media (min-width: 786px) {
-    .lightWebCard2::after {
-        background-color: #f3f4f6;
-    }
-}
