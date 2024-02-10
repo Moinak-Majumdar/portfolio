@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { FaRegHandPeace, FaFileSignature, FaHome, FaAngleDoubleLeft, FaUserCheck } from 'react-icons/fa'
 import { BsGearFill, BsCameraFill, BsCodeSlash } from 'react-icons/bs'
 import { SiFlutter } from 'react-icons/si'
@@ -28,13 +28,13 @@ const liVariants = {
 
 interface I_links { name: string, link: string, icon: ReactNode }
 const navLinkHome: I_links[] = [
-    { name: 'Intro', link: '#intro', icon: <FaRegHandPeace /> },
-    { name: 'About Me', link: '#aboutMe', icon: <BiMessageDetail /> },
-    { name: 'Tools & Tech', link: '#tech', icon: <BsGearFill /> },
+    { name: 'Intro', link: '#Intro', icon: <FaRegHandPeace /> },
+    { name: 'About Me', link: '#AboutMe', icon: <BiMessageDetail /> },
+    { name: 'Tools & Tech', link: '#Tech', icon: <BsGearFill /> },
     { name: 'Web Projects', link: '#WebProjects', icon: <BsCodeSlash /> },
     { name: 'Flutter Projects', link: '#FlutterProjects', icon: <SiFlutter /> },
-    { name: 'My Hobby', link: '#myHobby', icon: <BsCameraFill /> },
-    { name: 'Hire Me', link: '#hire', icon: <FaFileSignature /> },
+    { name: 'My Hobby', link: '#MyHobby', icon: <BsCameraFill /> },
+    { name: 'Hire Me', link: '#HireMe', icon: <FaFileSignature /> },
 ]
 const navLinkProjects: I_links[] = [
     { name: 'Home', link: '/', icon: <FaHome /> },
@@ -56,10 +56,9 @@ const navLinkOthers: I_links[] = [
 
 export default function HamBurger() {
     const pathName = usePathname()
-    const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
-    const [activeLink, setActiveLink] = useState<string | null>(null)
-    const [navLink, setNavLink] = useState<I_links[] | null>(null)
+    const [activeLink, setActiveLink] = useState<string>()
+    const [navLink, setNavLink] = useState<I_links[]>()
 
     const { ubuntu, roboto, themeColor, isClient } = useAppTheme();
     const { resolvedTheme } = useTheme();
@@ -76,10 +75,6 @@ export default function HamBurger() {
         }
     }, [pathName]);
 
-    function changeSection(item: I_links) {
-        router.push(item.link, { scroll: false });
-        setActiveLink(item.name);
-    }
 
     if (isClient) {
         return (
@@ -107,17 +102,16 @@ export default function HamBurger() {
                                 </motion.h1>
                                 {navLink.map((curr, index) => {
                                     return (
-                                        <motion.div key={index} variants={liVariants} whileTap={{ scale: 0.88 }}>
-                                            <motion.button onClick={() => changeSection(curr)} className="text-2xl ml-4 mb-3" style={ubuntu.style}
-                                                whileHover={{ scale: 1.2, originX: 0, color: themeColor }}
-                                                transition={{ type: 'spring', stiffness: 300 }}
-                                            >
-                                                <div className={`flex items-center ${resolvedTheme === 'dark' ? 'text-gray-300' : 'text-gray-800'}`}>
-                                                    {curr.icon}
-                                                    <span className='ml-3 text-xl'>{curr.name}</span>
-                                                    <FaAngleDoubleLeft className={activeLink === curr.name ? 'ml-4 text-2xl' : 'hidden'} style={{ color: themeColor }} />
-                                                </div>
-                                            </motion.button>
+                                        <motion.div key={`navLink - ${index}`} className="text-2xl ml-4 mb-3" style={ubuntu.style}
+                                            variants={liVariants} whileTap={{ scale: 0.88 }}
+                                            whileHover={{ scale: 1.2, originX: 0, color: themeColor }}
+                                            transition={{ type: 'spring', stiffness: 300 }}
+                                        >
+                                            <Link href={curr.link} onClick={() => setActiveLink(curr.name)} className={`flex items-center ${resolvedTheme === 'dark' ? 'text-gray-300' : 'text-gray-800'}`}>
+                                                {curr.icon}
+                                                <span className='ml-3 text-xl'>{curr.name}</span>
+                                                <FaAngleDoubleLeft className={activeLink === curr.name ? 'ml-4 text-2xl' : 'hidden'} style={{ color: themeColor }} />
+                                            </Link>
                                         </motion.div>
                                     )
                                 })}

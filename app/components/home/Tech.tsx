@@ -4,48 +4,16 @@ import { IoDesktopOutline, IoServerSharp } from 'react-icons/io5'
 import { AiFillApi, AiFillSetting, AiOutlineMobile } from 'react-icons/ai'
 import { FiPackage } from 'react-icons/fi'
 import AnimatedHeading from '../others/AnimatedHeading'
-import { NextFont } from 'next/dist/compiled/@next/font'
 import { Background, BackgroundOption } from '../others/Background'
+import { Poppins, Roboto, Ubuntu } from 'next/font/google';
 
-const rightOuterVariants = {
-    open: { transition: { staggerChildren: 0.05, delayChildren: 0.5 }, delay: 0.3 },
-    closed: { transition: { staggerChildren: 0.07, staggerDirection: -1 } }
-};
-const rightInnerVariants: Variants = {
-    open: {
-        x: 0, scale: 1,
-        opacity: 1,
-        transition: { type: 'spring', stiffness: 100 }
-    },
-    closed: {
-        x: 200, scale: 1.2,
-        opacity: 0,
-        transition: { type: 'spring', stiffness: 100 }
-    }
-}
+const roboto = Roboto({ display: 'swap', weight: ['400', '500', '700'], subsets: ['latin'] });
+const ubuntu = Ubuntu({ display: 'swap', weight: ['400', '700'], subsets: ['latin'] });
+const poppins = Poppins({ display: 'swap', weight: ['400', '500', '600', '700'], subsets: ['latin'] })
 
-const Heading = {
-    closed: { opacity: 0, },
-    open: { opacity: 1, transition: { delay: 0.3 } }
-}
 
-const Left = {
-    closed: { x: 10, },
-    open: { x: -10, }
-}
-
-const compo = [
-    { name: 'Frontend Development', tools: 'HTML, CSS, TypeScript, Tailwind Css, React.js, Next.js', logo: <IoDesktopOutline /> },
-    { name: 'Backend Development', tools: 'PHP, Node.js, Express.js, REST APIs', logo: <AiFillApi /> },
-    { name: 'Mobile App Development', tools: 'Dart/Flutter  ', logo: <AiOutlineMobile /> },
-    { name: 'Database', tools: 'Mongo Db, MySQL', logo: <IoServerSharp /> },
-    { name: 'Tech Stack', tools: 'MERN stack, JAM stack', logo: <FiPackage /> },
-    { name: 'Others', tools: 'Firebase, Vercel, Netlify, Heroku, Git, GitHub, Figma, Canva', logo: <AiFillSetting /> }
-]
-
-interface props { ubuntu: NextFont, poppins: NextFont, roboto: NextFont, themeColor: string }
-
-const Tech = ({ ubuntu, poppins, roboto, themeColor }: props) => {
+interface props {themeColor: string }
+const Tech = ({themeColor }: props) => {
 
     return (
         <>
@@ -85,4 +53,38 @@ const Tech = ({ ubuntu, poppins, roboto, themeColor }: props) => {
 
 export default Tech
 
+const rightOuterVariants = {
+    open: { transition: { staggerChildren: 0.05, delayChildren: 0.5 }, delay: 0.3 },
+    closed: { transition: { staggerChildren: 0.07, staggerDirection: -1 } }
+};
+const rightInnerVariants: Variants = {
+    open: {
+        x: 0, scale: 1,
+        opacity: 1,
+        transition: { type: 'spring', stiffness: 100 }
+    },
+    closed: {
+        x: 200, scale: 1.2,
+        opacity: 0,
+        transition: { type: 'spring', stiffness: 100 }
+    }
+}
 
+const Heading = {
+    closed: { opacity: 0, },
+    open: { opacity: 1, transition: { delay: 0.3 } }
+}
+
+const Left = {
+    closed: { x: 10, },
+    open: { x: -10, }
+}
+
+const compo = [
+    { name: 'Frontend Development', tools: 'HTML, CSS, TypeScript, Tailwind Css, React.js, Next.js', logo: <IoDesktopOutline /> },
+    { name: 'Backend Development', tools: 'PHP, Node.js, Express.js, REST APIs', logo: <AiFillApi /> },
+    { name: 'Mobile App Development', tools: 'Dart/Flutter  ', logo: <AiOutlineMobile /> },
+    { name: 'Database', tools: 'Mongo Db, MySQL', logo: <IoServerSharp /> },
+    { name: 'Tech Stack', tools: 'MERN stack, JAM stack', logo: <FiPackage /> },
+    { name: 'Others', tools: 'Firebase, Vercel, Netlify, Heroku, Git, GitHub, Figma, Canva', logo: <AiFillSetting /> }
+]

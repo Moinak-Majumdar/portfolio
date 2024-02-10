@@ -9,7 +9,7 @@ import { NextFont } from 'next/dist/compiled/@next/font';
 
 const roboto = Roboto({ display: 'swap', weight: ['400', '500', '700'], subsets: ['latin'] });
 const ubuntu = Ubuntu({ display: 'swap', weight: ['400', '700'], subsets: ['latin'] });
-const poppins = Poppins({ display: 'swap', weight: ['400', '500', '600', '700'], subsets: ['latin'] })
+const poppins = Poppins({ display: 'swap', weight: ['400', '500', '600', '700'], subsets: ['latin'] });
 const comicNeue = Comic_Neue({ display: 'swap', weight: ['700'], subsets: ['latin'] });
 const lato = Lato({ display: 'swap', weight: ['400', '700'], subsets: ['latin'] });
 const pacifico = Pacifico({ display: 'swap', weight: ['400'], subsets: ['latin'] });

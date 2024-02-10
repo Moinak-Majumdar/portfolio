@@ -22,16 +22,16 @@ const transition = {
 
 export default function Home() {
 
-  const { ubuntu, poppins, roboto, themeColor } = useAppTheme()
+  const { themeColor } = useAppTheme();
 
   return (
     <>
       <Hero />
-      <motion.section id='aboutMe' initial='closed' whileInView='open' viewport={viewport} transition={transition} className='relative max-w-[100vw] overflow-hidden dark:bg-gradient-to-t dark:from-slate-900 dark:to-transparent'>
-        <AboutMe ubuntu={ubuntu} poppins={poppins} roboto={roboto} themeColor={themeColor} />
+      <motion.section id='AboutMe' initial='closed' whileInView='open' viewport={viewport} transition={transition} className='relative max-w-[100vw] overflow-hidden dark:bg-gradient-to-t dark:from-slate-900 dark:to-transparent'>
+        <AboutMe themeColor={themeColor} />
       </motion.section>
-      <motion.section id='tech' initial='closed' whileInView='open' viewport={viewport} transition={transition} className=' relative dark:bg-gradient-to-b dark:from-slate-900'>
-        <Tech poppins={poppins} roboto={roboto} ubuntu={ubuntu} themeColor={themeColor} />
+      <motion.section id='Tech' initial='closed' whileInView='open' viewport={viewport} transition={transition} className=' relative dark:bg-gradient-to-b dark:from-slate-900'>
+        <Tech themeColor={themeColor} />
       </motion.section>
       <motion.section id='WebProjects' initial='closed' whileInView='open' viewport={viewport} transition={transition} className='relative overflow-hidden'>
         <WebProjects />
@@ -39,10 +39,10 @@ export default function Home() {
       <motion.section id='FlutterProjects' initial='closed' whileInView='open' viewport={viewport} transition={transition} className='relative overflow-hidden'>
         <FlutterProjects />
       </motion.section>
-      <motion.section id='myHobby' initial='closed' whileInView='open' viewport={viewport} transition={transition} className=' relative overflow-hidden'>
+      <motion.section id='MyHobby' initial='closed' whileInView='open' viewport={viewport} transition={transition} className=' relative overflow-hidden'>
         <Hobby />
       </motion.section>
-      <motion.section id='hire' initial='closed' whileInView='open' viewport={viewport} transition={transition} className=' relative overflow-hidden myContainer py-[8rem]'>
+      <motion.section id='HireMe' initial='closed' whileInView='open' viewport={viewport} transition={transition} className=' relative overflow-hidden myContainer py-[8rem]'>
         <HireMe />
       </motion.section>
     </>

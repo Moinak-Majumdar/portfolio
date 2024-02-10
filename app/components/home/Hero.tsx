@@ -39,7 +39,7 @@ export default function Hero() {
     const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
    
     return (
-        <section id='intro' ref={mainRef} className='relative min-h-screen overflow-hidden'>
+        <section id='Intro' ref={mainRef} className='relative min-h-screen overflow-hidden'>
             <motion.div className='min-h-screen flex overflow-hidden z-10' initial='closed' whileInView='open' viewport={viewport} transition={transition} style={{ y: contentY }}>
                 <div className="flex my-auto max-w-2xl lg:max-w-4xl mx-auto p-6 flex-col z-10 rounded-md backdrop-blur-sm bg-transparent dark:md:bg-slate-300/5">
                     <motion.div variants={Top}>

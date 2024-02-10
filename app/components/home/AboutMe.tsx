@@ -1,53 +1,14 @@
 import { motion } from 'framer-motion'
 import AnimatedHeading from '../others/AnimatedHeading'
 import { Background, BackgroundOption } from '../others/Background'
-import { NextFont } from 'next/dist/compiled/@next/font'
+import { Poppins, Roboto, Ubuntu } from 'next/font/google';
 
+const roboto = Roboto({ display: 'swap', weight: ['400', '500', '700'], subsets: ['latin'] });
+const ubuntu = Ubuntu({ display: 'swap', weight: ['400', '700'], subsets: ['latin'] });
+const poppins = Poppins({ display: 'swap', weight: ['400', '500', '600', '700'], subsets: ['latin'] })
 
-const Right = {
-  closed: { x: 0, y: 100, rotate: '40deg' },
-  open: { x: -350, y: 150, rotate: '-40deg'}
-}
-const Right2 = {
-  closed: { x: 50, y: 250, opacity: 0, rotate: '-30deg' },
-  open: { x: -350, y: 400, opacity: 1, rotate: '-40deg' }
-}
-
-const leftOuterVariants = {
-  open: { transition: { staggerChildren: 0.3, delayChildren: 0.3 } },
-  closed: { transition: { staggerChildren: 0.3, staggerDirection: -1 } }
-};
-const leftInnerVariants = {
-  open: { y: 0, opacity: 1,},
-  closed: { y: -50, opacity: 0,}
-}
-
-const timeline = [
-  {
-    name: "Graduation",
-    sub: 'OOP, computer system architecture, operating system, data structure and algorithm, database management systems, computer networks, fundamentals of artificial intelligence, digital image processing and computer graphics.',
-    date: 'jun 2019 - july 2022',
-    from: 'Completed B.Sc computer science from Barrackpore Rastraguru Surendranath College (West Bengal State University), West Bengal.',
-    grade: '9.59 (CGPA)'
-  },
-  {
-    name: 'Higher Secondary',
-    sub: null,
-    date: 'jun 2017 - mar 2019',
-    from: 'Completed higher secondary from Ramkrishna Vivekananda Mission Vidyabhavan (West Bengal Council of Higher Secondary Education)',
-    grade: '70%'
-  },
-  {
-    name: 'Secondary',
-    sub: null,
-    date: 'jan 2016 - mar 2017',
-    from: 'Completed 10th board from Ramkrishna Vivekananda Mission Vidyabhavan (West Bengal Board of Secondary Education)',
-    grade: '77%'
-  }
-]
-
-interface props {ubuntu: NextFont, poppins: NextFont, roboto: NextFont, themeColor: string}
-const AboutMe = ({ubuntu, poppins, roboto, themeColor}: props) => {
+interface props { themeColor: string }
+const AboutMe = ({ themeColor }: props) => {
 
   return (
     <>
@@ -101,4 +62,48 @@ const AboutMe = ({ubuntu, poppins, roboto, themeColor}: props) => {
   )
 }
 
+
 export default AboutMe
+
+
+const Right = {
+  closed: { x: 0, y: 100, rotate: '40deg' },
+  open: { x: -350, y: 150, rotate: '-40deg' }
+}
+const Right2 = {
+  closed: { x: 50, y: 250, opacity: 0, rotate: '-30deg' },
+  open: { x: -350, y: 400, opacity: 1, rotate: '-40deg' }
+}
+
+const leftOuterVariants = {
+  open: { transition: { staggerChildren: 0.3, delayChildren: 0.3 } },
+  closed: { transition: { staggerChildren: 0.3, staggerDirection: -1 } }
+};
+const leftInnerVariants = {
+  open: { y: 0, opacity: 1, },
+  closed: { y: -50, opacity: 0, }
+}
+
+const timeline = [
+  {
+    name: "Graduation",
+    sub: 'OOP, computer system architecture, operating system, data structure and algorithm, database management systems, computer networks, fundamentals of artificial intelligence, digital image processing and computer graphics.',
+    date: 'jun 2019 - july 2022',
+    from: 'Completed B.Sc computer science from Barrackpore Rastraguru Surendranath College (West Bengal State University), West Bengal.',
+    grade: '9.59 (CGPA)'
+  },
+  {
+    name: 'Higher Secondary',
+    sub: null,
+    date: 'jun 2017 - mar 2019',
+    from: 'Completed higher secondary from Ramkrishna Vivekananda Mission Vidyabhavan (West Bengal Council of Higher Secondary Education)',
+    grade: '70%'
+  },
+  {
+    name: 'Secondary',
+    sub: null,
+    date: 'jan 2016 - mar 2017',
+    from: 'Completed 10th board from Ramkrishna Vivekananda Mission Vidyabhavan (West Bengal Board of Secondary Education)',
+    grade: '77%'
+  }
+]

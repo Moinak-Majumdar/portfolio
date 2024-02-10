@@ -40,7 +40,7 @@ const WebProjectCard = ({ data }: { data: T_data }) => {
                 <div className={webCardCss} style={{ '--stroke-color': themeColor } as CSSProperties}  >
                     {/* take equal size for top space */}
                     <div className="opacity-0">
-                        <Image src={data.cover} width={650} height={400} alt={`${data.name}-cover pic`} hidden className="rounded-lg overflow-hidden " />
+                        <Image src={data.cover} width={650} height={380} alt={`${data.name}-cover pic`} hidden className="rounded-lg overflow-hidden " />
                     </div>
                     <div className="z-10 h-fit">
                         <p className={`flex absolute -rotate-90 top-16 font-bold uppercase text-sm text-slate-500 ${data.type == 'project' ? '-right-[2.15rem]' : '-right-6'}`} style={ubuntu.style}>
