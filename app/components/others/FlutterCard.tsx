@@ -4,6 +4,7 @@ import Image from "next/legacy/image";
 import AnimatedHeading from "./AnimatedHeading";
 import Link from "next/link";
 import { Poppins, Ubuntu } from "next/font/google";
+import { flutterProjectModel } from "@/app/utils/models";
 
 
 const ubuntu = Ubuntu({ display: 'swap', weight: ['400', '700'], subsets: ['latin'] });
@@ -18,9 +19,8 @@ const innerVariants: Variants = {
   closed: { y: 50, opacity: 0, }
 };
 
-type T_Flutter = { _id: string, __v: number, name: string, intro: string, gitRepo: string, slug: string, description: string, release: string, cover: string, img: string[], status: string, badge: string[], libraries: string[] }
 
-const FlutterCard = ({ info }: { info: T_Flutter }) => {
+const FlutterCard = ({ info }: { info: flutterProjectModel }) => {
 
   return (
     <Link href={`Flutter/${info.slug}`} scroll={false} className='flex flex-col-reverse md:flex-row justify-start group rounded-xl dark:bg-slate-800 dark:text-gray-300 dark:shadow-black bg-gray-100 text-gray-800 shadow-slate-400'>
@@ -30,7 +30,7 @@ const FlutterCard = ({ info }: { info: T_Flutter }) => {
           <p className={`my-auto ml-4 px-4 py-1 rounded-xl text-xs text-center text-white ${info.status == 'completed' ? 'bg-green-500' : 'bg-red-500'}`}>{info.status}</p>
         </motion.div>
         <motion.p variants={innerVariants} className="mt-4 text-xl" style={ubuntu.style}>{info.intro}</motion.p>
-        <motion.p variants={innerVariants} className="mt-4 text-sm" style={poppins.style} dangerouslySetInnerHTML={{ __html: info.description.slice(0, 350).concat(' ...') }}></motion.p>
+        <motion.p variants={innerVariants} className="mt-4 line-clamp-4 2xl:line-clamp-6 lg:line-clamp-4 md:line-clamp-1" style={poppins.style} dangerouslySetInnerHTML={{ __html: info.description }}></motion.p>
         <motion.p variants={innerVariants} className='mt-6 lg:mt-auto text-sm group-hover:text-blue-500 px-4 py-2 rounded-md w-fit dark:bg-slate-700  dark:text-white bg-slate-200 text-black'>Read More</motion.p>
       </motion.div>
       <div className="w-full md:w-1/2">

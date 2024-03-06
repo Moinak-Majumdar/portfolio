@@ -14,21 +14,19 @@ export default function Loading() {
     const { poppins } = useAppTheme();
 
     useEffect(() => {
-      if(typeof window != 'undefined') {
-        window.scrollTo(0,0);
-      }
+        window.scrollTo(0, 0);
     }, [])
-    
+
 
 
     return (
-        <main className='relative min-h-screen overflow-hidden'>
+        <main className='relative'>
             <section className='myContainer min-h-screen justify-center items-center'>
                 <div className='p-6 rounded-md backdrop-blur-sm  dark:bg-slate-900/30 bg-gray-400/30 shadow-2xl dark:shadow-black shadow-gray-300 flex justify-center flex-col items-center'>
                     <div className='bg-gray-300 dark:bg-slate-800 py-1 px-2 rounded-lg mt-4 mb-14 '>
                         <AnimatedHeading title='Loading ...' classList='text-3xl' font={poppins} />
                     </div>
-                    <Image src={loadingImg} alt='loading-gif' height={400}  />
+                    <Image src={loadingImg} alt='loading-gif' height={400} />
                 </div>
             </section>
             <div className="fixed w-full  h-full bottom-0 left-0 -z-40">

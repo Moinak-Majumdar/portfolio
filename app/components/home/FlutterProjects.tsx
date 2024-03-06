@@ -2,6 +2,7 @@ import { Variants, motion } from "framer-motion";
 import AnimatedHeading from "../others/AnimatedHeading";
 import { Ubuntu } from 'next/font/google';
 import FlutterCard from "../others/FlutterCard";
+import { flutterProjectModel } from "@/app/utils/models";
 
 const ubuntu = Ubuntu({ display: 'swap', weight: ['400', '700'], subsets: ['latin'] });
 
@@ -15,28 +16,7 @@ const Heading: Variants = {
     open: { opacity: 1, transition: { delay: 0.2 } }
 }
 
-type T_Flutter = { _id: string, __v: number, name: string, intro: string, gitRepo: string, slug: string, description: string, release: string, cover: string, img: string[], status: string, badge: string[], libraries: string[] }
-
-async function getFlutterProjects() {
-    const uri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/getAllFlutter?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/getAllFlutter`;
-
-    const res = await fetch(uri, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json"},
-        body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY }),
-        next: { revalidate: 3600 }
-    })
-
-    if(!res.ok) {
-        throw new Error('Failed to fetch flutter project data.');
-    }
-
-    return [...await res.json()];
-}
-
-export default async function FlutterProjects() {
-
-    const data: T_Flutter[] = await getFlutterProjects();
+export default function FlutterProjects({data}: {data: flutterProjectModel[]}) {
 
     return (
         <div className='myContainer py-[5rem] dark:text-gray-300 text-gray-800' style={ubuntu.style}>

@@ -1,24 +1,25 @@
-'use client'
+import { ServerData } from "../utils/ServerData";
+import { flutterProjectModel } from "../utils/models";
+import MainSection from "./components/Main";
 
-import FlutterProjects from '@/app/components/home//FlutterProjects'
-import { motion } from 'framer-motion'
-import React from 'react'
+async function getFlutterProjects() {
+  const data = new ServerData('getAllFlutter');
 
-const viewport = {
-  once: false,
-  amount: typeof window !== 'undefined' ? (window.innerWidth > 450 ? 0.3 : 0.1) : 0.3
+  const res = await data.get();
+
+  if(!res.ok) {
+      throw new Error('Failed to fetch flutter project data.');
+  }
+
+  return [...await res.json()];
 }
 
-const transition = {
-  closed: { staggerChildren: 0.3, staggerDirection: -1 },
-  open: { staggerChildren: 0.3, delayChildren: 0.2 }
-}
+const page = async () => {
 
-const page = () => {
+  const flutterProjects:flutterProjectModel[] = await getFlutterProjects();  
+
   return (
-    <motion.main id='FlutterProjects' initial='closed' whileInView='open' viewport={viewport} transition={transition} className='relative overflow-hidden'>
-      <FlutterProjects />
-    </motion.main>
+    <MainSection data={flutterProjects} />
   )
 }
 

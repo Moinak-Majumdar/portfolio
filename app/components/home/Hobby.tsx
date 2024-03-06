@@ -4,6 +4,7 @@ import { Roboto, Ubuntu } from "next/font/google";
 import AnimatedHeading from "../others/AnimatedHeading";
 import { Background, BackgroundOption } from "../others/Background";
 import Link from "next/link";
+import { photographyModel } from "@/app/utils/models";
 
 const ubuntu = Ubuntu({ display: 'swap', weight: ['400', '700'], subsets: ['latin'] });
 const roboto = Roboto({ display: 'swap', weight: ['400', '500', '700'], subsets: ['latin'] });
@@ -21,30 +22,7 @@ const Heading = {
     open: { opacity: 1, transition: { delay: 0.2, } }
 }
 
-type T_data = { _id: string, url: string, __v: number }
-
-async function getHobby() {
-    const uri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/getAllPhotography?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/getAllPhotography`;
-
-    const res = await fetch(uri, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY }),
-        next: { revalidate: 3600 }
-    });
-
-    if (!res.ok) {
-        throw new Error('Failed to fetch hobby data.');
-    }
-
-    const data: T_data[] = await res.json();
-    const random = Math.floor(Math.random() * (data.length - 4));
-    return [...data.slice(random, random + 4)]
-}
-
-export default async function Hobby() {
-
-    const data: T_data[] = await getHobby();
+export default function Hobby({data}: {data: photographyModel[]}) {
 
     return (
         <>

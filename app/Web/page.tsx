@@ -1,24 +1,28 @@
-"use client"
+import { ServerData } from "../utils/ServerData";
+import { webProjectModel } from "../utils/models";
+import { MainSection } from "./components/Main"
 
-import { motion } from "framer-motion"
-import WebProjects from "@/app/components/home/WebProjects"
+async function getWebProjects() {
+    const data =new ServerData('getAllWeb');
+  
+    const res = await data.get();
+  
+    if (!res.ok) {
+        throw new Error("Failed to fetch web project data.");
+    }
+  
+    return [...await res.json()];
+  }
+  
 
-const viewport = {
-    once: false,
-    amount: typeof window !== 'undefined' ? (window.innerWidth > 450 ? 0.3 : 0.1) : 0.3
-}
+const page = async () => {
 
-const transition = {
-    closed: { staggerChildren: 0.3, staggerDirection: -1 },
-    open: { staggerChildren: 0.3, delayChildren: 0.2 }
-}
+   const webProjects: webProjectModel[] =  await getWebProjects();
 
-const page = () => {
     return (
-        <motion.main id='WebProjects' initial='closed' whileInView='open' viewport={viewport} transition={transition} className='relative overflow-hidden bg-gradient-to-br dark:from-black dark:to-transparent from-gray-100 to-slate-100'>
-            <WebProjects />
-        </motion.main>
+        <MainSection data={webProjects} />
     )
 }
 
 export default page
+

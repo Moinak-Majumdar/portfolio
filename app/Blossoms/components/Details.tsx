@@ -2,6 +2,7 @@
 
 import AnimatedHeading from "@/app/components/others/AnimatedHeading";
 import { useAppTheme } from "@/app/components/theme/AppTheme";
+import { photographyModel } from "@/app/utils/models";
 import { motion } from "framer-motion"
 import Image from "next/legacy/image";
 import Link from "next/link";
@@ -15,9 +16,9 @@ const innerVariants = {
     open: { y: 0, x: 0, opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 150 } },
     closed: { y: 100, x: -200, opacity: 0, scale: 1.1 }
 };
-type T_photography = { id: string, url: string, __v: Number }
 
-const Details = ({ photo }: { photo: T_photography[] }) => {
+
+const Details = ({ photo }: { photo: photographyModel[] }) => {
 
     const { ubuntu, roboto, themeColor } = useAppTheme();
 

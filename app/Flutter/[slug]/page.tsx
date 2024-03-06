@@ -4,19 +4,15 @@ import { Ubuntu } from "next/font/google";
 import Details from "../components/Details";
 import Bg from "../components/Bg";
 import { Metadata, ResolvingMetadata } from "next";
+import { ServerData } from "@/app/utils/ServerData";
+import { flutterProjectModel } from "@/app/utils/models";
 
 const ubuntu = Ubuntu({ display: 'swap', weight: ['400', '700'], subsets: ['latin'] });
-type T_Flutter = { _id: string, __v: number, name: string, intro: string, gitRepo: string, slug: string, description: string, release: string, cover: string, img: string[], status: string, badge: string[], libraries: string[] }
 
 async function fetchDetails(slug: string) {
-    const uri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/getFlutter?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/getFlutter`;
+    const data = new ServerData('getFlutter');
 
-    const res = await fetch(uri, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY, slug }),
-        next: { revalidate: 3600 }
-    })
+    const res = await data.get();
 
     if (!res.ok) {
         throw new Error(`Failed to fetch flutter project : ${slug}`)
@@ -28,7 +24,7 @@ async function fetchDetails(slug: string) {
 export default async function Flutter({ params }: { params: { slug: string } }) {
 
     const devFlag: boolean = process.env.NEXT_PUBLIC_DEV_FLAG == 'yes' ? true : false;
-    const Data: T_Flutter = await fetchDetails(params.slug);
+    const Data: flutterProjectModel = await fetchDetails(params.slug);
 
 
     return (
@@ -52,7 +48,7 @@ type metaDataProps = {
 }
 export async function generateMetadata({ params, searchParams }: metaDataProps, parent: ResolvingMetadata): Promise<Metadata> {
 
-    const Data: T_Flutter = await fetchDetails(params.slug);
+    const Data: flutterProjectModel = await fetchDetails(params.slug);
 
     return {
         title: `Moinak Majumdar | ${Data.name}`,

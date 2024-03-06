@@ -2,6 +2,7 @@
 
 import { Background, BackgroundOption } from '@/app/components/others/Background'
 
+
 const Bg = () => {
     return (
         <div className="fixed w-full md:w-1/2 h-full top-0 left-0 -z-10">

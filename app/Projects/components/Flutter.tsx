@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import AnimatedHeading from '@/app/components/others/AnimatedHeading'
 import { useAppTheme } from '@/app/components/theme/AppTheme';
 import FlutterCard from '@/app/components/others/FlutterCard';
+import { flutterProjectModel } from '@/app/utils/models';
 
 const outerVariants = {
     open: { transition: { staggerChildren: 0.5, delayChildren: 0.3 }},
@@ -14,9 +15,7 @@ const Heading = {
     open: { opacity: 1, transition: {delay: 0.5} }
 }
 
-type T_Flutter = { _id: string, __v: number, name: string, intro: string, gitRepo: string, slug: string, description: string, release: string, cover: string, img: string[], status: string, badge: string[], libraries: string[] }
-
-const Flutter = ({flutter}: {flutter: T_Flutter[]}) => {
+const Flutter = ({flutter}: {flutter: flutterProjectModel[]}) => {
 
     const {ubuntu} = useAppTheme()
 

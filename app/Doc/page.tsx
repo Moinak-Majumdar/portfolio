@@ -5,7 +5,6 @@ import DevFlag from "@/app/components/others/DevFlag";
 import Ring from "@/app/components/others/Ring";
 import { useAppTheme } from "@/app/components/theme/AppTheme";
 import { Background, BackgroundOption } from "@/app/components/others/Background";
-import { Metadata } from "next";
 
 
 export default function Doc() {

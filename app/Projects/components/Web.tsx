@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import AnimatedHeading from '@/app/components/others/AnimatedHeading'
 import { useAppTheme } from '@/app/components/theme/AppTheme';
 import WebProjectCard from '@/app/components/others/WebProjectCard';
+import { webProjectModel } from '@/app/utils/models';
 
 const outerVariants = {
     open: { transition: { staggerChildren: 0.5, delayChildren: 0.3 }},
@@ -14,9 +15,7 @@ const Heading = {
     open: { opacity: 1, transition: {delay: 0.5} }
 }
 
-type T_Web = { _id: string, name: string, type: string, role: string, intro: string, liveUrl: string, gitRepo: string, slug: string, description: string, img: string[], tools: string[], toolsLogo: string[], __v: number, status: string, cover: string };
-
-const Web = ({web}: {web: T_Web[]}) => {
+const Web = ({web}: {web: webProjectModel[]}) => {
 
     const {ubuntu} = useAppTheme()
 

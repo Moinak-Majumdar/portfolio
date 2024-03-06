@@ -9,7 +9,7 @@ import Footer from './components/others/Footer'
 
 export const metadata: Metadata = {
   title: 'Moinak Majumdar | Home',
-  description: 'Hey! this is @moinak05, A passionate full stack web developer from India, Welcome to my portfolio. Let me introduce you with my various projects.',
+  description: 'Hey! this is @moinak05, A passionate full stack web and flutter developer from India, Welcome to my portfolio. Let me introduce you with my various projects.',
   authors: [{ name: 'Moinak Majumdar', url: 'https://www.linkedin.com/in/moinak-majumdar' }],
   keywords: ['Next js', 'express js', 'node js', 'firebase', 'react js', 'mongo', 'portfolio', 'github', 'vercel', 'typescript'],
   openGraph: {

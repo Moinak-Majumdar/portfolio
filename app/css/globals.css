@@ -9,6 +9,7 @@
   scrollbar-color: rgb(112,133,155);
   scrollbar-track-color: transparent;
   scrollbar-width: 8px;
+  scroll-behavior: smooth;
 }
 
 body {

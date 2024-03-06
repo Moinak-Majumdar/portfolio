@@ -2,18 +2,13 @@ import { Metadata } from "next";
 import DevFlag from "@/app/components/others/DevFlag";
 import Details from "./components/Details";
 import Bg from "./components/Bg";
-
-type T_photography = { id: string, url: string, __v: Number }
+import { photographyModel } from "@/app/utils/models";
+import { ServerData } from "../utils/ServerData";
 
 async function fetchBlossoms() {
-    const uri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/getAllPhotography?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/getAllPhotography`;
+    const data = new ServerData('getAllPhotography');
 
-    const res = await fetch(uri, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY }),
-        next: { revalidate: 3600 }
-    });
+    const res = await data.get();
 
     if (!res.ok) {
         throw new Error('Failed to fetch hobby data.');
@@ -25,7 +20,7 @@ async function fetchBlossoms() {
 export default async function Blossoms() {
 
     
-    const photo: T_photography[] = await fetchBlossoms();
+    const photo: photographyModel[] = await fetchBlossoms();
 
     return (
         <>

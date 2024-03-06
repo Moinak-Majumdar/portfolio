@@ -40,7 +40,7 @@ function Footer() {
     return (
         <>
             <motion.footer initial='closed' whileInView='open' viewport={viewport} variants={outerVariants} className='w-full pt-[4rem] pl-4 md:pl-10 lg:pl-16 xl:pl-36 2xl:pl-44 flex flex-col text-white pb-5'>
-                <div className={resolvedTheme === 'dark' ? FooterStyle.dark : FooterStyle.light} style={roboto.style}>
+                <div className={isClient && resolvedTheme === 'dark' ? FooterStyle.dark : FooterStyle.light} style={roboto.style}>
                     <motion.div variants={smooth} className="w-[90%] flex md:justify-between justify-center flex-col md:flex-row">
                         <div className="flex flex-col">
                             <h2 style={ubuntu.style}>Something in mind</h2>

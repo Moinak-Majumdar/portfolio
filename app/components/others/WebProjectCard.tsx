@@ -8,6 +8,7 @@ import cardStyle from '@/app/css/WebCard2.module.css'
 import { CSSProperties, useState, useEffect } from "react";
 import { useAppTheme } from "../theme/AppTheme";
 import { useTheme } from "next-themes";
+import { webProjectModel } from "@/app/utils/models";
 
 const outerVariants: Variants = {
     open: { transition: { staggerChildren: 0.1, delayChildren: 0.2, delay: .4 } },
@@ -18,9 +19,8 @@ const innerVariants: Variants = {
     closed: { y: 50, opacity: 0, transition: { type: 'linear', stiffness: 300 } }
 };
 
-type T_data = { _id: string, name: string, type: string, role: string, intro: string, liveUrl: string, gitRepo: string, slug: string, description: string, img: string[], tools: string[], toolsLogo: string[], __v: number, status: string, cover: string }
 
-const WebProjectCard = ({ data }: { data: T_data }) => {
+const WebProjectCard = ({ data }: { data: webProjectModel }) => {
     const { poppins, ubuntu, themeColor } = useAppTheme();
     const [webCardCss, setWebCardCss] = useState<string>();
     const [shadow, setShadow] = useState<string>();

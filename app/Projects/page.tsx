@@ -3,27 +3,18 @@ import Web from "./components/Web";
 import Flutter from "./components/Flutter";
 import Bg from "./components/Bg";
 import { Metadata } from "next";
+import { ServerData } from "../utils/ServerData";
+import { flutterProjectModel, webProjectModel } from "../utils/models";
 
-type T_Web = { _id: string, name: string, type: string, role: string, intro: string, liveUrl: string, gitRepo: string, slug: string, description: string, img: string[], tools: string[], toolsLogo: string[], __v: number, status: string, cover: string };
-type T_Flutter = { _id: string, __v: number, name: string, intro: string, gitRepo: string, slug: string, description: string, release: string, cover: string, img: string[], status: string, badge: string[], libraries: string[] }
-type data = { web: T_Web[], flutter: T_Flutter[] }
+
+type data = { web: webProjectModel[], flutter: flutterProjectModel[] }
 
 async function fetchData(): Promise<data> {
-    const webUri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/getAllWeb?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/getAllWeb`;
-    const web = await fetch(webUri, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY }),
-        next: { revalidate: 3600 }
-    });
+    const webData = new ServerData('getAllWeb');
+    const web = await webData.get();
     
-    const flutterUri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/getAllFlutter?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/getAllFlutter`;
-    const flutter = await fetch(flutterUri, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY }),
-        next: { revalidate: 3600 }
-    });
+    const flutterData = new ServerData('getAllFlutter');
+    const flutter = await flutterData.get();
 
     if (!web.ok) {
         throw new Error("Failed to fetch web project data.");

@@ -1,50 +1,54 @@
-'use client'
 
-import { motion } from 'framer-motion'
-import Hero from "./components/home/Hero";
-import AboutMe from './components/home/AboutMe';
-import { useAppTheme } from './components/theme/AppTheme';
-import Tech from './components/home/Tech';
-import WebProjects from './components/home/WebProjects';
-import FlutterProjects from './components/home/FlutterProjects';
-import Hobby from './components/home/Hobby';
-import HireMe from './components/home/HireMe';
+import _HomePage from './components/home/_HomePage';
+import { ServerData} from './utils/ServerData';
+import { flutterProjectModel, photographyModel, webProjectModel } from './utils/models';
 
-const viewport = {
-  once: false,
-  amount: typeof window !== 'undefined' ? (window.innerWidth > 450 ? 0.3 : 0.1) : 0.3
+async function getFlutterProjects() {
+  const data = new ServerData('getAllFlutter');
+
+  const res = await data.get();
+
+  if(!res.ok) {
+      throw new Error('Failed to fetch flutter project data.');
+  }
+
+  return [...await res.json()];
 }
 
-const transition = {
-  closed: { staggerChildren: 0.3, staggerDirection: -1 },
-  open: { staggerChildren: 0.3, delayChildren: 0.2 }
+async function getWebProjects() {
+  const data =new ServerData('getAllWeb');
+
+  const res = await data.get();
+
+  if (!res.ok) {
+      throw new Error("Failed to fetch web project data.");
+  }
+
+  return [...await res.json()];
 }
 
-export default function Home() {
+async function getPhotography() {
+  const data = new ServerData('getAllPhotography');
 
-  const { themeColor } = useAppTheme();
+  const res = await data.get();
+
+  if (!res.ok) {
+      throw new Error('Failed to fetch hobby data.');
+  }
+
+  const list: photographyModel[] = await res.json();
+  const random = Math.floor(Math.random() * (list.length - 4));
+  return [...list.slice(random, random + 4)]
+}
+
+
+export default async function Home() {
+
+  const flutterProjects: flutterProjectModel[] = await getFlutterProjects();
+  const webProjects: webProjectModel[] = await getWebProjects();
+  const photography: photographyModel[] = await getPhotography(); 
 
   return (
-    <>
-      <Hero />
-      <motion.section id='AboutMe' initial='closed' whileInView='open' viewport={viewport} transition={transition} className='relative max-w-[100vw] overflow-hidden dark:bg-gradient-to-t dark:from-slate-900 dark:to-transparent'>
-        <AboutMe themeColor={themeColor} />
-      </motion.section>
-      <motion.section id='Tech' initial='closed' whileInView='open' viewport={viewport} transition={transition} className=' relative dark:bg-gradient-to-b dark:from-slate-900'>
-        <Tech themeColor={themeColor} />
-      </motion.section>
-      <motion.section id='WebProjects' initial='closed' whileInView='open' viewport={viewport} transition={transition} className='relative overflow-hidden'>
-        <WebProjects />
-      </motion.section>
-      <motion.section id='FlutterProjects' initial='closed' whileInView='open' viewport={viewport} transition={transition} className='relative overflow-hidden'>
-        <FlutterProjects />
-      </motion.section>
-      <motion.section id='MyHobby' initial='closed' whileInView='open' viewport={viewport} transition={transition} className=' relative overflow-hidden'>
-        <Hobby />
-      </motion.section>
-      <motion.section id='HireMe' initial='closed' whileInView='open' viewport={viewport} transition={transition} className=' relative overflow-hidden myContainer py-[8rem]'>
-        <HireMe />
-      </motion.section>
-    </>
-  )
+    <_HomePage flutterProjects={flutterProjects} webProjects={webProjects} photography={photography} />
+  );
 }
