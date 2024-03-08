@@ -55,8 +55,8 @@ const AboutMe = ({ themeColor }: props) => {
         <div className='absolute w-full h-full inset-0 bg-gradient-to-t z-10 dark:from-[#000011] from-[#ffffff] to-transparent'></div>
       </div>
       <div className='w-full overflow-hidden'>
-        <motion.div variants={Right} transition={{ duration: 7, repeat: Infinity, repeatType: 'reverse' }} className='absolute top-[30%] right-0 lg:right-32 w-80 lg:w-[40%] h-12 lg:h-20 rounded-full bg-gradient-to-l dark:to-[#FF008E] dark:from-blue-500 dark:blur-[90px] from-slate-100 to-blue-200 blur-[80px]'></motion.div>
-        <motion.div variants={Right2} transition={{ duration: 5, repeat: Infinity, repeatType: 'reverse' }} className='absolute top-[45%] lg:top-[30%] right-0 lg:right-32 w-80 h-16 rounded-xl dark:bg-indigo-600 bg-gradient-to-b from-teal-300 to-blue-200 blur-[70px]'></motion.div>
+        <motion.div variants={Right} transition={{ duration: 5, repeat: Infinity, repeatType: 'reverse' }} className='absolute top-[30%] -right-32 lg:right-32 w-80 lg:w-[40%] h-12 lg:h-20 rounded-full dark:bg-gradient-to-l dark:to-[#ff1b6b] dark:from-[#45caff] dark:blur-[80px] bg-gradient-to-t from-pink-200 to-indigo-200 blur-[40px]'></motion.div>
+        <motion.div variants={Right2} transition={{ duration: 5, repeat: Infinity, repeatType: 'reverse' }} className='absolute top-[45%] lg:top-[30%] -right-32  lg:right-32 w-80 h-16 rounded-xl bg-gradient-to-b dark:from-blue-500 dark:to-blue-500 dark:blur-[80px]  from-cyan-200 to-blue-200 blur-[40px]'></motion.div>
       </div>
     </>
   )
@@ -67,12 +67,12 @@ export default AboutMe
 
 
 const Right = {
-  closed: { x: 0, y: 100, rotate: '40deg' },
-  open: { x: -350, y: 150, rotate: '-40deg' }
+  closed: { x: 0, y: -50, rotate: '-30deg', opacity: 0},
+  open: { x: -350, y: 150, rotate: '-40deg', opacity: 1 }
 }
 const Right2 = {
-  closed: { x: 50, y: 250, opacity: 0, rotate: '-30deg' },
-  open: { x: -350, y: 400, opacity: 1, rotate: '-40deg' }
+  closed: { x: 150, y: 50, opacity: 0, rotate: '-30deg' },
+  open: { x: -350, y: 300, opacity: 1, rotate: '-40deg' }
 }
 
 const leftOuterVariants = {

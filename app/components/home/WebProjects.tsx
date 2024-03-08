@@ -19,16 +19,16 @@ const Heading = {
 export default function WebProjects({data}: {data: webProjectModel[]}) {
 
     return (
-        <div className='myContainer my-4 md:my-9 xl:my-16 2xl:my-36 rounded-lg shadow-2x dark:text-gray-300 text-gray-800 dark:bg-slate-800/40 bg-gray-100' style={ubuntu.style}>
-            <motion.div initial='closed' whileInView='open' viewport={{ once: true, amount: 0.2 }} variants={outerVariants} className="p-4 md:p-8 xl:p-16 flex flex-col justify-start">
+        <div className='myContainer my-4 md:my-9 xl:my-16 2xl:my-36 ' style={ubuntu.style}>
+            <motion.div initial='closed' whileInView='open' viewport={{ once: true, amount: 0.2 }} variants={outerVariants} className="flex flex-col justify-start">
                 <motion.div variants={Heading}>
                     <AnimatedHeading classList="tracking-wide text-lg" title="WEB PROJECTS" />
                     <h1 className="text-4xl md:text-5xl mb-4">
                         Learning<span className="font-bold ml-2">By Building</span>
                     </h1>
                 </motion.div>
-                <div>
-                    {data && <div className="mt-10 mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-16 relative">
+                <div className='mt-4 p-4 md:p-8 xl:p-16 rounded-lg dark:text-gray-300 text-gray-800 dark:bg-slate-800/40 bg-slate-50'>
+                    {data && <div className="mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-16 relative">
                         {data.map((curr, index) => {
                             return (
                                 <WebProjectCard key={index} data={curr} />

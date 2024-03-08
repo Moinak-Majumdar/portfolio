@@ -6,7 +6,7 @@ import { photographyModel } from "@/app/utils/models";
 import { ServerData } from "../utils/ServerData";
 
 async function fetchBlossoms() {
-    const data = new ServerData('getAllPhotography');
+    const data = new ServerData({ path: 'getAllPhotography' });
 
     const res = await data.get();
 
@@ -19,7 +19,7 @@ async function fetchBlossoms() {
 
 export default async function Blossoms() {
 
-    
+
     const photo: photographyModel[] = await fetchBlossoms();
 
     return (
@@ -43,6 +43,9 @@ export async function generateMetadata(): Promise<Metadata> {
         description: 'Some memories from my roof top garden.',
         authors: [{ name: 'Moinak Majumdar', url: 'https://www.linkedin.com/in/moinak-majumdar' }],
         keywords: ['photography', 'mobile photography', 'gardening', 'flowers'],
+        creator: "Moinak Majumdar",
+        publisher: "Vercel",
+        metadataBase: new URL('https://moinak05.vercel.app/'),
         openGraph: {
             type: 'website',
             title: `Moinak Majumdar | Blossoms`,

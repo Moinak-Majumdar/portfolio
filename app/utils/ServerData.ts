@@ -1,17 +1,21 @@
+type serverDataType = { path: string, revalidate?: number }
+type getParams = { body: object }
+
+
 class ServerData {
     private uri: string;
     private revalidate: number;
 
-    constructor(path: string, revalidate: number = 3600) {
-        this.uri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/${path}?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/${path}`
-        this.revalidate = revalidate;
+    constructor(params: serverDataType) {
+        this.uri = process.env.NEXT_PUBLIC_TEST_DB ? `${process.env.NEXT_PUBLIC_SERVER}/${params.path}?testDb=${process.env.NEXT_PUBLIC_TEST_DB}` : `${process.env.NEXT_PUBLIC_SERVER}/${params.path}`
+        this.revalidate = params.revalidate ?? 3600;
     }
 
-    async get(body: object = {}): Promise<Response> {
+    async get(params: getParams = { body: {} }): Promise<Response> {
         const res = await fetch(this.uri, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY, ...body }),
+            body: JSON.stringify({ apiKey: process.env.NEXT_PUBLIC_DB_KEY, ...params.body }),
             next: { revalidate: this.revalidate }
         });
 

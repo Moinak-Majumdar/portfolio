@@ -10,9 +10,9 @@ import { flutterProjectModel } from "@/app/utils/models";
 const ubuntu = Ubuntu({ display: 'swap', weight: ['400', '700'], subsets: ['latin'] });
 
 async function fetchDetails(slug: string) {
-    const data = new ServerData('getFlutter');
+    const data = new ServerData({ path: 'getFlutter' });
 
-    const res = await data.get();
+    const res = await data.get({ body: { slug } });
 
     if (!res.ok) {
         throw new Error(`Failed to fetch flutter project : ${slug}`)
@@ -55,6 +55,9 @@ export async function generateMetadata({ params, searchParams }: metaDataProps, 
         description: Data.intro,
         authors: [{ name: 'Moinak Majumdar', url: 'https://www.linkedin.com/in/moinak-majumdar' }],
         keywords: ['flutter', 'android', 'open source', 'app development', 'mobile app development', 'ios development'],
+        creator: "Moinak Majumdar",
+        publisher: "Vercel",
+        metadataBase: new URL('https://moinak05.vercel.app/'),
         openGraph: {
             type: 'website',
             title: `Moinak Majumdar | ${Data.name}`,

@@ -10,10 +10,10 @@ import { flutterProjectModel, webProjectModel } from "../utils/models";
 type data = { web: webProjectModel[], flutter: flutterProjectModel[] }
 
 async function fetchData(): Promise<data> {
-    const webData = new ServerData('getAllWeb');
+    const webData = new ServerData({ path: 'getAllWeb' });
     const web = await webData.get();
-    
-    const flutterData = new ServerData('getAllFlutter');
+
+    const flutterData = new ServerData({ path: 'getAllFlutter' });
     const flutter = await flutterData.get();
 
     if (!web.ok) {
@@ -56,6 +56,9 @@ export async function generateMetadata(): Promise<Metadata> {
         description: 'Explore a showcase of innovative web and Flutter projects on this page. Immerse yourself in cutting-edge technologies and seamless user experiences crafted by Moinak Majumdar. From dynamic web applications to responsive Flutter mobile apps, discover the future of digital solutions',
         authors: [{ name: 'Moinak Majumdar', url: 'https://www.linkedin.com/in/moinak-majumdar' }],
         keywords: ['Web Development', 'Flutter Projects', 'Responsive Design', 'Mobile App Development', 'Innovative Technology', 'User Experience (UX)', 'Front-end Development', 'Full-stack Development', 'Web Applications', 'Flutter Apps', 'UI/UX Design', 'Cross-Platform Development', 'Interactive Interfaces', 'Digital Innovation',],
+        creator: "Moinak Majumdar",
+        publisher: "Vercel",
+        metadataBase: new URL('https://moinak05.vercel.app/'),
         openGraph: {
             type: 'website',
             title: `Moinak Majumdar | Projects`,

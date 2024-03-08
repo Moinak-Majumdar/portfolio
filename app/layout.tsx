@@ -9,13 +9,16 @@ import Footer from './components/others/Footer'
 
 export const metadata: Metadata = {
   title: 'Moinak Majumdar | Home',
-  description: 'Hey! this is @moinak05, A passionate full stack web and flutter developer from India, Welcome to my portfolio. Let me introduce you with my various projects.',
+  description: "Hey! this is @moinak05, A passionate full stack web and flutter developer from India, Explore my comprehensive portfolio showcasing expertise in full stack web and Flutter mobile app development.  Let's bring your ideas to life with creativity and precision. ",
   authors: [{ name: 'Moinak Majumdar', url: 'https://www.linkedin.com/in/moinak-majumdar' }],
-  keywords: ['Next js', 'express js', 'node js', 'firebase', 'react js', 'mongo', 'portfolio', 'github', 'vercel', 'typescript'],
+  keywords: ['Web Development', 'Flutter Projects', 'Responsive Design', 'Mobile App Development', 'Innovative Technology', 'User Experience (UX)', 'Front-end Development', 'Full-stack Development', 'Web Applications', 'Flutter Apps', 'UI/UX Design', 'Cross-Platform Development', 'Interactive Interfaces', 'Digital Innovation',],
+  creator: "Moinak Majumdar",
+  publisher: "Vercel",
+  metadataBase: new URL('https://moinak05.vercel.app/'),
   openGraph: {
     type: 'website',
     title: 'Moinak Majumdar | Home',
-    description: 'Hey! this is @moinak05, A passionate full stack web developer from India, Welcome to my portfolio. Let me introduce you with my various projects.',
+    description: "Hey! this is @moinak05, A passionate full stack web and flutter developer from India, Explore my comprehensive portfolio showcasing expertise in full stack web and Flutter mobile app development.  Let's bring your ideas to life with creativity and precision. ",
     images: 'https://avatars.githubusercontent.com/u/99950805?v=4',
     url: 'https://moinak05.vercel.app/',
   },

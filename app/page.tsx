@@ -4,7 +4,7 @@ import { ServerData} from './utils/ServerData';
 import { flutterProjectModel, photographyModel, webProjectModel } from './utils/models';
 
 async function getFlutterProjects() {
-  const data = new ServerData('getAllFlutter');
+  const data = new ServerData({path: 'getAllFlutter'});
 
   const res = await data.get();
 
@@ -16,7 +16,7 @@ async function getFlutterProjects() {
 }
 
 async function getWebProjects() {
-  const data =new ServerData('getAllWeb');
+  const data =new ServerData({path: 'getAllWeb'});
 
   const res = await data.get();
 
@@ -28,7 +28,7 @@ async function getWebProjects() {
 }
 
 async function getPhotography() {
-  const data = new ServerData('getAllPhotography');
+  const data = new ServerData({path: 'getAllPhotography'});
 
   const res = await data.get();
 
